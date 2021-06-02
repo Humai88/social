@@ -1,7 +1,6 @@
 .nav {
   grid-area: nav;
   padding: 1rem 0 0 1rem;
-  background-color: rgb(145, 52, 173);
 }
 .nav a {
   line-height: 2.7rem;
@@ -13,4 +12,7 @@
 }
 .nav a:hover {
   color: #a04feb;
+}
+nav a.active {
+  color: #b668ff;
 }
