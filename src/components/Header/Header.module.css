@@ -1,0 +1,15 @@
+.header {
+  grid-area: header;
+  display: grid;
+  background-color: rgb(145, 52, 173);
+}
+
+.logo {
+  width: 2rem;
+  padding: 1rem 0 0 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.logo:hover {
+  opacity: 0.6;
+}
