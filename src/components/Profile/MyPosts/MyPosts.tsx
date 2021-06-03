@@ -8,9 +8,11 @@ const MyPosts = () => {
     { id: 2, post: "How are you?", likes: 9 },
     { id: 3, post: "Fine, thanks", likes: 15 },
   ];
+
   let poststElements = postsData.map((p) => (
-    <Post id={p.id} post={p.post} likesCount={p.likes} />
+    <Post key={p.id} id={p.id} post={p.post} likesCount={p.likes} />
   ));
+
   return (
     <div className={s.wrapper}>
       <h3 className={s.header}>My Posts</h3>

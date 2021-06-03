@@ -13,7 +13,7 @@ const Dialogs = () => {
   ];
 
   let dialogsElements = dialogsData.map((d) => (
-    <DialogItem name={d.name} id={d.id} />
+    <DialogItem key={d.id} name={d.name} id={d.id} />
   ));
   const messagesData = [
     { id: 1, text: "Hi" },
@@ -21,7 +21,7 @@ const Dialogs = () => {
     { id: 3, text: "Fine, thanks" },
   ];
   let messagesElements = messagesData.map((m) => (
-    <Message text={m.text} id={m.id} />
+    <Message key={m.id} text={m.text} id={m.id} />
   ));
   return (
     <div className={s.dialogs}>
