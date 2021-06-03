@@ -11,7 +11,7 @@ const Navigation = () => {
         </NavLink>
       </div>
       <div>
-        <NavLink to="/messages" activeClassName={s.active}>
+        <NavLink to="/dialogs" activeClassName={s.active}>
           Messages
         </NavLink>
       </div>

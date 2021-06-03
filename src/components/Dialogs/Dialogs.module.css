@@ -1,3 +1,14 @@
-.content {
-  background-color: rgb(145, 52, 173);
+.dialogs {
+  /* background-color: rgb(90, 28, 109); */
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+.items {
+  /* background-color: rgb(121, 69, 118); */
+  padding: 1rem;
+}
+
+.messages {
+  /* background-color: rgb(83, 54, 82); */
+  padding: 1rem;
 }

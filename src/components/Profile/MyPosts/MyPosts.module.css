@@ -1,5 +1,6 @@
 .wrapper {
 }
-.item {
-  color: red;
+.header {
+  font-weight: 400;
+  font-size: 1.3rem;
 }

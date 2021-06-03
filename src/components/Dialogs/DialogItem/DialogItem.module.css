@@ -1,0 +1,10 @@
+.dialog a {
+  color: rgb(243, 243, 243);
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 400;
+  transition: 0.5s;
+}
+.active {
+  color: red;
+}

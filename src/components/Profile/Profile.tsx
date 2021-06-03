@@ -8,7 +8,6 @@ const Profile = () => {
     <div>
       <Cover />
       <MyPosts />
-      <Post />
     </div>
   );
 };
