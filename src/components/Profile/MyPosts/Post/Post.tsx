@@ -14,7 +14,7 @@ type PropsType = {
   post: string;
   likesCount: number;
 };
-const Post = ({ id, post, likesCount }: PropsType) => {
+const Post: React.FC<PropsType> = ({ post, likesCount }) => {
   return (
     <div>
       <div className={s.item}>{post}</div>
