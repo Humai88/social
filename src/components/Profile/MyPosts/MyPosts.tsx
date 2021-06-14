@@ -1,13 +1,13 @@
 import React from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import { PostsDataType, PostType } from "./../../../index";
+import { profilePageType, PostType } from "./../../../redux/state";
 type PropsType = {
-  posts: PostsDataType;
+  data: profilePageType;
 };
 
-const MyPosts: React.FC<PropsType> = ({ posts }) => {
-  let poststElements = posts.map((p: PostType) => (
+const MyPosts: React.FC<PropsType> = ({ data }) => {
+  let poststElements = data.posts.map((p: PostType) => (
     <Post key={p.id} id={p.id} post={p.post} likesCount={p.likes} />
   ));
 
