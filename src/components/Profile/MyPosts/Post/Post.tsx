@@ -1,15 +1,7 @@
 import React from "react";
 import s from "./Post.module.css";
 
-// type PostType = {
-//   id: number;
-//   post: string;
-//   likesCount: number;
-// };
-// type PropsType = {
-//   posts: PostType[];
-// };
-type PropsType = {
+export type PropsType = {
   id: number;
   post: string;
   likesCount: number;
