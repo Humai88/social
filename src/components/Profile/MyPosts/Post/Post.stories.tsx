@@ -1,4 +1,4 @@
-import Post, { PropsType } from "./Post";
+import { Post, PropsType } from "./Post";
 import { Story } from "@storybook/react";
 export default {
   title: "Profile/Post",

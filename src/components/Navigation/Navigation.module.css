@@ -1,6 +1,7 @@
 .nav {
   grid-area: nav;
   padding: 1rem 0 0 1rem;
+  /* background-color: rgb(64, 26, 98); */
 }
 .nav a {
   line-height: 2.7rem;

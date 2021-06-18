@@ -9,9 +9,9 @@ type PropsType = {
   data: messagePageType;
 };
 
-const Dialogs: React.FC<PropsType> = ({ data }) => {
+export const Dialogs: React.FC<PropsType> = ({ data }) => {
   let dialogsElements = data.dialogs.map((d: DialogType) => (
-    <DialogItem key={d.id} name={d.name} id={d.id} />
+    <DialogItem image={d.image} key={d.id} name={d.name} id={d.id} />
   ));
 
   let messagesElements = data.messages.map((m: MessageType) => (
@@ -25,5 +25,3 @@ const Dialogs: React.FC<PropsType> = ({ data }) => {
     </div>
   );
 };
-
-export default Dialogs;

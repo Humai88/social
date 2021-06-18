@@ -1,4 +1,4 @@
-import Avatar from "./Avatar";
+import { Avatar } from "./Avatar";
 import { Story } from "@storybook/react";
 export default {
   title: "Profile/Avatar",

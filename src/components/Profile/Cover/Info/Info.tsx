@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Info.module.css";
 
-const Info = () => {
+export const Info = () => {
   return (
     <div className={s.info}>
       <h2>Allan Jackson</h2>
@@ -12,5 +12,3 @@ const Info = () => {
     </div>
   );
 };
-
-export default Info;

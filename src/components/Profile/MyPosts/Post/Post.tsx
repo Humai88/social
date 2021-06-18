@@ -6,7 +6,8 @@ export type PropsType = {
   post: string;
   likesCount: number;
 };
-const Post: React.FC<PropsType> = ({ post, likesCount }) => {
+
+export const Post: React.FC<PropsType> = ({ post, likesCount }) => {
   return (
     <div>
       <div className={s.item}>{post}</div>
@@ -14,5 +15,3 @@ const Post: React.FC<PropsType> = ({ post, likesCount }) => {
     </div>
   );
 };
-
-export default Post;

@@ -1,4 +1,4 @@
-import Info from "./Info";
+import { Info } from "./Info";
 import { Story } from "@storybook/react";
 export default {
   title: "Profile/Info",

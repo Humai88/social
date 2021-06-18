@@ -5,11 +5,13 @@ import s from "./DialogItem.module.css";
 type PropsType = {
   name: string;
   id: number;
+  image: string;
 };
 
-const DialogItem: React.FC<PropsType> = ({ name, id }) => {
+const DialogItem: React.FC<PropsType> = ({ name, id, image }) => {
   return (
     <div className={s.dialog}>
+      <img className={s.img} src={image} alt="avatar"></img>
       <NavLink to={`/dialogs/${id}`}>{name}</NavLink>
     </div>
   );

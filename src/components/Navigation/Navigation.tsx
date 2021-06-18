@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Navigation.module.css";
 
-const Navigation = () => {
+export const Navigation = () => {
   return (
     <nav className={s.nav}>
       <div>
@@ -30,8 +30,11 @@ const Navigation = () => {
           Settings
         </NavLink>
       </div>
+      <div>
+        <NavLink to="/friends" activeClassName={s.active}>
+          Friends
+        </NavLink>
+      </div>
     </nav>
   );
 };
-
-export default Navigation;
