@@ -8,13 +8,14 @@ type DefaultButtonPropsType = DetailedHTMLProps<
 >;
 
 type ButtonPropsType = DefaultButtonPropsType & {
-  className: string;
+  className?: string;
   red?: boolean;
 };
 
 export const Button: React.FC<ButtonPropsType> = ({
   className,
   red,
+
   ...restProps
 }) => {
   const finalClassName = `${red ? s.red : s.default} ${className}`;

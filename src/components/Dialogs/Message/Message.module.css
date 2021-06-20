@@ -1,4 +1,15 @@
+.wrapper {
+  /* background-color: rgb(97, 55, 134); */
+  margin-bottom: 2rem;
+}
+
 .message {
   font-size: 1.4rem;
-  background-color: rgb(64, 26, 98);
+  align-self: center;
+}
+
+.btn {
+  display: block;
+  margin: 0;
+  align-self: center;
 }

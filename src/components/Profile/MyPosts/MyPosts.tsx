@@ -12,15 +12,22 @@ export const MyPosts: React.FC<PropsType> = ({ data }) => {
   let poststElements = data.posts.map((p: PostType) => (
     <Post key={p.id} id={p.id} post={p.post} likesCount={p.likes} />
   ));
+  let newPostElement = React.createRef<HTMLTextAreaElement>();
 
+  const addPost = () => {
+    const text = newPostElement.current?.value;
+    alert(text);
+  };
   return (
     <div className={s.wrapper}>
       <h3 className={s.header}>My Posts</h3>
       <div>
-        <textarea></textarea>
+        <textarea ref={newPostElement}></textarea>
       </div>
       <div>
-        <Button className={s.addPostBtn}>Add</Button>
+        <Button onClick={addPost} className={s.addPostBtn}>
+          Add
+        </Button>
       </div>
       <div>{poststElements}</div>
     </div>
