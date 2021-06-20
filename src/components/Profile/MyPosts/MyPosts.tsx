@@ -6,17 +6,18 @@ import { Button } from "../../UI/Button/Button";
 
 type PropsType = {
   data: profilePageType;
+  addPostCallback: (postContent: string) => void;
 };
 
-export const MyPosts: React.FC<PropsType> = ({ data }) => {
+export const MyPosts: React.FC<PropsType> = ({ data, addPostCallback }) => {
   let poststElements = data.posts.map((p: PostType) => (
     <Post key={p.id} id={p.id} post={p.post} likesCount={p.likes} />
   ));
   let newPostElement = React.createRef<HTMLTextAreaElement>();
-
-  const addPost = () => {
-    const text = newPostElement.current?.value;
-    alert(text);
+  const onClickHandler = () => {
+    if (newPostElement.current) {
+      addPostCallback(newPostElement.current.value);
+    }
   };
   return (
     <div className={s.wrapper}>
@@ -25,7 +26,7 @@ export const MyPosts: React.FC<PropsType> = ({ data }) => {
         <textarea ref={newPostElement}></textarea>
       </div>
       <div>
-        <Button onClick={addPost} className={s.addPostBtn}>
+        <Button onClick={onClickHandler} className={s.addPostBtn}>
           Add
         </Button>
       </div>

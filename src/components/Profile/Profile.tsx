@@ -6,13 +6,14 @@ import { profilePageType } from "./../../redux/state";
 
 type PropsType = {
   data: profilePageType;
+  addPostCallback: (postContent: string) => void;
 };
 
-export const Profile: React.FC<PropsType> = ({ data }) => {
+export const Profile: React.FC<PropsType> = ({ data, addPostCallback }) => {
   return (
     <div>
       <Cover />
-      <MyPosts data={data} />
+      <MyPosts data={data} addPostCallback={addPostCallback} />
     </div>
   );
 };

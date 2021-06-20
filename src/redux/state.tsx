@@ -1,3 +1,4 @@
+// import { v1 } from "uuid";
 export type PostType = {
   id: number;
   post: string;
@@ -76,6 +77,15 @@ let state = {
       { id: 3, text: "Fine, thanks" },
     ],
   },
+};
+
+export const addPost = (postContent: string) => {
+  const newPost = {
+    id: 4,
+    post: postContent,
+    likes: 0,
+  };
+  state.prifilePage.posts.push(newPost);
 };
 
 export default state;
