@@ -21,6 +21,7 @@ export type MessageType = {
 export type MessageDataType = Array<MessageType>;
 export type profilePageType = {
   posts: PostsDataType;
+  newPostText: string;
 };
 export type messagePageType = {
   dialogs: DialogsDataType;
@@ -38,6 +39,7 @@ let state = {
       { id: 2, post: "How are you?", likes: 9 },
       { id: 3, post: "Fine, thanks", likes: 15 },
     ],
+    newPostText: "",
   },
   messagePage: {
     dialogs: [
@@ -80,13 +82,19 @@ let state = {
   },
 };
 
-export const addPost = (postContent: string) => {
+export const addPost = () => {
   const newPost = {
-    id: 4,
-    post: postContent,
+    id: new Date().getTime(),
+    post: state.prifilePage.newPostText,
     likes: 0,
   };
   state.prifilePage.posts.push(newPost);
+  state.prifilePage.newPostText = "";
+  renderEntireTree(state);
+};
+
+export const updateNewPostText = (newText: string) => {
+  state.prifilePage.newPostText = newText;
   renderEntireTree(state);
 };
 

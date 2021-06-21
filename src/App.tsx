@@ -13,10 +13,11 @@ import { RootStateType } from "./redux/state";
 
 type PropsType = {
   state: RootStateType;
-  addPostCallback: (postContent: string) => void;
+  addPostCallback: () => void;
+  updatePostTextCallback: (postText: string) => void;
 };
 
-function App({ state, addPostCallback }: PropsType) {
+function App({ state, addPostCallback, updatePostTextCallback }: PropsType) {
   return (
     <div className="app-wrapper">
       <Header />
@@ -26,6 +27,7 @@ function App({ state, addPostCallback }: PropsType) {
           path="/profile"
           render={() => (
             <Profile
+              updatePostTextCallback={updatePostTextCallback}
               data={state.prifilePage}
               addPostCallback={addPostCallback}
             />
