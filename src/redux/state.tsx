@@ -1,4 +1,5 @@
 // import { v1 } from "uuid";
+import { renderEntireTree } from "../render";
 export type PostType = {
   id: number;
   post: string;
@@ -86,6 +87,7 @@ export const addPost = (postContent: string) => {
     likes: 0,
   };
   state.prifilePage.posts.push(newPost);
+  renderEntireTree(state);
 };
 
 export default state;

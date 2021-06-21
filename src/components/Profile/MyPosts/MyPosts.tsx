@@ -11,14 +11,17 @@ type PropsType = {
 
 export const MyPosts: React.FC<PropsType> = ({ data, addPostCallback }) => {
   let poststElements = data.posts.map((p: PostType) => (
-    <Post key={p.id} id={p.id} post={p.post} likesCount={p.likes} />
+    <Post key={p.id} id={p.id} post={p.post} likes={p.likes} />
   ));
   let newPostElement = React.createRef<HTMLTextAreaElement>();
+
   const onClickHandler = () => {
     if (newPostElement.current) {
       addPostCallback(newPostElement.current.value);
+      newPostElement.current.value = "";
     }
   };
+
   return (
     <div className={s.wrapper}>
       <h3 className={s.header}>My Posts</h3>
