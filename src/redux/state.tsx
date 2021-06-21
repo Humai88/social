@@ -1,5 +1,5 @@
 // import { v1 } from "uuid";
-import { renderEntireTree } from "../render";
+let renderEntireTree = (state: RootStateType) => {};
 export type PostType = {
   id: number;
   post: string;
@@ -98,4 +98,7 @@ export const updateNewPostText = (newText: string) => {
   renderEntireTree(state);
 };
 
+export const subscribe = (observer: (state: RootStateType) => void) => {
+  renderEntireTree = observer;
+};
 export default state;
