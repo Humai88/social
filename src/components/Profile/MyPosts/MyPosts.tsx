@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import s from "./MyPosts.module.css";
+import s from "./MyPosts.module.scss";
 import { Post } from "./Post/Post";
 import { profilePageType, PostType } from "./../../../redux/state";
 import { Button } from "../../UI/Button/Button";
@@ -20,8 +20,6 @@ export const MyPosts: React.FC<PropsType> = ({
   let poststElements = data.posts.map((p: PostType) => (
     <Post key={p.id} id={p.id} post={p.post} likes={p.likes} />
   ));
-
-  // let newPostElement = React.createRef<HTMLTextAreaElement>();
 
   const onClickHandler = () => {
     addPostCallback(newPostText);

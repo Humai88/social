@@ -1,6 +1,6 @@
 import React from "react";
 import DialogItem from "./DialogItem/DialogItem";
-import s from "./Dialogs.module.css";
+import s from "./Dialogs.module.scss";
 import Message from "./Message/Message";
 import { DialogType } from "./../../redux/state";
 import { MessageType, messagePageType } from "./../../redux/state";

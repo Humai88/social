@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./Cover.module.css";
+import s from "./Cover.module.scss";
 import { Avatar } from "./Avatar/Avatar";
 import { Info } from "./Info/Info";
 
