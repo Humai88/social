@@ -1,5 +1,8 @@
-.info div {
-  font-size: 1.2rem;
-  margin: 1rem 0;
-  color: rgb(202, 202, 202);
+@import "./../../../../scss/global.scss";
+.info {
+  div {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+    color: $color-body;
+  }
 }

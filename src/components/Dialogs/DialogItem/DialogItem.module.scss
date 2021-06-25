@@ -1,16 +1,4 @@
-.dialog a {
-  color: rgb(243, 243, 243);
-  text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: 400;
-  transition: 0.5s;
-  align-self: center;
-}
-.active {
-  color: red;
-}
 .dialog {
-  /* background-color: rgb(64, 26, 98); */
   margin-bottom: 1rem;
   display: grid;
   grid-template-columns: 6fr 6fr;

@@ -1,19 +1,19 @@
+@import "./../../scss/global.scss";
 .nav {
   grid-area: nav;
   padding: 1rem 0 0 1rem;
-  /* background-color: rgb(64, 26, 98); */
-}
-.nav a {
-  line-height: 2.7rem;
-  color: rgb(243, 243, 243);
-  text-decoration: none;
-  font-size: 1.6rem;
-  font-weight: 400;
-  transition: 0.5s;
-}
-.nav a:hover {
-  color: #a04feb;
-}
-nav a.active {
-  color: #b668ff;
+  a {
+    line-height: 2.7rem;
+    color: $color-body;
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 400;
+    transition: 0.5s;
+    &:hover {
+      color: $color-text-hover;
+    }
+    &.active {
+      color: $color-primary;
+    }
+  }
 }
