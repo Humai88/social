@@ -1,32 +1,35 @@
 import React, { ChangeEvent } from "react";
 import styles from "./MyPosts.module.scss";
 import { Post } from "./Post/Post";
-import { profilePageType, PostType } from "./../../../redux/state";
+import {
+  profilePageType,
+  PostType,
+  addPostAC,
+  updateNewPostTextAC,
+} from "./../../../redux/state";
 import { Button } from "../../UI/Button/Button";
 
 type PropsType = {
   data: profilePageType;
-  addPostCallback: (newPostText: string) => void;
+  dispatch: any;
   newPostText: string;
-  updatePostTextCallback: (postText: string) => void;
 };
 
 export const MyPosts: React.FC<PropsType> = ({
   data,
-  addPostCallback,
+  dispatch,
   newPostText,
-  updatePostTextCallback,
 }) => {
   let poststElements = data.posts.map((p: PostType) => (
     <Post key={p.id} id={p.id} post={p.post} likes={p.likes} />
   ));
 
   const onClickHandler = () => {
-    addPostCallback(newPostText);
+    dispatch(addPostAC());
   };
 
   const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    updatePostTextCallback(e.currentTarget.value);
+    dispatch(updateNewPostTextAC(e.currentTarget.value));
     newPostText = "";
   };
 

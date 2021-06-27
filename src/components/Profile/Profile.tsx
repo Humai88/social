@@ -1,28 +1,18 @@
 import React, { Fragment } from "react";
 import { MyPosts } from "./MyPosts/MyPosts";
 import { Cover } from "./Cover/Cover";
-import { profilePageType } from "./../../redux/state";
+import { profilePageType, ActionTypes } from "./../../redux/state";
 
 type PropsType = {
   data: profilePageType;
-  addPostCallback: (newPostText: string) => void;
-  updatePostTextCallback: (postText: string) => void;
+  dispatch: (action: ActionTypes) => void;
 };
 
-export const Profile: React.FC<PropsType> = ({
-  data,
-  addPostCallback,
-  updatePostTextCallback,
-}) => {
+export const Profile: React.FC<PropsType> = ({ data, dispatch }) => {
   return (
     <Fragment>
       <Cover />
-      <MyPosts
-        updatePostTextCallback={updatePostTextCallback}
-        newPostText={data.newPostText}
-        data={data}
-        addPostCallback={addPostCallback}
-      />
+      <MyPosts newPostText={data.newPostText} data={data} dispatch={dispatch} />
     </Fragment>
   );
 };

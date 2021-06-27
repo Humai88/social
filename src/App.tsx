@@ -9,15 +9,14 @@ import { Settings } from "./components/Settings/Settings";
 import { Music } from "./components/Music/Music";
 import { Friends } from "./components/Friends/Friends";
 import { Route } from "react-router-dom";
-import { RootStateType } from "./redux/state";
+import { RootStateType, ActionTypes } from "./redux/state";
 
 type PropsType = {
   state: RootStateType;
-  addPostCallback: (newPostText: string) => void;
-  updatePostTextCallback: (postText: string) => void;
+  dispatch: (action: ActionTypes) => void;
 };
 
-function App({ state, addPostCallback, updatePostTextCallback }: PropsType) {
+function App({ state, dispatch }: PropsType) {
   return (
     <div className="app-wrapper">
       <Header />
@@ -26,11 +25,7 @@ function App({ state, addPostCallback, updatePostTextCallback }: PropsType) {
         <Route
           path="/profile"
           render={() => (
-            <Profile
-              updatePostTextCallback={updatePostTextCallback}
-              data={state.prifilePage}
-              addPostCallback={addPostCallback}
-            />
+            <Profile dispatch={dispatch} data={state.prifilePage} />
           )}
         />
         <Route

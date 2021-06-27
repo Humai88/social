@@ -1,5 +1,91 @@
 // import { v1 } from "uuid";
+
+export type PostType = {
+  id: number;
+  post: string;
+  likes: number;
+};
+
+export type PostsDataType = Array<PostType>;
+
+export type DialogType = {
+  id: number;
+  name: string;
+  image: string;
+};
+export type DialogsDataType = Array<DialogType>;
+
+export type MessageType = {
+  id: number;
+  text: string;
+};
+
+export type MessageDataType = Array<MessageType>;
+
+export type profilePageType = {
+  posts: PostsDataType;
+  newPostText: string;
+};
+
+export type messagePageType = {
+  dialogs: DialogsDataType;
+  messages: MessageDataType;
+};
+
+export type RootStateType = {
+  prifilePage: profilePageType;
+  messagePage: messagePageType;
+};
+
+export type StoreType = {
+  _state: RootStateType;
+  getState: () => RootStateType;
+  _callSubscriber: (state: RootStateType) => void;
+  subscribe: (observer: (state: RootStateType) => void) => void;
+  dispatch: (action: ActionTypes) => void;
+};
+
+export type ActionTypes =
+  | ReturnType<typeof addPostAC>
+  | ReturnType<typeof updateNewPostTextAC>;
+
+export const addPostAC = () => {
+  return {
+    type: "ADD-POST",
+  } as const;
+};
+
+export const updateNewPostTextAC = (text: string) => {
+  return { type: "UPDATE-NEW-POST-TEXT", newText: text } as const;
+};
+
 let store: StoreType = {
+  getState() {
+    return this._state;
+  },
+  subscribe(observer) {
+    this._callSubscriber = observer;
+  },
+
+  dispatch(action: any) {
+    switch (action.type) {
+      case "ADD-POST":
+        const newPost = {
+          id: new Date().getTime(),
+          post: this._state.prifilePage.newPostText,
+          likes: 0,
+        };
+        this._state.prifilePage.posts.push(newPost);
+        this._state.prifilePage.newPostText = "";
+        this._callSubscriber(this._state);
+        break;
+
+      case "UPDATE-NEW-POST-TEXT":
+        this._state.prifilePage.newPostText = action.newText;
+        this._callSubscriber(this._state);
+        break;
+    }
+  },
   _state: {
     prifilePage: {
       posts: [
@@ -49,72 +135,9 @@ let store: StoreType = {
       ],
     },
   },
-
   _callSubscriber() {
     console.log("changed");
   },
-  getState() {
-    return this._state;
-  },
-  subscribe(observer) {
-    this._callSubscriber = observer;
-  },
-
-  addPost(newPostText: string) {
-    const newPost = {
-      id: new Date().getTime(),
-      post: this._state.prifilePage.newPostText,
-      likes: 0,
-    };
-    this._state.prifilePage.posts.push(newPost);
-    this._state.prifilePage.newPostText = "";
-    this._callSubscriber(this._state);
-  },
-
-  updateNewPostText(newText: string) {
-    this._state.prifilePage.newPostText = newText;
-    this._callSubscriber(this._state);
-  },
 };
 
-export type PostType = {
-  id: number;
-  post: string;
-  likes: number;
-};
-
-export type PostsDataType = Array<PostType>;
-
-export type DialogType = {
-  id: number;
-  name: string;
-  image: string;
-};
-export type DialogsDataType = Array<DialogType>;
-
-export type MessageType = {
-  id: number;
-  text: string;
-};
-export type MessageDataType = Array<MessageType>;
-export type profilePageType = {
-  posts: PostsDataType;
-  newPostText: string;
-};
-export type messagePageType = {
-  dialogs: DialogsDataType;
-  messages: MessageDataType;
-};
-export type RootStateType = {
-  prifilePage: profilePageType;
-  messagePage: messagePageType;
-};
-export type StoreType = {
-  _state: RootStateType;
-  getState: () => RootStateType;
-  _callSubscriber: (state: RootStateType) => void;
-  addPost: (newPostText: string) => void;
-  updateNewPostText: (newText: string) => void;
-  subscribe: (observer: (state: RootStateType) => void) => void;
-};
 export default store;
