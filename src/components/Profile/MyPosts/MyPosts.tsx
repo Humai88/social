@@ -6,12 +6,13 @@ import {
   PostType,
   addPostAC,
   updateNewPostTextAC,
+  ActionTypes,
 } from "./../../../redux/state";
 import { Button } from "../../UI/Button/Button";
 
 type PropsType = {
   data: profilePageType;
-  dispatch: any;
+  dispatch: (action: ActionTypes) => void;
   newPostText: string;
 };
 

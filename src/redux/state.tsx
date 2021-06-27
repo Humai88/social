@@ -30,6 +30,7 @@ export type profilePageType = {
 export type messagePageType = {
   dialogs: DialogsDataType;
   messages: MessageDataType;
+  newMessageText: string;
 };
 
 export type RootStateType = {
@@ -47,16 +48,27 @@ export type StoreType = {
 
 export type ActionTypes =
   | ReturnType<typeof addPostAC>
-  | ReturnType<typeof updateNewPostTextAC>;
+  | ReturnType<typeof updateNewPostTextAC>
+  | ReturnType<typeof updateNewMessageTextAC>
+  | ReturnType<typeof addMessageAC>;
 
 export const addPostAC = () => {
   return {
     type: "ADD-POST",
   } as const;
 };
-
 export const updateNewPostTextAC = (text: string) => {
   return { type: "UPDATE-NEW-POST-TEXT", newText: text } as const;
+};
+
+export const addMessageAC = () => {
+  return {
+    type: "ADD-MESSAGE",
+  } as const;
+};
+
+export const updateNewMessageTextAC = (text: string) => {
+  return { type: "UPDATE-NEW-MESSAGE-TEXT", newText: text } as const;
 };
 
 let store: StoreType = {
@@ -84,14 +96,29 @@ let store: StoreType = {
         this._state.prifilePage.newPostText = action.newText;
         this._callSubscriber(this._state);
         break;
+
+      case "ADD-MESSAGE":
+        const newMessage = {
+          id: new Date().getTime(),
+          text: this._state.messagePage.newMessageText,
+        };
+        this._state.messagePage.messages.push(newMessage);
+        this._state.messagePage.newMessageText = "";
+        this._callSubscriber(this._state);
+        break;
+
+      case "UPDATE-NEW-MESSAGE-TEXT":
+        this._state.messagePage.newMessageText = action.newText;
+        this._callSubscriber(this._state);
+        break;
     }
   },
   _state: {
     prifilePage: {
       posts: [
-        { id: 1, post: "Hi, Gumay", likes: 7 },
-        { id: 2, post: "How are you?", likes: 9 },
-        { id: 3, post: "Fine, thanks", likes: 15 },
+        { id: new Date().getTime(), post: "Hi, Gumay", likes: 7 },
+        { id: new Date().getTime(), post: "How are you?", likes: 9 },
+        { id: new Date().getTime(), post: "Fine, thanks", likes: 15 },
       ],
       newPostText: "",
     },
@@ -133,6 +160,7 @@ let store: StoreType = {
         { id: 2, text: "How are you?" },
         { id: 3, text: "Fine, thanks" },
       ],
+      newMessageText: "",
     },
   },
   _callSubscriber() {

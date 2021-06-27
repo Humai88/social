@@ -1,30 +1,40 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import styles from "./Message.module.scss";
-import { Button } from "./../../UI/Button/Button";
+import { Button } from "../../UI/Button/Button";
+
+import {
+  ActionTypes,
+  addMessageAC,
+  updateNewMessageTextAC,
+} from "../../../redux/state";
 
 type PropsType = {
-  text: string;
-  id: number;
+  newMessageText: string;
+
+  dispatch: (action: ActionTypes) => void;
 };
-const Message: React.FC<PropsType> = ({ text }) => {
-  let newMessageElement = React.createRef<HTMLTextAreaElement>();
-  const addMessage = () => {
-    const text = newMessageElement.current?.value;
-    alert(text);
+
+export const Message: React.FC<PropsType> = ({ newMessageText, dispatch }) => {
+  const onClickHandler = () => {
+    dispatch(addMessageAC());
   };
+
+  const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch(updateNewMessageTextAC(e.currentTarget.value));
+    newMessageText = "";
+  };
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.message}>{text}</div>
       <textarea
+        onChange={onChangeHandler}
         className={styles.textArea}
-        ref={newMessageElement}
+        value={newMessageText}
         placeholder="Write a message..."
       ></textarea>
-      <Button onClick={addMessage} className={styles.btn}>
+      <Button onClick={onClickHandler} className={styles.btn}>
         add post
       </Button>
     </div>
   );
 };
-
-export default Message;

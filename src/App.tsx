@@ -30,7 +30,9 @@ function App({ state, dispatch }: PropsType) {
         />
         <Route
           path="/dialogs"
-          render={() => <Dialogs data={state.messagePage} />}
+          render={() => (
+            <Dialogs dispatch={dispatch} data={state.messagePage} />
+          )}
         />
         <Route path="/news" render={() => <News />} />
         <Route path="/settings" render={() => <Settings />} />
