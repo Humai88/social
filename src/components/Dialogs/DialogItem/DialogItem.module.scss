@@ -1,7 +1,13 @@
+@import "./../../../scss/global.scss";
 .dialog {
   margin-bottom: 1rem;
   display: grid;
   grid-template-columns: 6fr 6fr;
+  a {
+    color: $color-body;
+    text-decoration: none;
+    align-self: center;
+  }
 }
 .img {
   width: 5rem;

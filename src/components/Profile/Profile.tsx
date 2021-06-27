@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { MyPosts } from "./MyPosts/MyPosts";
 import { Cover } from "./Cover/Cover";
 import { profilePageType } from "./../../redux/state";
@@ -15,7 +15,7 @@ export const Profile: React.FC<PropsType> = ({
   updatePostTextCallback,
 }) => {
   return (
-    <div>
+    <Fragment>
       <Cover />
       <MyPosts
         updatePostTextCallback={updatePostTextCallback}
@@ -23,6 +23,6 @@ export const Profile: React.FC<PropsType> = ({
         data={data}
         addPostCallback={addPostCallback}
       />
-    </div>
+    </Fragment>
   );
 };

@@ -1,7 +1,12 @@
+@import "./../../../scss/global.scss";
 .header {
   font-weight: 400;
   font-size: 1.3rem;
 }
 .addPostBtn {
   font-size: 1rem;
+}
+.textArea {
+  color: $color-background;
+  font-size: 1.4rem;
 }

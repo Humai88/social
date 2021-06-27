@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import s from "./MyPosts.module.scss";
+import styles from "./MyPosts.module.scss";
 import { Post } from "./Post/Post";
 import { profilePageType, PostType } from "./../../../redux/state";
 import { Button } from "../../UI/Button/Button";
@@ -31,17 +31,18 @@ export const MyPosts: React.FC<PropsType> = ({
   };
 
   return (
-    <div className={s.wrapper}>
-      <h3 className={s.header}>My Posts</h3>
+    <div className={styles.wrapper}>
+      <h3 className={styles.header}>My Posts</h3>
       <div>
         <textarea
+          className={styles.textArea}
           onChange={onChangeHandler}
           value={newPostText}
           placeholder="What's on your mind?"
         />
       </div>
       <div>
-        <Button onClick={onClickHandler} className={s.addPostBtn}>
+        <Button onClick={onClickHandler} className={styles.addPostBtn}>
           Add
         </Button>
       </div>

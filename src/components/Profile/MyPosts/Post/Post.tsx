@@ -1,12 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
 import s from "./Post.module.scss";
 import { PostType } from "./../../../../redux/state";
 
 export const Post: React.FC<PostType> = ({ post, likes }) => {
   return (
-    <div>
-      <div className={s.item}>{post}</div>
+    <Fragment>
+      <p className={s.item}>{post}</p>
       <div>{likes}</div>
-    </div>
+    </Fragment>
   );
 };

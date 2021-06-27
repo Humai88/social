@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./Message.module.scss";
+import styles from "./Message.module.scss";
 import { Button } from "./../../UI/Button/Button";
 
 type PropsType = {
@@ -13,13 +13,14 @@ const Message: React.FC<PropsType> = ({ text }) => {
     alert(text);
   };
   return (
-    <div className={s.wrapper}>
-      <div className={s.message}>{text}</div>
+    <div className={styles.wrapper}>
+      <div className={styles.message}>{text}</div>
       <textarea
+        className={styles.textArea}
         ref={newMessageElement}
         placeholder="Write a message..."
       ></textarea>
-      <Button onClick={addMessage} className={s.btn}>
+      <Button onClick={addMessage} className={styles.btn}>
         add post
       </Button>
     </div>

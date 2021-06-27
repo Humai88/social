@@ -1,3 +1,4 @@
+@import "./../../../scss/global.scss";
 .wrapper {
   margin-bottom: 2rem;
 }
@@ -11,4 +12,8 @@
   display: block;
   margin: 0;
   align-self: center;
+}
+.textArea {
+  color: $color-background;
+  font-size: 1.4rem;
 }
