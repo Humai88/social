@@ -1,8 +1,8 @@
 import React from "react";
 import DialogItem from "./DialogItem/DialogItem";
 import styles from "./Dialogs.module.scss";
-import { MessageItem } from "./Message/MessageItem/MessageItem";
-import { Message } from "./Message/Message";
+import { Message } from "./Message/Message/Message";
+import { AddMessage } from "./Message/AddMessage";
 import { DialogType } from "./../../redux/state";
 import { MessageType, messagePageType, ActionTypes } from "./../../redux/state";
 
@@ -17,7 +17,7 @@ export const Dialogs: React.FC<PropsType> = ({ data, dispatch }) => {
   ));
 
   let messagesElements = data.messages.map((m: MessageType) => (
-    <MessageItem key={m.id} text={m.text} id={m.id} />
+    <Message key={m.id} text={m.text} id={m.id} />
   ));
 
   return (
@@ -25,7 +25,7 @@ export const Dialogs: React.FC<PropsType> = ({ data, dispatch }) => {
       <div className={styles.items}>{dialogsElements}</div>
       <div>
         <div className={styles.messages}>{messagesElements}</div>
-        <Message dispatch={dispatch} newMessageText={data.newMessageText} />
+        <AddMessage dispatch={dispatch} newMessageText={data.newMessageText} />
       </div>
     </div>
   );

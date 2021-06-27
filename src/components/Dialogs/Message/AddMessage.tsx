@@ -1,7 +1,6 @@
 import React, { ChangeEvent } from "react";
-import styles from "./Message.module.scss";
+import styles from "./AddMessage.module.scss";
 import { Button } from "../../UI/Button/Button";
-
 import {
   ActionTypes,
   addMessageAC,
@@ -14,14 +13,16 @@ type PropsType = {
   dispatch: (action: ActionTypes) => void;
 };
 
-export const Message: React.FC<PropsType> = ({ newMessageText, dispatch }) => {
+export const AddMessage: React.FC<PropsType> = ({
+  newMessageText,
+  dispatch,
+}) => {
   const onClickHandler = () => {
     dispatch(addMessageAC());
   };
 
   const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(updateNewMessageTextAC(e.currentTarget.value));
-    newMessageText = "";
   };
 
   return (
@@ -33,7 +34,7 @@ export const Message: React.FC<PropsType> = ({ newMessageText, dispatch }) => {
         placeholder="Write a message..."
       ></textarea>
       <Button onClick={onClickHandler} className={styles.btn}>
-        add post
+        send
       </Button>
     </div>
   );

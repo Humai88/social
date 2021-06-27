@@ -31,7 +31,6 @@ export const MyPosts: React.FC<PropsType> = ({
 
   const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(updateNewPostTextAC(e.currentTarget.value));
-    newPostText = "";
   };
 
   return (
