@@ -50,12 +50,14 @@ let store: StoreType = {
     },
   },
 
-  _callSubscriber(state: RootStateType) {
+  _callSubscriber() {
     console.log("changed");
   },
-
   getState() {
     return this._state;
+  },
+  subscribe(observer) {
+    this._callSubscriber = observer;
   },
 
   addPost(newPostText: string) {
@@ -72,10 +74,6 @@ let store: StoreType = {
   updateNewPostText(newText: string) {
     this._state.prifilePage.newPostText = newText;
     this._callSubscriber(this._state);
-  },
-
-  subscribe(observer) {
-    this._callSubscriber = observer;
   },
 };
 
