@@ -5,7 +5,7 @@ import { profilePageType } from "./../../redux/state";
 
 type PropsType = {
   data: profilePageType;
-  addPostCallback: () => void;
+  addPostCallback: (newPostText: string) => void;
   updatePostTextCallback: (postText: string) => void;
 };
 

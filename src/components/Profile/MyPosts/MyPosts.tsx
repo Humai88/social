@@ -6,7 +6,7 @@ import { Button } from "../../UI/Button/Button";
 
 type PropsType = {
   data: profilePageType;
-  addPostCallback: (postContent: string) => void;
+  addPostCallback: (newPostText: string) => void;
   newPostText: string;
   updatePostTextCallback: (postText: string) => void;
 };
