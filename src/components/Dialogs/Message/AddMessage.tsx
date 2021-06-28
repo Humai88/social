@@ -2,15 +2,15 @@ import React, { ChangeEvent } from "react";
 import styles from "./AddMessage.module.scss";
 import { Button } from "../../UI/Button/Button";
 import {
-  ActionTypes,
+  ActionDialogsTypes,
   addMessageAC,
   updateNewMessageTextAC,
-} from "../../../redux/state";
+} from "./../../../redux/dialogsReducer";
 
 type PropsType = {
   newMessageText: string;
 
-  dispatch: (action: ActionTypes) => void;
+  dispatch: (action: ActionDialogsTypes) => void;
 };
 
 export const AddMessage: React.FC<PropsType> = ({

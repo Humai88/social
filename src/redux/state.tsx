@@ -1,4 +1,8 @@
 // import { v1 } from "uuid";
+import { profileReducer } from "./profileReducer";
+import { dialogsReducer } from "./dialogsReducer";
+import { ActionProfileTypes } from "./profileReducer";
+import { ActionDialogsTypes } from "./dialogsReducer";
 
 export type PostType = {
   id: number;
@@ -43,32 +47,7 @@ export type StoreType = {
   getState: () => RootStateType;
   _callSubscriber: (state: RootStateType) => void;
   subscribe: (observer: (state: RootStateType) => void) => void;
-  dispatch: (action: ActionTypes) => void;
-};
-
-export type ActionTypes =
-  | ReturnType<typeof addPostAC>
-  | ReturnType<typeof updateNewPostTextAC>
-  | ReturnType<typeof updateNewMessageTextAC>
-  | ReturnType<typeof addMessageAC>;
-
-export const addPostAC = () => {
-  return {
-    type: "ADD-POST",
-  } as const;
-};
-export const updateNewPostTextAC = (text: string) => {
-  return { type: "UPDATE-NEW-POST-TEXT", newText: text } as const;
-};
-
-export const addMessageAC = () => {
-  return {
-    type: "ADD-MESSAGE",
-  } as const;
-};
-
-export const updateNewMessageTextAC = (text: string) => {
-  return { type: "UPDATE-NEW-MESSAGE-TEXT", newText: text } as const;
+  dispatch: (action: ActionProfileTypes | ActionDialogsTypes) => void;
 };
 
 let store: StoreType = {
@@ -79,39 +58,16 @@ let store: StoreType = {
     this._callSubscriber = observer;
   },
 
-  dispatch(action: any) {
-    switch (action.type) {
-      case "ADD-POST":
-        const newPost = {
-          id: new Date().getTime(),
-          post: this._state.prifilePage.newPostText,
-          likes: 0,
-        };
-        this._state.prifilePage.posts.push(newPost);
-        this._state.prifilePage.newPostText = "";
-        this._callSubscriber(this._state);
-        break;
-
-      case "UPDATE-NEW-POST-TEXT":
-        this._state.prifilePage.newPostText = action.newText;
-        this._callSubscriber(this._state);
-        break;
-
-      case "ADD-MESSAGE":
-        const newMessage = {
-          id: new Date().getTime(),
-          text: this._state.messagePage.newMessageText,
-        };
-        this._state.messagePage.messages.push(newMessage);
-        this._state.messagePage.newMessageText = "";
-        this._callSubscriber(this._state);
-        break;
-
-      case "UPDATE-NEW-MESSAGE-TEXT":
-        this._state.messagePage.newMessageText = action.newText;
-        this._callSubscriber(this._state);
-        break;
-    }
+  dispatch(action: ActionDialogsTypes | ActionProfileTypes) {
+    this._state.prifilePage = profileReducer(
+      this._state.prifilePage,
+      action as ActionProfileTypes
+    );
+    this._state.messagePage = dialogsReducer(
+      this._state.messagePage,
+      action as ActionDialogsTypes
+    );
+    this._callSubscriber(this._state);
   },
   _state: {
     prifilePage: {

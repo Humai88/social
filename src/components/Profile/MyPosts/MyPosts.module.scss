@@ -5,8 +5,14 @@
 }
 .addPostBtn {
   font-size: 1rem;
+  display: block;
 }
 .textArea {
-  color: $color-background;
-  font-size: 1.4rem;
+  color: $color-input;
+  font-size: 1.3rem;
+  background: $color-body;
+  outline: none;
+}
+.textArea:focus {
+  background: $color-input-focus;
 }

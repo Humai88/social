@@ -4,11 +4,12 @@ import styles from "./Dialogs.module.scss";
 import { Message } from "./Message/Message/Message";
 import { AddMessage } from "./Message/AddMessage";
 import { DialogType } from "./../../redux/state";
-import { MessageType, messagePageType, ActionTypes } from "./../../redux/state";
+import { MessageType, messagePageType } from "./../../redux/state";
+import { ActionDialogsTypes } from "./../../redux/dialogsReducer";
 
 type PropsType = {
   data: messagePageType;
-  dispatch: (action: ActionTypes) => void;
+  dispatch: (action: ActionDialogsTypes) => void;
 };
 
 export const Dialogs: React.FC<PropsType> = ({ data, dispatch }) => {

@@ -1,18 +1,18 @@
 import React, { ChangeEvent } from "react";
 import styles from "./MyPosts.module.scss";
 import { Post } from "./Post/Post";
+import { profilePageType, PostType } from "./../../../redux/state";
 import {
-  profilePageType,
-  PostType,
   addPostAC,
   updateNewPostTextAC,
-  ActionTypes,
-} from "./../../../redux/state";
+  ActionProfileTypes,
+} from "./../../../redux/profileReducer";
+
 import { Button } from "../../UI/Button/Button";
 
 type PropsType = {
   data: profilePageType;
-  dispatch: (action: ActionTypes) => void;
+  dispatch: (action: ActionProfileTypes) => void;
   newPostText: string;
 };
 
@@ -36,19 +36,18 @@ export const MyPosts: React.FC<PropsType> = ({
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.header}>My Posts</h3>
-      <div>
-        <textarea
-          className={styles.textArea}
-          onChange={onChangeHandler}
-          value={newPostText}
-          placeholder="What's on your mind?"
-        />
-      </div>
-      <div>
-        <Button onClick={onClickHandler} className={styles.addPostBtn}>
-          Add
-        </Button>
-      </div>
+
+      <textarea
+        className={styles.textArea}
+        onChange={onChangeHandler}
+        value={newPostText}
+        placeholder="What's on your mind?"
+      />
+
+      <Button onClick={onClickHandler} className={styles.addPostBtn}>
+        Add
+      </Button>
+
       <div>{poststElements}</div>
     </div>
   );

@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
 import { MyPosts } from "./MyPosts/MyPosts";
 import { Cover } from "./Cover/Cover";
-import { profilePageType, ActionTypes } from "./../../redux/state";
+import { profilePageType } from "./../../redux/state";
+import { ActionProfileTypes } from "./../../redux/profileReducer";
 
 type PropsType = {
   data: profilePageType;
-  dispatch: (action: ActionTypes) => void;
+  dispatch: (action: ActionProfileTypes) => void;
 };
 
 export const Profile: React.FC<PropsType> = ({ data, dispatch }) => {

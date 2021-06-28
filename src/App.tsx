@@ -9,11 +9,13 @@ import { Settings } from "./components/Settings/Settings";
 import { Music } from "./components/Music/Music";
 import { Friends } from "./components/Friends/Friends";
 import { Route } from "react-router-dom";
-import { RootStateType, ActionTypes } from "./redux/state";
+import { RootStateType } from "./redux/state";
+import { ActionProfileTypes } from "./redux/profileReducer";
+import { ActionDialogsTypes } from "./redux/dialogsReducer";
 
 type PropsType = {
   state: RootStateType;
-  dispatch: (action: ActionTypes) => void;
+  dispatch: (action: ActionProfileTypes | ActionDialogsTypes) => void;
 };
 
 function App({ state, dispatch }: PropsType) {
