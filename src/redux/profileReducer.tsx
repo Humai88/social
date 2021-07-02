@@ -1,7 +1,26 @@
-import { profilePageType } from "./store";
+// import { profilePageType } from "./store";
 
+export type PostType = {
+  id: number;
+  post: string;
+  likes: number;
+};
+
+export type PostsDataType = Array<PostType>;
+export type profilePageType = {
+  posts: PostsDataType;
+  newPostText: string;
+};
+let initialState: profilePageType = {
+  posts: [
+    { id: new Date().getTime(), post: "Hi, Gumay", likes: 7 },
+    { id: new Date().getTime(), post: "How are you?", likes: 9 },
+    { id: new Date().getTime(), post: "Fine, thanks", likes: 15 },
+  ],
+  newPostText: "",
+};
 export const profileReducer = (
-  state: profilePageType,
+  state = initialState,
   action: ActionProfileTypes
 ) => {
   switch (action.type) {
