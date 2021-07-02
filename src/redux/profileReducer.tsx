@@ -1,5 +1,3 @@
-// import { profilePageType } from "./store";
-
 export type PostType = {
   id: number;
   post: string;
@@ -19,6 +17,7 @@ let initialState: profilePageType = {
   ],
   newPostText: "",
 };
+
 export const profileReducer = (
   state = initialState,
   action: ActionProfileTypes

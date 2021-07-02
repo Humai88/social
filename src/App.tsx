@@ -9,7 +9,7 @@ import { Settings } from "./components/Settings/Settings";
 import { Music } from "./components/Music/Music";
 import { Friends } from "./components/Friends/Friends";
 import { Route } from "react-router-dom";
-import { RootStateType } from "./redux/store";
+import { RootStateType } from "./index";
 import { ActionProfileTypes } from "./redux/profileReducer";
 import { ActionDialogsTypes } from "./redux/dialogsReducer";
 

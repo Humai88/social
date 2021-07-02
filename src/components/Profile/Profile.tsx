@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { MyPosts } from "./MyPosts/MyPosts";
 import { Cover } from "./Cover/Cover";
-import { profilePageType } from "../../redux/store";
+import { profilePageType } from "./../../redux/profileReducer";
 import { ActionProfileTypes } from "./../../redux/profileReducer";
 
 type PropsType = {
