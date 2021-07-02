@@ -3,8 +3,8 @@ import DialogItem from "./DialogItem/DialogItem";
 import styles from "./Dialogs.module.scss";
 import { Message } from "./Message/Message/Message";
 import { AddMessage } from "./Message/AddMessage";
-import { DialogType } from "./../../redux/state";
-import { MessageType, messagePageType } from "./../../redux/state";
+import { DialogType } from "../../redux/store";
+import { MessageType, messagePageType } from "../../redux/store";
 import { ActionDialogsTypes } from "./../../redux/dialogsReducer";
 
 type PropsType = {

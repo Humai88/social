@@ -1,4 +1,4 @@
-import { messagePageType } from "./state";
+import { messagePageType } from "./store";
 
 export const dialogsReducer = (
   state: messagePageType,

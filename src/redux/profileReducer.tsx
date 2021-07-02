@@ -1,4 +1,4 @@
-import { profilePageType } from "./state";
+import { profilePageType } from "./store";
 
 export const profileReducer = (
   state: profilePageType,

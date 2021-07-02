@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { MessageType } from "../../../../redux/state";
+import { MessageType } from "../../../../redux/store";
 import styles from "./Message.module.scss";
 
 export const Message: React.FC<MessageType> = ({ text }) => {
