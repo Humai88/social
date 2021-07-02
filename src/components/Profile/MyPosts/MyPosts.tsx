@@ -1,36 +1,33 @@
 import React, { ChangeEvent } from "react";
 import styles from "./MyPosts.module.scss";
 import { Post } from "./Post/Post";
-import { profilePageType, PostType } from "./../../../redux/profileReducer";
-import {
-  addPostAC,
-  updateNewPostTextAC,
-  ActionProfileTypes,
-} from "./../../../redux/profileReducer";
-
+import { PostsDataType, PostType } from "./../../../redux/profileReducer";
 import { Button } from "../../UI/Button/Button";
 
 type PropsType = {
-  data: profilePageType;
-  dispatch: (action: ActionProfileTypes) => void;
+  data: PostsDataType;
+  updateNewPostText: (text: string) => void;
+  addPost: () => void;
   newPostText: string;
 };
 
 export const MyPosts: React.FC<PropsType> = ({
   data,
-  dispatch,
+  addPost,
+  updateNewPostText,
   newPostText,
 }) => {
-  let poststElements = data.posts.map((p: PostType) => (
+  let poststElements = data.map((p: PostType) => (
     <Post key={p.id} id={p.id} post={p.post} likes={p.likes} />
   ));
 
   const onClickHandler = () => {
-    dispatch(addPostAC());
+    addPost();
   };
 
   const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(updateNewPostTextAC(e.currentTarget.value));
+    let text = e.currentTarget.value;
+    updateNewPostText(text);
   };
 
   return (

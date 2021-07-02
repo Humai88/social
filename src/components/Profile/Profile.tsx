@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { MyPosts } from "./MyPosts/MyPosts";
+import { MyPostsContainer } from "./MyPosts/MyPostsContainer";
 import { Cover } from "./Cover/Cover";
 import { profilePageType } from "./../../redux/profileReducer";
 import { ActionProfileTypes } from "./../../redux/profileReducer";
@@ -13,7 +13,11 @@ export const Profile: React.FC<PropsType> = ({ data, dispatch }) => {
   return (
     <Fragment>
       <Cover />
-      <MyPosts newPostText={data.newPostText} data={data} dispatch={dispatch} />
+      <MyPostsContainer
+        newPostText={data.newPostText}
+        data={data.posts}
+        dispatch={dispatch}
+      />
     </Fragment>
   );
 };
