@@ -4,7 +4,7 @@ import styles from "./DialogItem.module.scss";
 
 type PropsType = {
   name: string;
-  id: number;
+  id: string;
   image: string;
 };
 

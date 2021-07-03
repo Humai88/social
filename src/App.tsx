@@ -3,38 +3,28 @@ import "./App.scss";
 import { Header } from "./components/Header/Header";
 import { Navigation } from "./components/Navigation/Navigation";
 import { Profile } from "./components/Profile/Profile";
-import { Dialogs } from "./components/Dialogs/Dialogs";
+import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 import { News } from "./components/News/News";
 import { Settings } from "./components/Settings/Settings";
 import { Music } from "./components/Music/Music";
 import { Friends } from "./components/Friends/Friends";
 import { Route } from "react-router-dom";
-import { RootStateType } from "./index";
-import { ActionProfileTypes } from "./redux/profileReducer";
-import { ActionDialogsTypes } from "./redux/dialogsReducer";
+import { StoreType } from "./redux/reduxStore";
 
 type PropsType = {
-  state: RootStateType;
-  dispatch: (action: ActionProfileTypes | ActionDialogsTypes) => void;
+  store: StoreType;
 };
 
-function App({ state, dispatch }: PropsType) {
+function App({ store }: PropsType) {
   return (
     <div className="app-wrapper">
       <Header />
       <Navigation />
       <div className="app-class-content">
-        <Route
-          path="/profile"
-          render={() => (
-            <Profile dispatch={dispatch} data={state.prifilePage} />
-          )}
-        />
+        <Route path="/profile" render={() => <Profile store={store} />} />
         <Route
           path="/dialogs"
-          render={() => (
-            <Dialogs dispatch={dispatch} data={state.messagePage} />
-          )}
+          render={() => <DialogsContainer store={store} />}
         />
         <Route path="/news" render={() => <News />} />
         <Route path="/settings" render={() => <Settings />} />

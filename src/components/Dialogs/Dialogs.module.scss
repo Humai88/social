@@ -1,3 +1,4 @@
+@import "./../../scss/global.scss";
 .dialogs {
   display: grid;
   grid-template-columns: 2fr 10fr;
@@ -8,4 +9,21 @@
 
 .messages {
   padding: 1rem;
+}
+.btn {
+  display: block;
+  margin: 0;
+  align-self: center;
+}
+.textArea {
+  color: $color-input;
+  font-size: 1.3rem;
+  background: $color-body;
+  outline: none;
+}
+.textArea:focus {
+  background: $color-input-focus;
+}
+.wrapperAddArea {
+  margin-left: 12px;
 }

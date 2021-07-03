@@ -1,23 +1,17 @@
 import React, { Fragment } from "react";
 import { MyPostsContainer } from "./MyPosts/MyPostsContainer";
 import { Cover } from "./Cover/Cover";
-import { profilePageType } from "./../../redux/profileReducer";
-import { ActionProfileTypes } from "./../../redux/profileReducer";
+import { StoreType } from "./../../redux/reduxStore";
 
 type PropsType = {
-  data: profilePageType;
-  dispatch: (action: ActionProfileTypes) => void;
+  store: StoreType;
 };
 
-export const Profile: React.FC<PropsType> = ({ data, dispatch }) => {
+export const Profile: React.FC<PropsType> = ({ store }) => {
   return (
     <Fragment>
       <Cover />
-      <MyPostsContainer
-        newPostText={data.newPostText}
-        data={data.posts}
-        dispatch={dispatch}
-      />
+      <MyPostsContainer store={store} />
     </Fragment>
   );
 };

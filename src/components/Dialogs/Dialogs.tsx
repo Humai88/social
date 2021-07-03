@@ -1,18 +1,28 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import DialogItem from "./DialogItem/DialogItem";
 import styles from "./Dialogs.module.scss";
 import { Message } from "./Message/Message/Message";
-import { AddMessage } from "./Message/AddMessage";
-import { DialogType } from "./../../redux/dialogsReducer";
-import { MessageType, messagePageType } from "./../../redux/dialogsReducer";
-import { ActionDialogsTypes } from "./../../redux/dialogsReducer";
+import { Button } from "./../UI/Button/Button";
+
+import {
+  MessageType,
+  messagePageType,
+  DialogType,
+} from "./../../redux/reduxStore";
 
 type PropsType = {
   data: messagePageType;
-  dispatch: (action: ActionDialogsTypes) => void;
+  updateNewMessage: (body: string) => void;
+  addMessage: () => void;
+  newMessageText: string;
 };
 
-export const Dialogs: React.FC<PropsType> = ({ data, dispatch }) => {
+export const Dialogs: React.FC<PropsType> = ({
+  data,
+  updateNewMessage,
+  addMessage,
+  newMessageText,
+}) => {
   let dialogsElements = data.dialogs.map((d: DialogType) => (
     <DialogItem image={d.image} key={d.id} name={d.name} id={d.id} />
   ));
@@ -21,12 +31,31 @@ export const Dialogs: React.FC<PropsType> = ({ data, dispatch }) => {
     <Message key={m.id} text={m.text} id={m.id} />
   ));
 
+  const onClickHandler = () => {
+    addMessage();
+  };
+
+  const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    let body = e.currentTarget.value;
+    updateNewMessage(body);
+  };
+
   return (
     <div className={styles.dialogs}>
       <div className={styles.items}>{dialogsElements}</div>
       <div>
         <div className={styles.messages}>{messagesElements}</div>
-        <AddMessage dispatch={dispatch} newMessageText={data.newMessageText} />
+        <div className={styles.wrapperAddArea}>
+          <textarea
+            onChange={onChangeHandler}
+            className={styles.textArea}
+            value={newMessageText}
+            placeholder="Write a message..."
+          ></textarea>
+          <Button onClick={onClickHandler} className={styles.btn}>
+            send
+          </Button>
+        </div>
       </div>
     </div>
   );

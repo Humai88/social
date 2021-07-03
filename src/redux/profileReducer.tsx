@@ -1,19 +1,11 @@
-export type PostType = {
-  id: number;
-  post: string;
-  likes: number;
-};
+import { v1 } from "uuid";
+import { profilePageType } from "./reduxStore";
 
-export type PostsDataType = Array<PostType>;
-export type profilePageType = {
-  posts: PostsDataType;
-  newPostText: string;
-};
 let initialState: profilePageType = {
   posts: [
-    { id: new Date().getTime(), post: "Hi, Gumay", likes: 7 },
-    { id: new Date().getTime(), post: "How are you?", likes: 9 },
-    { id: new Date().getTime(), post: "Fine, thanks", likes: 15 },
+    { id: v1(), post: "Hi, Gumay", likes: 7 },
+    { id: v1(), post: "How are you?", likes: 9 },
+    { id: v1(), post: "Fine, thanks", likes: 15 },
   ],
   newPostText: "",
 };
@@ -25,7 +17,7 @@ export const profileReducer = (
   switch (action.type) {
     case "ADD-POST":
       const newPost = {
-        id: new Date().getTime(),
+        id: v1(),
         post: state.newPostText,
         likes: 0,
       };
