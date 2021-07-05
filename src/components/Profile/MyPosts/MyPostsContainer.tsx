@@ -1,19 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import { MyPosts } from "./MyPosts";
 import { StoreType } from "../../../redux/reduxStore";
 import { addPostAC, updateNewPostTextAC } from "../../../redux/profileReducer";
-import { StoreContext } from "./../../../storeContext";
 
-export const MyPostsContainer = () => {
-  const ctx: StoreType = useContext(StoreContext);
-  let state = ctx.getState();
+type PropsType = {
+  store: StoreType;
+};
+
+export const MyPostsContainer: React.FC<PropsType> = ({ store }) => {
+  let state = store.getState();
   const addPost = () => {
-    ctx.dispatch(addPostAC());
+    store.dispatch(addPostAC());
   };
 
   const onPostHandler = (text: string) => {
     let action = updateNewPostTextAC(text);
-    ctx.dispatch(action);
+    store.dispatch(action);
   };
 
   return (

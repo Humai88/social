@@ -11,14 +11,21 @@ import { Friends } from "./components/Friends/Friends";
 import { Route } from "react-router-dom";
 import { StoreType } from "./redux/reduxStore";
 
-function App() {
+type PropsType = {
+  store: StoreType;
+};
+
+function App({ store }: PropsType) {
   return (
     <div className="app-wrapper">
       <Header />
       <Navigation />
       <div className="app-class-content">
-        <Route path="/profile" render={() => <Profile />} />
-        <Route path="/dialogs" render={() => <DialogsContainer />} />
+        <Route path="/profile" render={() => <Profile store={store} />} />
+        <Route
+          path="/dialogs"
+          render={() => <DialogsContainer store={store} />}
+        />
         <Route path="/news" render={() => <News />} />
         <Route path="/settings" render={() => <Settings />} />
         <Route path="/music" render={() => <Music />} />
