@@ -3,15 +3,11 @@ import { MyPostsContainer } from "./MyPosts/MyPostsContainer";
 import { Cover } from "./Cover/Cover";
 import { StoreType } from "./../../redux/reduxStore";
 
-type PropsType = {
-  store: StoreType;
-};
-
-export const Profile: React.FC<PropsType> = ({ store }) => {
+export const Profile = () => {
   return (
     <Fragment>
       <Cover />
-      <MyPostsContainer store={store} />
+      <MyPostsContainer />
     </Fragment>
   );
 };

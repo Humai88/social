@@ -1,24 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Dialogs } from "./Dialogs";
 import { StoreType } from "../../redux/reduxStore";
 import {
   addMessageAC,
   updateNewMessageTextAC,
 } from "./../../redux/dialogsReducer";
+import { StoreContext } from "../../storeContext";
 
-type PropsType = {
-  store: StoreType;
-};
-
-export const DialogsContainer: React.FC<PropsType> = ({ store }) => {
-  let state = store.getState();
+export const DialogsContainer = () => {
+  const ctx: StoreType = useContext(StoreContext);
+  let state = ctx.getState();
 
   const ddMessage = () => {
-    store.dispatch(addMessageAC());
+    ctx.dispatch(addMessageAC());
   };
 
   const updateNewMessage = (body: string) => {
-    store.dispatch(updateNewMessageTextAC(body));
+    ctx.dispatch(updateNewMessageTextAC(body));
   };
 
   return (

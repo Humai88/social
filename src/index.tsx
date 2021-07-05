@@ -4,11 +4,14 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import { StoreContext } from "./storeContext";
 
 export const renderEntireTree = (state: RootStateType) => {
   ReactDOM.render(
     <BrowserRouter>
-      <App store={store} />
+      <StoreContext.Provider value={store}>
+        <App />
+      </StoreContext.Provider>
     </BrowserRouter>,
     document.getElementById("root")
   );
