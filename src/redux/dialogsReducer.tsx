@@ -1,5 +1,4 @@
 import { v1 } from "uuid";
-// import { messagePageType } from "./reduxStore";
 export type messagePageType = {
   dialogs: DialogsDataType;
   messages: MessageDataType;

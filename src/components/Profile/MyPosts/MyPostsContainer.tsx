@@ -16,7 +16,7 @@ type mapDispatchType = {
   updateNewPostText: (text: string) => void;
   addPost: () => void;
 };
-export type RrofileRpopsType = mapStateType & mapDispatchType;
+export type ProfilePropsType = mapStateType & mapDispatchType;
 
 const mapStateToProps = (state: RootStateType): mapStateType => {
   return {

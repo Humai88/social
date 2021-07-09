@@ -3,9 +3,9 @@ import styles from "./MyPosts.module.scss";
 import { Post } from "./Post/Post";
 import { PostType } from "./../../../redux/profileReducer";
 import { Button } from "../../UI/Button/Button";
-import { RrofileRpopsType } from "./MyPostsContainer";
+import { ProfilePropsType } from "./MyPostsContainer";
 
-export const MyPosts: React.FC<RrofileRpopsType> = ({
+export const MyPosts: React.FC<ProfilePropsType> = ({
   data,
   addPost,
   updateNewPostText,

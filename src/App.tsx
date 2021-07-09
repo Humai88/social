@@ -8,11 +8,6 @@ import { Settings } from "./components/Settings/Settings";
 import { Music } from "./components/Music/Music";
 import { Friends } from "./components/Friends/Friends";
 import { Route } from "react-router-dom";
-import { StoreType } from "./redux/reduxStore";
-
-// type PropsType = {
-//   store: StoreType;
-// };
 
 function App() {
   return (
