@@ -3,21 +3,10 @@ import DialogItem from "./DialogItem/DialogItem";
 import styles from "./Dialogs.module.scss";
 import { Message } from "./Message/Message/Message";
 import { Button } from "./../UI/Button/Button";
+import { MassagesPropsType } from "./DialogsContainer";
+import { MessageType, DialogType } from "./../../redux/dialogsReducer";
 
-import {
-  MessageType,
-  messagePageType,
-  DialogType,
-} from "./../../redux/reduxStore";
-
-type PropsType = {
-  data: messagePageType;
-  updateNewMessage: (body: string) => void;
-  addMessage: () => void;
-  newMessageText: string;
-};
-
-export const Dialogs: React.FC<PropsType> = ({
+export const Dialogs: React.FC<MassagesPropsType> = ({
   data,
   updateNewMessage,
   addMessage,

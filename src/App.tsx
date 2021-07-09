@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.scss";
 import { Header } from "./components/Header/Header";
 import { Navigation } from "./components/Navigation/Navigation";
@@ -11,21 +10,18 @@ import { Friends } from "./components/Friends/Friends";
 import { Route } from "react-router-dom";
 import { StoreType } from "./redux/reduxStore";
 
-type PropsType = {
-  store: StoreType;
-};
+// type PropsType = {
+//   store: StoreType;
+// };
 
-function App({ store }: PropsType) {
+function App() {
   return (
     <div className="app-wrapper">
       <Header />
       <Navigation />
       <div className="app-class-content">
-        <Route path="/profile" render={() => <Profile store={store} />} />
-        <Route
-          path="/dialogs"
-          render={() => <DialogsContainer store={store} />}
-        />
+        <Route path="/profile" render={() => <Profile />} />
+        <Route path="/dialogs" render={() => <DialogsContainer />} />
         <Route path="/news" render={() => <News />} />
         <Route path="/settings" render={() => <Settings />} />
         <Route path="/music" render={() => <Music />} />

@@ -1,17 +1,11 @@
 import React, { ChangeEvent } from "react";
 import styles from "./MyPosts.module.scss";
 import { Post } from "./Post/Post";
-import { PostsDataType, PostType } from "./../../../redux/reduxStore";
+import { PostType } from "./../../../redux/profileReducer";
 import { Button } from "../../UI/Button/Button";
+import { RrofileRpopsType } from "./MyPostsContainer";
 
-type PropsType = {
-  data: PostsDataType;
-  updateNewPostText: (text: string) => void;
-  addPost: () => void;
-  newPostText: string;
-};
-
-export const MyPosts: React.FC<PropsType> = ({
+export const MyPosts: React.FC<RrofileRpopsType> = ({
   data,
   addPost,
   updateNewPostText,

@@ -1,5 +1,23 @@
 import { v1 } from "uuid";
-import { messagePageType } from "./reduxStore";
+// import { messagePageType } from "./reduxStore";
+export type messagePageType = {
+  dialogs: DialogsDataType;
+  messages: MessageDataType;
+  newMessageText: string;
+};
+export type MessageType = {
+  id: string;
+  text: string;
+};
+
+export type MessageDataType = Array<MessageType>;
+export type DialogType = {
+  id: string;
+  name: string;
+  image: string;
+};
+export type DialogsDataType = Array<DialogType>;
+
 let initialState: messagePageType = {
   dialogs: [
     {
@@ -44,7 +62,7 @@ let initialState: messagePageType = {
 export const dialogsReducer = (
   state = initialState,
   action: ActionDialogsTypes
-) => {
+): messagePageType => {
   switch (action.type) {
     case "ADD-MESSAGE":
       const newMessage = {
