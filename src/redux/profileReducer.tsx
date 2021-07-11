@@ -27,26 +27,28 @@ export const profileReducer = (
   action: ActionProfileTypes
 ): profilePageType => {
   switch (action.type) {
-    case "ADD-POST": {
-      const newPost = {
-        id: v1(),
-        post: state.newPostText,
-        likes: 0,
+    case "ADD-POST":
+      return {
+        ...state,
+        posts: [
+          ...state.posts,
+          {
+            id: v1(),
+            post: state.newPostText,
+            likes: 0,
+          },
+        ],
+        newPostText: "",
       };
-      let stateCopy = { ...state };
-      stateCopy.posts = [...state.posts];
-      stateCopy.posts.push(newPost);
-      stateCopy.newPostText = "";
-      return stateCopy;
-    }
-    case "UPDATE-NEW-POST-TEXT": {
-      let stateCopy = { ...state };
-      stateCopy.newPostText = action.newText;
-      return stateCopy;
-    }
-    default: {
+
+    case "UPDATE-NEW-POST-TEXT":
+      return {
+        ...state,
+        newPostText: action.newText,
+      };
+
+    default:
       return state;
-    }
   }
 };
 
