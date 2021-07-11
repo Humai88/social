@@ -1,6 +1,6 @@
 import { Dialogs } from "./Dialogs";
 import { RootStateType } from "../../redux/reduxStore";
-import { messagePageType } from "./../../redux/dialogsReducer";
+import { MessagePageType } from "./../../redux/dialogsReducer";
 import {
   addMessageAC,
   updateNewMessageTextAC,
@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
 type mapStateType = {
-  data: messagePageType;
+  data: MessagePageType;
   newMessageText: string;
 };
 type mapDispatchType = {

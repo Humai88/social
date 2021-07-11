@@ -1,5 +1,5 @@
 import { v1 } from "uuid";
-export type messagePageType = {
+export type MessagePageType = {
   dialogs: DialogsDataType;
   messages: MessageDataType;
   newMessageText: string;
@@ -17,7 +17,7 @@ export type DialogType = {
 };
 export type DialogsDataType = Array<DialogType>;
 
-let initialState: messagePageType = {
+let initialState: MessagePageType = {
   dialogs: [
     {
       id: v1(),
@@ -61,7 +61,7 @@ let initialState: messagePageType = {
 export const dialogsReducer = (
   state = initialState,
   action: ActionDialogsTypes
-): messagePageType => {
+): MessagePageType => {
   switch (action.type) {
     case "ADD-MESSAGE":
       return {

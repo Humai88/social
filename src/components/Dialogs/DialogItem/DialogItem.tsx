@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Avatar } from "../../UI/Avatar/Avatar";
+
 import styles from "./DialogItem.module.scss";
 
 type PropsType = {
@@ -11,7 +13,7 @@ type PropsType = {
 const DialogItem: React.FC<PropsType> = ({ name, id, image }) => {
   return (
     <div className={styles.dialog}>
-      <img className={styles.img} src={image} alt="avatar"></img>
+      <Avatar src={image} />
       <NavLink to={`/dialogs/${id}`}>{name}</NavLink>
     </div>
   );

@@ -9,3 +9,17 @@
   border-radius: 7px;
   align-items: center;
 }
+.avatar__wrapper {
+  width: 10rem;
+  height: 10rem;
+  overflow: hidden;
+  border-radius: 50%;
+  justify-self: center;
+  margin: 2.9rem 0;
+}
+
+.avatar {
+  width: auto;
+  height: 100%;
+  margin-left: -25%;
+}

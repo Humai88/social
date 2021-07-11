@@ -16,6 +16,11 @@ export const Navigation = () => {
         </NavLink>
       </div>
       <div>
+        <NavLink to="/users" activeClassName={s.active}>
+          Find friends
+        </NavLink>
+      </div>
+      {/* <div>
         <NavLink to="/news" activeClassName={s.active}>
           News
         </NavLink>
@@ -26,15 +31,15 @@ export const Navigation = () => {
         </NavLink>
       </div>
       <div>
-        <NavLink to="/settings" activeClassName={s.active}>
-          Settings
-        </NavLink>
-      </div>
-      <div>
         <NavLink to="/friends" activeClassName={s.active}>
           Friends
         </NavLink>
       </div>
+      <div>
+        <NavLink to="/settings" activeClassName={s.active}>
+          Settings
+        </NavLink>
+      </div> */}
     </nav>
   );
 };
