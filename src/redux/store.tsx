@@ -47,8 +47,8 @@ import { ActionDialogsTypes } from "./dialogsReducer";
 //   getState: () => RootStateType;
 //   _callSubscriber: (state: RootStateType) => void;
 //   subscribe: (observer: (state: RootStateType) => void) => void;
-//   dispatch: (action: ActionProfileTypes | ActionDialogsTypes) => void;
-// };
+//   dispatch: (action: ActionProfileTypes & ActionDialogsTypes) => void;
+// }; // Полная типизация store
 
 // let store: StoreType = {
 //   getState() {

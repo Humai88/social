@@ -5,12 +5,27 @@ export type UsersPageType = {
 
 export type UserDataType = Array<UserType>;
 export type UserType = {
-  id: string;
+  id: number;
   followed: boolean;
-  fullName: string;
+  name: string;
   status: string;
   location: LocationType;
-  image: string;
+  photos: PhotosType;
+};
+export type GetUsersResponseType = {
+  items: UserType[];
+  totalCount: number;
+  error: string | null;
+};
+
+export type CreateUsersResponseType = {
+  // resultCode: number;
+  // messages: string[];
+  data: GetUsersResponseType;
+};
+type PhotosType = {
+  small: string;
+  large: string;
 };
 export type LocationType = {
   city: string;
@@ -62,14 +77,14 @@ export type ActionDialogsTypes =
   | ReturnType<typeof unfollowAC>
   | ReturnType<typeof setUsersAC>;
 
-export const followAC = (userId: string) => {
+export const followAC = (userId: number) => {
   return {
     type: "FOLLOW",
     userId,
   } as const;
 };
 
-export const unfollowAC = (userId: string) => {
+export const unfollowAC = (userId: number) => {
   return { type: "UNFOLLOW", userId } as const;
 };
 
