@@ -13,16 +13,19 @@ export const Users: React.FC<UsersPropsType> = ({
   unfollow,
   setUsers,
 }) => {
-  if (users.length === 0) {
-    axios
-      .get("https://social-network.samuraijs.com/api/1.0/users")
-      .then((resp: CreateUsersResponseType) => {
-        setUsers(resp.data.items);
-      });
-  }
+  let getUsers = () => {
+    if (users.length === 0) {
+      axios
+        .get("https://social-network.samuraijs.com/api/1.0/users")
+        .then((resp: CreateUsersResponseType) => {
+          setUsers(resp.data.items);
+        });
+    }
+  };
 
   return (
     <div className={styles.mainWrapper}>
+      <Button onClick={getUsers}>get users</Button>
       {users.map((u) => {
         const onFollowHandler = () => {
           follow(u.id);
