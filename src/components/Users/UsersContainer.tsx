@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import Users from "./UsersClass";
+import Users from "./Users";
 import { RootStateType } from "./../../redux/reduxStore";
 import {
   UserDataType,
