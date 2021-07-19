@@ -4,7 +4,7 @@ import { Navigation } from "./components/Navigation/Navigation";
 import { Profile } from "./components/Profile/Profile";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 import { Route } from "react-router-dom";
-import { UsersContainer } from "./components/Users/UsersContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 // import { News } from "./components/News/News";
 // import { Settings } from "./components/Settings/Settings";
 // import { Music } from "./components/Music/Music";
