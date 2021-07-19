@@ -7,19 +7,50 @@ import React, { Component } from "react";
 const axios = require("axios").default;
 
 class Users extends Component<UsersPropsType> {
-  constructor(props: UsersPropsType) {
-    super(props);
-
+  componentDidMount() {
     axios
-      .get("https://social-network.samuraijs.com/api/1.0/users")
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+      )
+      .then((resp: CreateUsersResponseType) => {
+        this.props.setUsers(resp.data.items);
+        this.props.setTotalUsersCount(resp.data.totalCount);
+      });
+  }
+  onChangePageHandler = (pageNumber: number) => {
+    this.props.setCurrentPage(pageNumber);
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
+      )
       .then((resp: CreateUsersResponseType) => {
         this.props.setUsers(resp.data.items);
       });
-  }
-
+  };
   render() {
+    let pagesCount = Math.ceil(this.props.totalUsersCout / this.props.pageSize);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+      pages.push(i);
+    }
     return (
       <div className={styles.mainWrapper}>
+        <div className={styles.pageButtons}>
+          {pages.map((p) => {
+            return (
+              <span
+                className={
+                  this.props.currentPage === p ? styles.selectedPage : ""
+                }
+                onClick={() => {
+                  this.onChangePageHandler(p);
+                }}
+              >
+                {p}
+              </span>
+            );
+          })}
+        </div>
         {this.props.users.map((u) => {
           const onFollowHandler = () => {
             this.props.follow(u.id);
@@ -35,7 +66,7 @@ class Users extends Component<UsersPropsType> {
                     src={
                       u.photos.small != null
                         ? u.photos.small
-                        : "https://cdn.pixabay.com/photo/2016/09/28/02/14/user-1699635_960_720.png"
+                        : "https://cdn.pixabay.com/photo/2017/07/18/23/23/user-2517433_960_720.png"
                     }
                     className={styles.img}
                   />
