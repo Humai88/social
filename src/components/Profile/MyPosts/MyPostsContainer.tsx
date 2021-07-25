@@ -6,7 +6,6 @@ import {
   PostsDataType,
 } from "../../../redux/profileReducer";
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
 
 type mapStateType = {
   data: PostsDataType;
@@ -24,18 +23,8 @@ const mapStateToProps = (state: RootStateType): mapStateType => {
     newPostText: state.profilePage.newPostText,
   };
 };
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchType => {
-  return {
-    updateNewPostText: (text: string) => {
-      dispatch(updateNewPostTextAC(text));
-    },
-    addPost: () => {
-      dispatch(addPostAC());
-    },
-  };
-};
 
-export const MyPostsContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MyPosts);
+export const MyPostsContainer = connect(mapStateToProps, {
+  updateNewPostText: updateNewPostTextAC,
+  addPost: addPostAC,
+})(MyPosts);

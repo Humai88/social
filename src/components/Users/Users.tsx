@@ -30,9 +30,10 @@ export const Users: React.FC<UsersPropsType> = ({
   return (
     <div className={styles.mainWrapper}>
       <div className={styles.pageButtons}>
-        {pages.map((p) => {
+        {pages.map((p, i) => {
           return (
             <span
+              key={i}
               className={currentPage === p ? styles.selectedPage : ""}
               onClick={() => {
                 onChangePageHandler(p);

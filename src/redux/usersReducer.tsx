@@ -4,6 +4,7 @@ export type UsersPageType = {
   pageSize: number;
   totalUsersCout: number;
   currentPage: number;
+  isFetching: boolean;
 };
 
 export type UserDataType = Array<UserType>;
@@ -16,7 +17,7 @@ export type UserType = {
   photos: PhotosType;
 };
 export type GetUsersResponseType = {
-  items: UserType[];
+  items: Array<UserType>;
   totalCount: number;
   error: string | null;
 };
@@ -40,6 +41,7 @@ let initialState: UsersPageType = {
   pageSize: 5,
   totalUsersCout: 0,
   currentPage: 2,
+  isFetching: true,
 };
 
 export const usersReducer = (
@@ -82,6 +84,11 @@ export const usersReducer = (
         ...state,
         totalUsersCout: action.payload.totalCount,
       };
+    case "TOGGLE_IS_FETCHING":
+      return {
+        ...state,
+        isFetching: action.payload.isFetching,
+      };
     default:
       return state;
   }
@@ -92,37 +99,23 @@ export type ActionDialogsTypes =
   | ReturnType<typeof unfollowAC>
   | ReturnType<typeof setUsersAC>
   | ReturnType<typeof setCurrentPageAC>
-  | ReturnType<typeof setTotalUsersCountAC>;
+  | ReturnType<typeof setTotalUsersCountAC>
+  | ReturnType<typeof toggleIsFetchingAC>;
 
-export const setTotalUsersCountAC = (totalCount: number) => {
-  return {
-    type: "SET_TOTAL_COUNT",
-    payload: {
-      totalCount: totalCount,
-    },
-  } as const;
-};
 export const followAC = (userId: number) => {
   return {
     type: "FOLLOW",
     payload: {
-      userId: userId,
+      userId,
     },
   } as const;
 };
-export const setCurrentPageAC = (currentPage: number) => {
-  return {
-    type: "SET_CURRENT_PAGE",
-    payload: {
-      currentPage: currentPage,
-    },
-  } as const;
-};
+
 export const unfollowAC = (userId: number) => {
   return {
     type: "UNFOLLOW",
     payload: {
-      userId: userId,
+      userId,
     },
   } as const;
 };
@@ -131,7 +124,34 @@ export const setUsersAC = (users: UserType[]) => {
   return {
     type: "SET_USERS",
     payload: {
-      users: users,
+      users,
+    },
+  } as const;
+};
+
+export const setCurrentPageAC = (currentPage: number) => {
+  return {
+    type: "SET_CURRENT_PAGE",
+    payload: {
+      currentPage,
+    },
+  } as const;
+};
+
+export const setTotalUsersCountAC = (totalCount: number) => {
+  return {
+    type: "SET_TOTAL_COUNT",
+    payload: {
+      totalCount,
+    },
+  } as const;
+};
+
+export const toggleIsFetchingAC = (isFetching: boolean) => {
+  return {
+    type: "TOGGLE_IS_FETCHING",
+    payload: {
+      isFetching,
     },
   } as const;
 };

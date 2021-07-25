@@ -1,5 +1,5 @@
+import { Fragment } from "react";
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
 import { CreateUsersResponseType } from "../../redux/usersReducer";
 import { Component } from "react";
 import { RootStateType } from "./../../redux/reduxStore";
@@ -8,45 +8,54 @@ import {
   setCurrentPageAC,
   setTotalUsersCountAC,
   setUsersAC,
+  toggleIsFetchingAC,
   followAC,
   unfollowAC,
   UsersPageType,
 } from "./../../redux/usersReducer";
 import { Users } from "./Users";
+import { Preloader } from "../../common/Preloader/Preloader";
 const axios = require("axios").default;
 
 class UsersContainer extends Component<UsersPropsType> {
   componentDidMount() {
+    this.props.toggleIsFetching(true);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
       )
       .then((resp: CreateUsersResponseType) => {
+        this.props.toggleIsFetching(false);
         this.props.setUsers(resp.data.items);
         this.props.setTotalUsersCount(resp.data.totalCount);
       });
   }
   onChangePageHandler = (pageNumber: number) => {
     this.props.setCurrentPage(pageNumber);
+    this.props.toggleIsFetching(true);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
       )
       .then((resp: CreateUsersResponseType) => {
+        this.props.toggleIsFetching(false);
         this.props.setUsers(resp.data.items);
       });
   };
   render() {
     return (
-      <Users
-        totalUsersCout={this.props.totalUsersCout}
-        pageSize={this.props.pageSize}
-        currentPage={this.props.currentPage}
-        users={this.props.users}
-        onChangePageHandler={this.onChangePageHandler}
-        follow={this.props.follow}
-        unfollow={this.props.unfollow}
-      />
+      <Fragment>
+        {this.props.isFetching ? <Preloader /> : null}
+        <Users
+          totalUsersCout={this.props.totalUsersCout}
+          pageSize={this.props.pageSize}
+          currentPage={this.props.currentPage}
+          users={this.props.users}
+          onChangePageHandler={this.onChangePageHandler}
+          follow={this.props.follow}
+          unfollow={this.props.unfollow}
+        />
+      </Fragment>
     );
   }
 }
@@ -57,6 +66,7 @@ type mapDispatchType = {
   setUsers: (users: UserType[]) => void;
   setCurrentPage: (currentPage: number) => void;
   setTotalUsersCount: (totalCount: number) => void;
+  toggleIsFetching: (isFetching: boolean) => void;
 };
 
 export type UsersPropsType = UsersPageType & mapDispatchType;
@@ -67,26 +77,15 @@ const mapStateToProps = (state: RootStateType): UsersPageType => {
     pageSize: state.usersPage.pageSize,
     totalUsersCout: state.usersPage.totalUsersCout,
     currentPage: state.usersPage.currentPage,
-  };
-};
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchType => {
-  return {
-    follow: (userId: number) => {
-      dispatch(followAC(userId));
-    },
-    unfollow: (userId: number) => {
-      dispatch(unfollowAC(userId));
-    },
-    setUsers: (users: UserType[]) => {
-      dispatch(setUsersAC(users));
-    },
-    setCurrentPage: (currentPage: number) => {
-      dispatch(setCurrentPageAC(currentPage));
-    },
-    setTotalUsersCount: (totalCount: number) => {
-      dispatch(setTotalUsersCountAC(totalCount));
-    },
+    isFetching: state.usersPage.isFetching,
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+  follow: followAC,
+  unfollow: unfollowAC,
+  setUsers: setUsersAC,
+  setCurrentPage: setCurrentPageAC,
+  setTotalUsersCount: setTotalUsersCountAC,
+  toggleIsFetching: toggleIsFetchingAC,
+})(UsersContainer);

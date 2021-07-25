@@ -79,7 +79,7 @@ export const dialogsReducer = (
     case "UPDATE-NEW-MESSAGE-TEXT":
       return {
         ...state,
-        newMessageText: action.newText,
+        newMessageText: action.payload.newText,
       };
 
     default:
@@ -97,6 +97,6 @@ export const addMessageAC = () => {
   } as const;
 };
 
-export const updateNewMessageTextAC = (text: string) => {
-  return { type: "UPDATE-NEW-MESSAGE-TEXT", newText: text } as const;
+export const updateNewMessageTextAC = (newText: string) => {
+  return { type: "UPDATE-NEW-MESSAGE-TEXT", payload: { newText } } as const;
 };

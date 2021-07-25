@@ -44,7 +44,7 @@ export const profileReducer = (
     case "UPDATE-NEW-POST-TEXT":
       return {
         ...state,
-        newPostText: action.newText,
+        newPostText: action.payload.newText,
       };
 
     default:
@@ -62,6 +62,6 @@ export const addPostAC = () => {
   } as const;
 };
 
-export const updateNewPostTextAC = (text: string) => {
-  return { type: "UPDATE-NEW-POST-TEXT", newText: text } as const;
+export const updateNewPostTextAC = (newText: string) => {
+  return { type: "UPDATE-NEW-POST-TEXT", payload: { newText } } as const;
 };
