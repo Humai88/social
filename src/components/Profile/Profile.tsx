@@ -1,11 +1,15 @@
 import { Fragment } from "react";
 import { MyPostsContainer } from "./MyPosts/MyPostsContainer";
 import { Cover } from "./Cover/Cover";
+import { ProfileResponseType } from "../../redux/profileReducer";
 
-export const Profile = () => {
+type ProfilePropsType = {
+  profile: ProfileResponseType;
+};
+export const Profile = ({ profile }: ProfilePropsType) => {
   return (
     <Fragment>
-      <Cover />
+      <Cover profile={profile} />
       <MyPostsContainer />
     </Fragment>
   );

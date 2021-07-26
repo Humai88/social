@@ -1,8 +1,23 @@
 @import "./../../../../scss/global.scss";
 .info {
-  div {
+  .headers {
     font-size: 1.2rem;
     margin: 1rem 0;
+    color: rgb(196, 171, 211);
+
+    line-height: 1.3rem;
+    font-weight: 300;
+  }
+  .span {
     color: $color-body;
+    opacity: 1;
+    font-weight: 400;
+  }
+
+  .img {
+    opacity: 1;
+    height: 1.2rem;
+    width: 1.2rem;
+    margin-left: 8px;
   }
 }

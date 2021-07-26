@@ -2,8 +2,9 @@ import styles from "./Users.module.scss";
 import { Avatar } from "../UI/Avatar/Avatar";
 import { Button } from "../UI/Button/Button";
 import { UserType } from "./../../redux/usersReducer";
+import { NavLink } from "react-router-dom";
 
-type UsersPropsType = {
+type UserPropsType = {
   totalUsersCout: number;
   pageSize: number;
   currentPage: number;
@@ -13,7 +14,7 @@ type UsersPropsType = {
   unfollow: (userId: number) => void;
 };
 
-export const Users: React.FC<UsersPropsType> = ({
+export const Users: React.FC<UserPropsType> = ({
   totalUsersCout,
   pageSize,
   currentPage,
@@ -54,7 +55,7 @@ export const Users: React.FC<UsersPropsType> = ({
         return (
           <div key={u.id} className={styles.wrapper}>
             <span className={styles.avatarWrapper}>
-              <div>
+              <NavLink to={"/profile/" + u.id}>
                 <Avatar
                   src={
                     u.photos.small != null
@@ -63,7 +64,7 @@ export const Users: React.FC<UsersPropsType> = ({
                   }
                   className={styles.img}
                 />
-              </div>
+              </NavLink>
               <div>
                 {u.followed ? (
                   <Button onClick={onUnfollowHandler} className={styles.btn}>

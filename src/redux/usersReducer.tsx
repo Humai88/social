@@ -1,13 +1,12 @@
 // import { v1 } from "uuid";
 export type UsersPageType = {
-  users: UserDataType;
+  users: Array<UserType>;
   pageSize: number;
   totalUsersCout: number;
   currentPage: number;
   isFetching: boolean;
 };
 
-export type UserDataType = Array<UserType>;
 export type UserType = {
   id: number;
   followed: boolean;

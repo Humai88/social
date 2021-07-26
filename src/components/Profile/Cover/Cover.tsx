@@ -1,18 +1,30 @@
-import React from "react";
+import { Preloader } from "../../../common/Preloader/Preloader";
+import { ProfileResponseType } from "../../../redux/profileReducer";
+import { Avatar } from "../../UI/Avatar/Avatar";
 import styles from "./Cover.module.scss";
 import { Info } from "./Info/Info";
+type CoverPropsType = {
+  profile: ProfileResponseType;
+};
+export const Cover = ({ profile }: CoverPropsType) => {
+  if (!profile) {
+    return <Preloader />;
+  }
 
-export const Cover = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.avatar__wrapper}>
-        <img
+        <Avatar
           className={styles.avatar}
-          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+          src={
+            profile.photos.large != null
+              ? profile.photos.large
+              : "https://image.flaticon.com/icons/png/512/1077/1077275.png"
+          }
           alt=""
         />
       </div>
-      <Info />
+      <Info profile={profile} />
     </div>
   );
 };
