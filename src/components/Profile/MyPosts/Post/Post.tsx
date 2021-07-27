@@ -2,7 +2,8 @@ import React, { Fragment } from "react";
 import s from "./Post.module.scss";
 import { PostType } from "../../../../redux/profileReducer";
 
-export const Post: React.FC<PostType> = ({ post, likes }) => {
+export const Post: React.FC<PostType> = (props) => {
+  const { post, likes } = props;
   return (
     <Fragment>
       <p className={s.item}>{post}</p>

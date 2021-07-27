@@ -5,13 +5,13 @@ import styles from "./Info.module.scss";
 type InfoPropsType = {
   profile: ProfileResponseType;
 };
-export const Info = ({ profile }: InfoPropsType) => {
+export const Info: React.FC<InfoPropsType> = ({ profile }) => {
   if (!profile) {
     return <Preloader />;
   }
   return (
     <div className={styles.info}>
-      <h2>{profile.fullName}</h2>
+      <h3>{profile.fullName}</h3>
       <div className={styles.headers}>
         About me:
         <span className={styles.span}> {profile.aboutMe}</span>

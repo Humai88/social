@@ -14,15 +14,17 @@ type UserPropsType = {
   unfollow: (userId: number) => void;
 };
 
-export const Users: React.FC<UserPropsType> = ({
-  totalUsersCout,
-  pageSize,
-  currentPage,
-  onChangePageHandler,
-  users,
-  follow,
-  unfollow,
-}) => {
+export const Users: React.FC<UserPropsType> = (props) => {
+  const {
+    totalUsersCout,
+    pageSize,
+    currentPage,
+    onChangePageHandler,
+    users,
+    follow,
+    unfollow,
+  } = props;
+
   let pagesCount = Math.ceil(totalUsersCout / pageSize / 100);
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {

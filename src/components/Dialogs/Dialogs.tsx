@@ -6,12 +6,9 @@ import { Button } from "./../UI/Button/Button";
 import { MassagesPropsType } from "./DialogsContainer";
 import { MessageType, DialogType } from "./../../redux/dialogsReducer";
 
-export const Dialogs: React.FC<MassagesPropsType> = ({
-  data,
-  updateNewMessage,
-  addMessage,
-  newMessageText,
-}) => {
+export const Dialogs: React.FC<MassagesPropsType> = (props) => {
+  const { data, updateNewMessage, addMessage, newMessageText } = props;
+
   let dialogsElements = data.dialogs.map((d: DialogType) => (
     <DialogItem image={d.image} key={d.id} name={d.name} id={d.id} />
   ));

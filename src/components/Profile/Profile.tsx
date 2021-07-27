@@ -6,7 +6,7 @@ import { ProfileResponseType } from "../../redux/profileReducer";
 type ProfilePropsType = {
   profile: ProfileResponseType;
 };
-export const Profile = ({ profile }: ProfilePropsType) => {
+export const Profile: React.FC<ProfilePropsType> = ({ profile }) => {
   return (
     <Fragment>
       <Cover profile={profile} />

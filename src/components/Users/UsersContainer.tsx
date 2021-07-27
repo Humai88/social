@@ -17,6 +17,16 @@ import { Users } from "./Users";
 import { Preloader } from "../../common/Preloader/Preloader";
 const axios = require("axios").default;
 
+type mapDispatchType = {
+  follow: (userId: number) => void;
+  unfollow: (userId: number) => void;
+  setUsers: (users: UserType[]) => void;
+  setCurrentPage: (currentPage: number) => void;
+  setTotalUsersCount: (totalCount: number) => void;
+  toggleIsFetching: (isFetching: boolean) => void;
+};
+
+export type UsersPropsType = UsersPageType & mapDispatchType;
 class UsersContainer extends Component<UsersPropsType> {
   componentDidMount() {
     this.props.toggleIsFetching(true);
@@ -59,17 +69,6 @@ class UsersContainer extends Component<UsersPropsType> {
     );
   }
 }
-
-type mapDispatchType = {
-  follow: (userId: number) => void;
-  unfollow: (userId: number) => void;
-  setUsers: (users: UserType[]) => void;
-  setCurrentPage: (currentPage: number) => void;
-  setTotalUsersCount: (totalCount: number) => void;
-  toggleIsFetching: (isFetching: boolean) => void;
-};
-
-export type UsersPropsType = UsersPageType & mapDispatchType;
 
 const mapStateToProps = (state: RootStateType): UsersPageType => {
   return {

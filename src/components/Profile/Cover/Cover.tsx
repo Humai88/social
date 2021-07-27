@@ -6,7 +6,7 @@ import { Info } from "./Info/Info";
 type CoverPropsType = {
   profile: ProfileResponseType;
 };
-export const Cover = ({ profile }: CoverPropsType) => {
+export const Cover: React.FC<CoverPropsType> = ({ profile }) => {
   if (!profile) {
     return <Preloader />;
   }

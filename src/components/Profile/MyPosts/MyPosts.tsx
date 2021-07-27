@@ -5,12 +5,9 @@ import { PostType } from "./../../../redux/profileReducer";
 import { Button } from "../../UI/Button/Button";
 import { ProfilePropsType } from "./MyPostsContainer";
 
-export const MyPosts: React.FC<ProfilePropsType> = ({
-  data,
-  addPost,
-  updateNewPostText,
-  newPostText,
-}) => {
+export const MyPosts: React.FC<ProfilePropsType> = (props) => {
+  const { data, addPost, updateNewPostText, newPostText } = props;
+
   let poststElements = data.map((p: PostType) => (
     <Post key={p.id} id={p.id} post={p.post} likes={p.likes} />
   ));
