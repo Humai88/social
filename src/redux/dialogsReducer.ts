@@ -16,8 +16,7 @@ export type DialogType = {
   image: string;
 };
 export type DialogsDataType = Array<DialogType>;
-
-let initialState: MessagePageType = {
+const initialState: MessagePageType = {
   dialogs: [
     {
       id: v1(),

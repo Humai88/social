@@ -14,7 +14,7 @@ export type ProfilePageType = {
   profile: ProfileResponseType;
 };
 
-let initialState: ProfilePageType = {
+const initialState: ProfilePageType = {
   posts: [
     { id: v1(), post: "Hi, Gumay", likes: 7 },
     { id: v1(), post: "How are you?", likes: 9 },
@@ -49,8 +49,8 @@ export type ProfileResponseType = {
 } | null;
 
 export type CreateProfileResponseType = {
-  // resultCode: number;
-  // messages: string[];
+  resultCode: number;
+  messages: string[];
   data: ProfileResponseType;
 };
 

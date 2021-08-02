@@ -22,8 +22,8 @@ export type GetUsersResponseType = {
 };
 
 export type CreateUsersResponseType = {
-  // resultCode: number;
-  // messages: string[];
+  resultCode: number;
+  messages: string[];
   data: GetUsersResponseType;
 };
 type PhotosType = {
@@ -34,8 +34,7 @@ export type LocationType = {
   city: string;
   country: string;
 };
-
-let initialState: UsersPageType = {
+const initialState: UsersPageType = {
   users: [],
   pageSize: 5,
   totalUsersCout: 0,

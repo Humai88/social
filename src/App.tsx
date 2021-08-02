@@ -1,10 +1,10 @@
 import "./App.scss";
-import { Header } from "./components/Header/Header";
 import { Navigation } from "./components/Navigation/Navigation";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 import { Route } from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 // import { News } from "./components/News/News";
 // import { Settings } from "./components/Settings/Settings";
 // import { Music } from "./components/Music/Music";
@@ -13,7 +13,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 function App() {
   return (
     <div className="app-wrapper">
-      <Header />
+      <HeaderContainer />
       <Navigation />
       <div className="app-class-content">
         <Route path="/profile/:userId?" render={() => <ProfileContainer />} />

@@ -1,14 +1,19 @@
+@import "./../../scss/global.scss";
 .header {
   grid-area: header;
-  display: grid;
-}
-
-.logo {
-  width: 2rem;
-  padding: 1rem 0 0 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-  &:hover {
-    opacity: 0.6;
+  display: flex;
+  justify-content: space-between;
+  .logo {
+    padding: 1rem 0 0 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  .authWrapper {
+    a {
+      color: $color-body;
+    }
   }
 }

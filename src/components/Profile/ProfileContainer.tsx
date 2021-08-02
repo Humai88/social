@@ -47,7 +47,7 @@ class ProfileContainer extends Component<PropsType> {
   }
 }
 
-const UrlDataContainer = withRouter<any, any>(ProfileContainer);
+const UrlDataContainer = withRouter(ProfileContainer);
 export default connect(mapStateToProps, { setUserProfile: setUserProfileAC })(
   UrlDataContainer
 );
