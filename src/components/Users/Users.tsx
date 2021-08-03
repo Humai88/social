@@ -3,7 +3,7 @@ import { Avatar } from "../UI/Avatar/Avatar";
 import { Button } from "../UI/Button/Button";
 import { UserType } from "./../../redux/usersReducer";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../api/api";
+import { followAPI } from "../../api/api";
 
 type UserPropsType = {
   totalUsersCout: number;
@@ -52,14 +52,14 @@ export const Users: React.FC<UserPropsType> = (props) => {
       </div>
       {users.map((u) => {
         const onFollowHandler = () => {
-          usersAPI.setFollow(u.id).then((data) => {
+          followAPI.setFollow(u.id).then((data) => {
             if (data.resultCode === 0) {
               follow(u.id);
             }
           });
         };
         const onUnfollowHandler = () => {
-          usersAPI.setUnfollow(u.id).then((data) => {
+          followAPI.setUnfollow(u.id).then((data) => {
             if (data.resultCode === 0) {
               unfollow(u.id);
             }

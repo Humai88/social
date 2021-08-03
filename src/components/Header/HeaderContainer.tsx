@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { AuthStateType, setAuthUserDataAC } from "../../redux/authReducer";
 import { RootStateType } from "../../redux/reduxStore";
 import { Header } from "./Header";
-import { usersAPI } from "../../api/api";
+import { authAPI } from "../../api/api";
 
 type mapDispatchType = {
   setAuthData: (
@@ -18,7 +18,7 @@ export type AuthPropsType = AuthStateType & mapDispatchType;
 
 class HeaderContainer extends React.Component<AuthPropsType> {
   componentDidMount() {
-    usersAPI.userAuth().then((data) => {
+    authAPI.userAuth().then((data) => {
       let { id, email, login } = data.data;
       if (data.resultCode === 0) {
         this.props.setAuthData(id, email, login);

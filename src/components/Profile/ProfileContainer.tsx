@@ -9,7 +9,7 @@ import {
 import { RootStateType } from "../../redux/reduxStore";
 import { Profile } from "./Profile";
 import { RouteComponentProps } from "react-router";
-import { usersAPI } from "../../api/api";
+import { profileAPI } from "../../api/api";
 
 type PathParamsType = {
   userId: string;
@@ -34,7 +34,7 @@ class ProfileContainer extends Component<PropsType> {
     if (!userId) {
       userId = "11";
     }
-    usersAPI.getProfile(userId).then((data) => {
+    profileAPI.getProfile(userId).then((data) => {
       this.props.setUserProfile(data);
     });
   }

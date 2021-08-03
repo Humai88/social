@@ -32,28 +32,27 @@ export const usersAPI = {
       .then((resp: AxiosResponse) => resp.data);
   },
 };
-
-// export const getUsers = (currentPage: number, pageSize: number) => {
-//   return instance
-//     .get(`users?page=${currentPage}&count=${pageSize}`)
-//     .then((resp: AxiosResponse) => resp.data);
-// };
-
-// export const userAuth = () => {
-//   return instance.get(`auth/me`).then((resp: AxiosResponse) => resp.data);
-// };
-
-// export const getProfile = (userId: string) => {
-//   return instance
-//     .get(`profile/` + userId)
-//     .then((resp: AxiosResponse) => resp.data);
-// };
-
-// export const setFollow = (id: number) => {
-//   return instance.post(`follow/${id}`).then((resp: AxiosResponse) => resp.data);
-// };
-// export const setUnfollow = (id: number) => {
-//   return instance
-//     .delete(`follow/${id}`)
-//     .then((resp: AxiosResponse) => resp.data);
-// };
+export const authAPI = {
+  userAuth() {
+    return instance.get(`auth/me`).then((resp: AxiosResponse) => resp.data);
+  },
+};
+export const profileAPI = {
+  getProfile(userId: string) {
+    return instance
+      .get(`profile/` + userId)
+      .then((resp: AxiosResponse) => resp.data);
+  },
+};
+export const followAPI = {
+  setFollow(id: number) {
+    return instance
+      .post(`follow/${id}`)
+      .then((resp: AxiosResponse) => resp.data);
+  },
+  setUnfollow(id: number) {
+    return instance
+      .delete(`follow/${id}`)
+      .then((resp: AxiosResponse) => resp.data);
+  },
+};
