@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { connect } from "react-redux";
-import { CreateUsersResponseType } from "../../redux/usersReducer";
 import { Component } from "react";
 import { RootStateType } from "./../../redux/reduxStore";
 import {
@@ -15,7 +14,7 @@ import {
 } from "./../../redux/usersReducer";
 import { Users } from "./Users";
 import { Preloader } from "../../common/Preloader/Preloader";
-const axios = require("axios").default;
+import { usersAPI } from "../../api/api";
 
 type mapDispatchType = {
   follow: (userId: number) => void;
@@ -30,33 +29,21 @@ export type UsersPropsType = UsersPageType & mapDispatchType;
 class UsersContainer extends Component<UsersPropsType> {
   componentDidMount() {
     this.props.toggleIsFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((resp: CreateUsersResponseType) => {
+    usersAPI
+      .getUsers(this.props.currentPage, this.props.pageSize)
+      .then((data) => {
         this.props.toggleIsFetching(false);
-        this.props.setUsers(resp.data.items);
-        this.props.setTotalUsersCount(resp.data.totalCount);
+        this.props.setUsers(data.items);
+        this.props.setTotalUsersCount(data.totalCount);
       });
   }
   onChangePageHandler = (pageNumber: number) => {
     this.props.setCurrentPage(pageNumber);
     this.props.toggleIsFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((resp: CreateUsersResponseType) => {
-        this.props.toggleIsFetching(false);
-        this.props.setUsers(resp.data.items);
-      });
+    usersAPI.getUsers(pageNumber, this.props.pageSize).then((data) => {
+      this.props.toggleIsFetching(false);
+      this.props.setUsers(data.items);
+    });
   };
   render() {
     return (

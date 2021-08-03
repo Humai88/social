@@ -11,20 +11,6 @@ export type AuthStateType = {
   isAuth: boolean;
 };
 
-export type GetAuthResponseType = {
-  id: number;
-  email: string;
-  login: string;
-};
-
-export type CreateAuthResponseType = {
-  data: {
-    resultCode: number;
-    messages: string[];
-    data: GetAuthResponseType;
-  };
-};
-
 export const authReducer = (
   state = initialState,
   action: AuthProfileTypes

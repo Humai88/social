@@ -48,12 +48,6 @@ export type ProfileResponseType = {
   photos: PhotosType;
 } | null;
 
-export type CreateProfileResponseType = {
-  resultCode: number;
-  messages: string[];
-  data: ProfileResponseType;
-};
-
 export const profileReducer = (
   state = initialState,
   action: ActionProfileTypes

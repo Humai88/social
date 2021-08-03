@@ -15,17 +15,7 @@ export type UserType = {
   location: LocationType;
   photos: PhotosType;
 };
-export type GetUsersResponseType = {
-  items: Array<UserType>;
-  totalCount: number;
-  error: string | null;
-};
 
-export type CreateUsersResponseType = {
-  resultCode: number;
-  messages: string[];
-  data: GetUsersResponseType;
-};
 type PhotosType = {
   small: string;
   large: string;
@@ -38,7 +28,7 @@ const initialState: UsersPageType = {
   users: [],
   pageSize: 5,
   totalUsersCout: 0,
-  currentPage: 2,
+  currentPage: 1,
   isFetching: true,
 };
 

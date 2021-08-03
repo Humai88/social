@@ -3,7 +3,7 @@ import { Avatar } from "../UI/Avatar/Avatar";
 import { Button } from "../UI/Button/Button";
 import { UserType } from "./../../redux/usersReducer";
 import { NavLink } from "react-router-dom";
-const axios = require("axios").default;
+import { usersAPI } from "../../api/api";
 
 type UserPropsType = {
   totalUsersCout: number;
@@ -52,39 +52,18 @@ export const Users: React.FC<UserPropsType> = (props) => {
       </div>
       {users.map((u) => {
         const onFollowHandler = () => {
-          axios
-            .post(
-              `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-              {},
-              {
-                withCredentials: true,
-                headers: {
-                  "API-KEY": "b108fd33-d977-4add-bda9-9da2037bdf7a",
-                },
-              }
-            )
-            .then((resp: CreateFollowResponseType) => {
-              if (resp.data.resultCode === 0) {
-                follow(u.id);
-              }
-            });
+          usersAPI.setFollow(u.id).then((data) => {
+            if (data.resultCode === 0) {
+              follow(u.id);
+            }
+          });
         };
         const onUnfollowHandler = () => {
-          axios
-            .delete(
-              `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-              {
-                withCredentials: true,
-                headers: {
-                  "API-KEY": "b108fd33-d977-4add-bda9-9da2037bdf7a",
-                },
-              }
-            )
-            .then((resp: CreateFollowResponseType) => {
-              if (resp.data.resultCode === 0) {
-                unfollow(u.id);
-              }
-            });
+          usersAPI.setUnfollow(u.id).then((data) => {
+            if (data.resultCode === 0) {
+              unfollow(u.id);
+            }
+          });
         };
         return (
           <div key={u.id} className={styles.wrapper}>
