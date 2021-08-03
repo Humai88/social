@@ -10,7 +10,12 @@ import { Header } from "./Header";
 const axios = require("axios").default;
 
 type mapDispatchType = {
-  setAuthData: (userId: number, email: string, login: string) => void;
+  setAuthData: (
+    userId: number,
+    email: string,
+    login: string,
+    photo?: string
+  ) => void;
 };
 
 export type AuthPropsType = AuthStateType & mapDispatchType;

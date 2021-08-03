@@ -1,10 +1,11 @@
-import "./App.scss";
 import { Navigation } from "./components/Navigation/Navigation";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 import { Route } from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import { Fragment } from "react";
+import styles from "./App.module.scss";
 // import { News } from "./components/News/News";
 // import { Settings } from "./components/Settings/Settings";
 // import { Music } from "./components/Music/Music";
@@ -12,19 +13,21 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 
 function App() {
   return (
-    <div className="app-wrapper">
+    <Fragment>
       <HeaderContainer />
-      <Navigation />
-      <div className="app-class-content">
-        <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-        <Route path="/dialogs" render={() => <DialogsContainer />} />
-        <Route path="/users" render={() => <UsersContainer />} />
-        {/* <Route path="/news" render={() => <News />} />
+      <div className={styles.mainWrapper}>
+        <Navigation />
+        <div className={styles.content}>
+          <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+          <Route path="/dialogs" render={() => <DialogsContainer />} />
+          <Route path="/users" render={() => <UsersContainer />} />
+          {/* <Route path="/news" render={() => <News />} />
         <Route path="/music" render={() => <Music />} />
         <Route path="/friends" render={() => <Friends />} />
         <Route path="/settings" render={() => <Settings />} /> */}
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 }
 
