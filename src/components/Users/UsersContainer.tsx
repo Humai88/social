@@ -11,6 +11,7 @@ import {
   followAC,
   unfollowAC,
   UsersPageType,
+  toggleFollowingProgressAC,
 } from "./../../redux/usersReducer";
 import { Users } from "./Users";
 import { Preloader } from "../../common/Preloader/Preloader";
@@ -23,6 +24,7 @@ type mapDispatchType = {
   setCurrentPage: (currentPage: number) => void;
   setTotalUsersCount: (totalCount: number) => void;
   toggleIsFetching: (isFetching: boolean) => void;
+  toggleFollowing: (isFetching: boolean, userId: number) => void;
 };
 
 export type UsersPropsType = UsersPageType & mapDispatchType;
@@ -49,15 +51,7 @@ class UsersContainer extends Component<UsersPropsType> {
     return (
       <Fragment>
         {this.props.isFetching ? <Preloader /> : null}
-        <Users
-          totalUsersCout={this.props.totalUsersCout}
-          pageSize={this.props.pageSize}
-          currentPage={this.props.currentPage}
-          users={this.props.users}
-          onChangePageHandler={this.onChangePageHandler}
-          follow={this.props.follow}
-          unfollow={this.props.unfollow}
-        />
+        <Users {...this.props} onChangePageHandler={this.onChangePageHandler} />
       </Fragment>
     );
   }
@@ -70,6 +64,7 @@ const mapStateToProps = (state: RootStateType): UsersPageType => {
     totalUsersCout: state.usersPage.totalUsersCout,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress,
   };
 };
 
@@ -80,4 +75,5 @@ export default connect(mapStateToProps, {
   setCurrentPage: setCurrentPageAC,
   setTotalUsersCount: setTotalUsersCountAC,
   toggleIsFetching: toggleIsFetchingAC,
+  toggleFollowing: toggleFollowingProgressAC,
 })(UsersContainer);

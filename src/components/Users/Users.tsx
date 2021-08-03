@@ -10,9 +10,11 @@ type UserPropsType = {
   pageSize: number;
   currentPage: number;
   users: UserType[];
+  followingInProgress: Array<number>;
   onChangePageHandler: (p: number) => void;
   follow: (userId: number) => void;
   unfollow: (userId: number) => void;
+  toggleFollowing: (isFetching: boolean, userId: number) => void;
 };
 export type CreateFollowResponseType = {
   data: { resultCode: number; messages: string[]; data: {} };
@@ -26,6 +28,8 @@ export const Users: React.FC<UserPropsType> = (props) => {
     users,
     follow,
     unfollow,
+    toggleFollowing,
+    followingInProgress,
   } = props;
 
   let pagesCount = Math.ceil(totalUsersCout / pageSize / 100);
@@ -52,17 +56,21 @@ export const Users: React.FC<UserPropsType> = (props) => {
       </div>
       {users.map((u) => {
         const onFollowHandler = () => {
+          toggleFollowing(true, u.id);
           followAPI.setFollow(u.id).then((data) => {
             if (data.resultCode === 0) {
               follow(u.id);
             }
+            toggleFollowing(false, u.id);
           });
         };
         const onUnfollowHandler = () => {
+          toggleFollowing(true, u.id);
           followAPI.setUnfollow(u.id).then((data) => {
             if (data.resultCode === 0) {
               unfollow(u.id);
             }
+            toggleFollowing(false, u.id);
           });
         };
         return (
@@ -80,11 +88,19 @@ export const Users: React.FC<UserPropsType> = (props) => {
               </NavLink>
               <div>
                 {u.followed ? (
-                  <Button onClick={onUnfollowHandler} className={styles.btn}>
+                  <Button
+                    disabled={followingInProgress.some((id) => id === u.id)}
+                    onClick={onUnfollowHandler}
+                    className={styles.btn}
+                  >
                     unfollow
                   </Button>
                 ) : (
-                  <Button onClick={onFollowHandler} className={styles.btn}>
+                  <Button
+                    disabled={followingInProgress.some((id) => id === u.id)}
+                    onClick={onFollowHandler}
+                    className={styles.btn}
+                  >
                     follow
                   </Button>
                 )}
