@@ -1,3 +1,4 @@
+import { Dispatch } from "redux";
 import { v1 } from "uuid";
 import { profileAPI } from "../api/api";
 
@@ -97,12 +98,12 @@ export const addPostAC = () => {
 export const updateNewPostTextAC = (newText: string) => {
   return { type: "UPDATE-NEW-POST-TEXT", payload: { newText } } as const;
 };
-export const setUserProfileAC = (profile: any) => {
+export const setUserProfileAC = (profile: ProfileResponseType) => {
   return { type: "SET-USER-PROFILE", payload: { profile } } as const;
 };
 
 export const setProfileThunkCreator = (userId: string) => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch<ActionProfileTypes>) => {
     profileAPI.getProfile(userId).then((data) => {
       dispatch(setUserProfileAC(data));
     });

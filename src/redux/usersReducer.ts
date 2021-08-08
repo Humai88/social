@@ -1,5 +1,5 @@
 import { followAPI, usersAPI } from "../api/api";
-
+import { Dispatch } from "redux";
 // import { v1 } from "uuid";
 export type UsersPageType = {
   users: Array<UserType>;
@@ -38,7 +38,7 @@ const initialState: UsersPageType = {
 
 export const usersReducer = (
   state = initialState,
-  action: ActionDialogsTypes
+  action: ActionUsersTypes
 ): UsersPageType => {
   switch (action.type) {
     case "FOLLOW":
@@ -97,7 +97,7 @@ export const usersReducer = (
   }
 };
 
-export type ActionDialogsTypes =
+export type ActionUsersTypes =
   | ReturnType<typeof followAC>
   | ReturnType<typeof unfollowAC>
   | ReturnType<typeof setUsersAC>
@@ -173,7 +173,7 @@ export const toggleFollowingProgressAC = (
 };
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch<ActionUsersTypes>) => {
     dispatch(toggleIsFetchingAC(true));
     usersAPI.getUsers(currentPage, pageSize).then((data) => {
       dispatch(toggleIsFetchingAC(false));
@@ -183,7 +183,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
   };
 };
 export const followThunkCreator = (id: number) => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch<ActionUsersTypes>) => {
     dispatch(toggleFollowingProgressAC(true, id));
     followAPI.setFollow(id).then((data) => {
       if (data.resultCode === 0) {
@@ -194,7 +194,7 @@ export const followThunkCreator = (id: number) => {
   };
 };
 export const unfollowThunkCreator = (id: number) => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch<ActionUsersTypes>) => {
     dispatch(toggleFollowingProgressAC(true, id));
     followAPI.setUnfollow(id).then((data) => {
       if (data.resultCode === 0) {
