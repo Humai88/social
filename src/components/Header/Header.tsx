@@ -10,7 +10,7 @@ type HeaderPropsType = {
   login: string | null;
   isAuth: boolean;
 
-  setAuthData: (userId: number, email: string, login: string) => void;
+  setAuthData: () => void;
 };
 
 export const Header: React.FC<HeaderPropsType> = (props) => {

@@ -1,4 +1,5 @@
 import { v1 } from "uuid";
+import { profileAPI } from "../api/api";
 
 export type PostType = {
   id: string;
@@ -98,4 +99,12 @@ export const updateNewPostTextAC = (newText: string) => {
 };
 export const setUserProfileAC = (profile: any) => {
   return { type: "SET-USER-PROFILE", payload: { profile } } as const;
+};
+
+export const setProfileThunkCreator = (userId: string) => {
+  return (dispatch: any) => {
+    profileAPI.getProfile(userId).then((data) => {
+      dispatch(setUserProfileAC(data));
+    });
+  };
 };

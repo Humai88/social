@@ -14,7 +14,6 @@ type UserPropsType = {
   onChangePageHandler: (p: number) => void;
   follow: (userId: number) => void;
   unfollow: (userId: number) => void;
-  toggleFollowing: (isFetching: boolean, userId: number) => void;
 };
 export type CreateFollowResponseType = {
   data: { resultCode: number; messages: string[]; data: {} };
@@ -28,7 +27,6 @@ export const Users: React.FC<UserPropsType> = (props) => {
     users,
     follow,
     unfollow,
-    toggleFollowing,
     followingInProgress,
   } = props;
 
@@ -56,22 +54,10 @@ export const Users: React.FC<UserPropsType> = (props) => {
       </div>
       {users.map((u) => {
         const onFollowHandler = () => {
-          toggleFollowing(true, u.id);
-          followAPI.setFollow(u.id).then((data) => {
-            if (data.resultCode === 0) {
-              follow(u.id);
-            }
-            toggleFollowing(false, u.id);
-          });
+          follow(u.id);
         };
         const onUnfollowHandler = () => {
-          toggleFollowing(true, u.id);
-          followAPI.setUnfollow(u.id).then((data) => {
-            if (data.resultCode === 0) {
-              unfollow(u.id);
-            }
-            toggleFollowing(false, u.id);
-          });
+          unfollow(u.id);
         };
         return (
           <div key={u.id} className={styles.wrapper}>

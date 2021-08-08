@@ -1,3 +1,5 @@
+import { followAPI, usersAPI } from "../api/api";
+
 // import { v1 } from "uuid";
 export type UsersPageType = {
   users: Array<UserType>;
@@ -168,4 +170,37 @@ export const toggleFollowingProgressAC = (
       userId,
     },
   } as const;
+};
+
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+  return (dispatch: any) => {
+    dispatch(toggleIsFetchingAC(true));
+    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+      dispatch(toggleIsFetchingAC(false));
+      dispatch(setUsersAC(data.items));
+      dispatch(setTotalUsersCountAC(data.totalCount));
+    });
+  };
+};
+export const followThunkCreator = (id: number) => {
+  return (dispatch: any) => {
+    dispatch(toggleFollowingProgressAC(true, id));
+    followAPI.setFollow(id).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(followAC(id));
+      }
+      dispatch(toggleFollowingProgressAC(false, id));
+    });
+  };
+};
+export const unfollowThunkCreator = (id: number) => {
+  return (dispatch: any) => {
+    dispatch(toggleFollowingProgressAC(true, id));
+    followAPI.setUnfollow(id).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(unfollowAC(id));
+      }
+      dispatch(toggleFollowingProgressAC(false, id));
+    });
+  };
 };

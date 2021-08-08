@@ -13,24 +13,6 @@ export const usersAPI = {
       .get(`users?page=${currentPage}&count=${pageSize}`)
       .then((resp: AxiosResponse) => resp.data);
   },
-  userAuth() {
-    return instance.get(`auth/me`).then((resp: AxiosResponse) => resp.data);
-  },
-  getProfile(userId: string) {
-    return instance
-      .get(`profile/` + userId)
-      .then((resp: AxiosResponse) => resp.data);
-  },
-  setFollow(id: number) {
-    return instance
-      .post(`follow/${id}`)
-      .then((resp: AxiosResponse) => resp.data);
-  },
-  setUnfollow(id: number) {
-    return instance
-      .delete(`follow/${id}`)
-      .then((resp: AxiosResponse) => resp.data);
-  },
 };
 export const authAPI = {
   userAuth() {
