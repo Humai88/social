@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 type mapStateType = {
   data: MessagePageType;
   newMessageText: string;
+  isAuth: boolean;
 };
 type mapDispatchType = {
   updateNewMessage: (body: string) => void;
@@ -21,6 +22,7 @@ const mapStateToProps = (state: RootStateType): mapStateType => {
   return {
     data: state.messagePage,
     newMessageText: state.messagePage.newMessageText,
+    isAuth: state.auth.isAuth,
   };
 };
 

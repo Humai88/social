@@ -6,6 +6,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import { Fragment } from "react";
 import styles from "./App.module.scss";
+import { Login } from "./components/Login/Login";
 // import { News } from "./components/News/News";
 // import { Settings } from "./components/Settings/Settings";
 // import { Music } from "./components/Music/Music";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
           <Route path="/dialogs" render={() => <DialogsContainer />} />
           <Route path="/users" render={() => <UsersContainer />} />
+          <Route path="/login" render={() => <Login />} />
           {/* <Route path="/news" render={() => <News />} />
         <Route path="/music" render={() => <Music />} />
         <Route path="/friends" render={() => <Friends />} />

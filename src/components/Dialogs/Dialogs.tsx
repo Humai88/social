@@ -5,9 +5,10 @@ import { Message } from "./Message/Message/Message";
 import { Button } from "./../UI/Button/Button";
 import { MassagesPropsType } from "./DialogsContainer";
 import { MessageType, DialogType } from "./../../redux/dialogsReducer";
+import { Redirect } from "react-router-dom";
 
 export const Dialogs: React.FC<MassagesPropsType> = (props) => {
-  const { data, updateNewMessage, addMessage, newMessageText } = props;
+  const { data, updateNewMessage, addMessage, newMessageText, isAuth } = props;
 
   let dialogsElements = data.dialogs.map((d: DialogType) => (
     <DialogItem image={d.image} key={d.id} name={d.name} id={d.id} />
@@ -25,6 +26,7 @@ export const Dialogs: React.FC<MassagesPropsType> = (props) => {
     let body = e.currentTarget.value;
     updateNewMessage(body);
   };
+  if (!isAuth) return <Redirect to="/login" />;
 
   return (
     <div className={styles.dialogs}>
