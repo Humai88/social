@@ -6,11 +6,11 @@ import {
   updateNewMessageTextAC,
 } from "./../../redux/dialogsReducer";
 import { connect } from "react-redux";
+import { withAuthRedirect } from "./../../hoc/authRedirect";
 
 type mapStateType = {
   data: MessagePageType;
   newMessageText: string;
-  isAuth: boolean;
 };
 type mapDispatchType = {
   updateNewMessage: (body: string) => void;
@@ -22,11 +22,12 @@ const mapStateToProps = (state: RootStateType): mapStateType => {
   return {
     data: state.messagePage,
     newMessageText: state.messagePage.newMessageText,
-    isAuth: state.auth.isAuth,
   };
 };
+
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
 
 export const DialogsContainer = connect(mapStateToProps, {
   updateNewMessage: updateNewMessageTextAC,
   addMessage: addMessageAC,
-})(Dialogs);
+})(AuthRedirectComponent);

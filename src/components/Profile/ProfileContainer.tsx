@@ -1,23 +1,20 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import {
-  PostsDataType,
   ProfileResponseType,
   setProfileThunkCreator,
 } from "../../redux/profileReducer";
 import { RootStateType } from "../../redux/reduxStore";
 import { Profile } from "./Profile";
 import { RouteComponentProps } from "react-router";
+import { withAuthRedirect } from "../../hoc/authRedirect";
 
 type PathParamsType = {
   userId: string;
 };
 type mapStateType = {
-  posts: PostsDataType;
-  newPostText: string;
   profile: ProfileResponseType;
-  isAuth: boolean;
 };
 type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType;
 type mapDispatchType = {
@@ -26,10 +23,7 @@ type mapDispatchType = {
 
 const mapStateToProps = (state: RootStateType): mapStateType => {
   return {
-    posts: state.profilePage.posts,
-    newPostText: state.profilePage.newPostText,
     profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth,
   };
 };
 export type ProfilePropsType = mapStateType & mapDispatchType;
@@ -48,7 +42,9 @@ class ProfileContainer extends Component<PropsType> {
   }
 }
 
-const UrlDataContainer = withRouter(ProfileContainer);
+let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+
+const UrlDataContainer = withRouter(AuthRedirectComponent);
 export default connect(mapStateToProps, {
   setUserProfile: setProfileThunkCreator,
 })(UrlDataContainer);
