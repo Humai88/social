@@ -3,7 +3,7 @@ import { Avatar } from "../UI/Avatar/Avatar";
 import { Button } from "../UI/Button/Button";
 import { UserType } from "./../../redux/usersReducer";
 import { NavLink } from "react-router-dom";
-import { followAPI } from "../../api/api";
+import { Pagination } from "@material-ui/lab";
 
 type UserPropsType = {
   totalUsersCout: number;
@@ -30,15 +30,27 @@ export const Users: React.FC<UserPropsType> = (props) => {
     followingInProgress,
   } = props;
 
-  let pagesCount = Math.ceil(totalUsersCout / pageSize / 100);
-  let pages = [];
+  let pagesCount = Math.ceil(totalUsersCout / pageSize);
+  let pages: number[] = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
+
   return (
     <div className={styles.mainWrapper}>
-      <div className={styles.pageButtons}>
-        {pages.map((p, i) => {
+      <Pagination
+        className={styles.pagination}
+        count={pagesCount}
+        shape="rounded"
+        hidePrevButton
+        hideNextButton
+        onChange={(e: any) => {
+          const value = e.currentTarget.textContent;
+          onChangePageHandler(+value);
+        }}
+      />
+
+      {/* {pages.map((p, i) => {
           return (
             <span
               key={i}
@@ -50,8 +62,8 @@ export const Users: React.FC<UserPropsType> = (props) => {
               {p}
             </span>
           );
-        })}
-      </div>
+        })} */}
+
       {users.map((u) => {
         const onFollowHandler = () => {
           follow(u.id);

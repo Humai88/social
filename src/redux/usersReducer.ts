@@ -29,7 +29,7 @@ export type LocationType = {
 };
 const initialState: UsersPageType = {
   users: [],
-  pageSize: 5,
+  pageSize: 10,
   totalUsersCout: 0,
   currentPage: 1,
   isFetching: true,

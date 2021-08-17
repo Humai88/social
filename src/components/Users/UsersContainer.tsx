@@ -11,6 +11,8 @@ import {
 } from "./../../redux/usersReducer";
 import { Users } from "./Users";
 import { Preloader } from "../../common/Preloader/Preloader";
+import { compose } from "redux";
+import { withAuthRedirect } from "../../hoc/authRedirect";
 
 type mapDispatchType = {
   follow: (userId: number) => void;
@@ -49,9 +51,12 @@ const mapStateToProps = (state: RootStateType): UsersPageType => {
   };
 };
 
-export default connect(mapStateToProps, {
-  follow: followThunkCreator,
-  unfollow: unfollowThunkCreator,
-  setCurrentPage: setCurrentPageAC,
-  getUsers: getUsersThunkCreator,
-})(UsersContainer);
+export default compose<React.ComponentClass>(
+  // withAuthRedirect,
+  connect(mapStateToProps, {
+    follow: followThunkCreator,
+    unfollow: unfollowThunkCreator,
+    setCurrentPage: setCurrentPageAC,
+    getUsers: getUsersThunkCreator,
+  })
+)(UsersContainer);

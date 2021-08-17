@@ -62,3 +62,22 @@
     opacity: 0.9;
   }
 }
+.pagination {
+  ul {
+    max-width: 33rem !important;
+    justify-content: space-between !important;
+  }
+  div {
+    color: $color-body !important;
+  }
+  button {
+    font-size: 1.3rem !important;
+    color: $color-body !important;
+    opacity: 0.8;
+    &:focus {
+      color: $color-text-hover !important;
+      opacity: 1;
+      font-weight: 700;
+    }
+  }
+}
