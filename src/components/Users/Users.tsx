@@ -8,7 +8,6 @@ import { Pagination } from "@material-ui/lab";
 type UserPropsType = {
   totalUsersCout: number;
   pageSize: number;
-  currentPage: number;
   users: UserType[];
   followingInProgress: Array<number>;
   onChangePageHandler: (p: number) => void;
@@ -22,7 +21,6 @@ export const Users: React.FC<UserPropsType> = (props) => {
   const {
     totalUsersCout,
     pageSize,
-    currentPage,
     onChangePageHandler,
     users,
     follow,

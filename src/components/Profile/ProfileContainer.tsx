@@ -47,6 +47,6 @@ export default compose<React.ComponentType>(
   connect(mapStateToProps, {
     setUserProfile: setProfileThunkCreator,
   }),
-  withRouter,
-  withAuthRedirect
+  withRouter
+  // withAuthRedirect
 )(ProfileContainer);

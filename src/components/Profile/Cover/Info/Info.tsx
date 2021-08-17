@@ -1,5 +1,6 @@
 import { Preloader } from "../../../../common/Preloader/Preloader";
 import { ProfileResponseType } from "../../../../redux/profileReducer";
+import { ProfileStatus } from "../../ProfileStatus/ProfileStatus";
 
 import styles from "./Info.module.scss";
 type InfoPropsType = {
@@ -12,6 +13,8 @@ export const Info: React.FC<InfoPropsType> = ({ profile }) => {
   return (
     <div className={styles.info}>
       <h3>{profile.fullName}</h3>
+
+      <ProfileStatus status="Hello" />
       <div className={styles.headers}>
         About me:
         <span className={styles.span}> {profile.aboutMe}</span>

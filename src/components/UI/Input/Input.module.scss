@@ -1,0 +1,28 @@
+@import "./../../../scss/global.scss";
+.superInput {
+  height: 2rem;
+  font-size: 1.1rem;
+  outline: none;
+  border: none;
+  border-bottom: 1.9px solid $color-body;
+  border-left: 1.9px solid $color-body;
+  background: transparent;
+  padding: 0 4px;
+  opacity: 0.8;
+}
+
+.errorInput {
+  border: 1px solid #ad0000;
+  background: #f0bdbd;
+  font-size: 1rem;
+  margin: 1rem;
+  height: 2rem;
+  padding: 3px 7px;
+}
+
+.error {
+  color: #f02323;
+  font-weight: 400;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
