@@ -71,6 +71,7 @@ export const usersReducer = (
         ...state,
         currentPage: action.payload.currentPage,
       };
+
     case "SET_TOTAL_COUNT":
       return {
         ...state,

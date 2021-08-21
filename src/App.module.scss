@@ -24,8 +24,9 @@ body {
   display: flex;
   max-width: 90%;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 .content {
-  width: 90%;
+  width: 80%;
   margin-left: 4rem;
 }

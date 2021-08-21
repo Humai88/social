@@ -1,12 +1,18 @@
+import { ProfileResponseType } from "../../../../api/api";
 import { Preloader } from "../../../../common/Preloader/Preloader";
-import { ProfileResponseType } from "../../../../redux/profileReducer";
 import { ProfileStatus } from "../../ProfileStatus/ProfileStatus";
 
 import styles from "./Info.module.scss";
 type InfoPropsType = {
   profile: ProfileResponseType;
+  status: string;
+  updateStatus: (status: string) => void;
 };
-export const Info: React.FC<InfoPropsType> = ({ profile }) => {
+export const Info: React.FC<InfoPropsType> = ({
+  profile,
+  status,
+  updateStatus,
+}) => {
   if (!profile) {
     return <Preloader />;
   }
@@ -14,7 +20,7 @@ export const Info: React.FC<InfoPropsType> = ({ profile }) => {
     <div className={styles.info}>
       <h3>{profile.fullName}</h3>
 
-      <ProfileStatus status="Hello" />
+      <ProfileStatus status={status} updateStatus={updateStatus} />
       <div className={styles.headers}>
         About me:
         <span className={styles.span}> {profile.aboutMe}</span>

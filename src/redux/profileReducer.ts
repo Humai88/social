@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import { v1 } from "uuid";
-import { profileAPI } from "../api/api";
+import { profileAPI, ProfileResponseType } from "../api/api";
 
 export type PostType = {
   id: string;
@@ -14,6 +14,7 @@ export type ProfilePageType = {
   posts: PostsDataType;
   newPostText: string;
   profile: ProfileResponseType;
+  status: string;
 };
 
 const initialState: ProfilePageType = {
@@ -24,31 +25,8 @@ const initialState: ProfilePageType = {
   ],
   newPostText: "",
   profile: null,
+  status: "",
 };
-
-type ContactsType = {
-  github: string | null;
-  vk: string | null;
-  facebook: string | null;
-  instagram: string | null;
-  twitter: string | null;
-  website: string | null;
-  youtube: string | null;
-  mainLink: string | null;
-};
-export type PhotosType = {
-  small: string;
-  large: string;
-};
-export type ProfileResponseType = {
-  aboutMe: string | null;
-  contacts: ContactsType;
-  lookingForAJob: boolean;
-  lookingForAJobDescription: string;
-  fullName: string;
-  userId: number;
-  photos: PhotosType;
-} | null;
 
 export const profileReducer = (
   state = initialState,
@@ -68,7 +46,11 @@ export const profileReducer = (
         ],
         newPostText: "",
       };
-
+    case "SET_STATUS":
+      return {
+        ...state,
+        status: action.payload.status,
+      };
     case "UPDATE-NEW-POST-TEXT":
       return {
         ...state,
@@ -79,6 +61,7 @@ export const profileReducer = (
         ...state,
         profile: action.payload.profile,
       };
+
     default:
       return state;
   }
@@ -87,17 +70,27 @@ export const profileReducer = (
 export type ActionProfileTypes =
   | ReturnType<typeof addPostAC>
   | ReturnType<typeof updateNewPostTextAC>
-  | ReturnType<typeof setUserProfileAC>;
+  | ReturnType<typeof setUserProfileAC>
+  | ReturnType<typeof setStatusAC>;
 
 export const addPostAC = () => {
   return {
     type: "ADD-POST",
   } as const;
 };
+export const setStatusAC = (status: string) => {
+  return {
+    type: "SET_STATUS",
+    payload: {
+      status,
+    },
+  } as const;
+};
 
 export const updateNewPostTextAC = (newText: string) => {
   return { type: "UPDATE-NEW-POST-TEXT", payload: { newText } } as const;
 };
+
 export const setUserProfileAC = (profile: ProfileResponseType) => {
   return { type: "SET-USER-PROFILE", payload: { profile } } as const;
 };
@@ -106,6 +99,24 @@ export const setProfileThunkCreator = (userId: string) => {
   return (dispatch: Dispatch<ActionProfileTypes>) => {
     profileAPI.getProfile(userId).then((data) => {
       dispatch(setUserProfileAC(data));
+    });
+  };
+};
+
+export const getStatusThunkCreator = (userId: string) => {
+  return (dispatch: Dispatch<ActionProfileTypes>) => {
+    profileAPI.getStatus(userId).then((data) => {
+      dispatch(setStatusAC(data));
+    });
+  };
+};
+
+export const updateStatusThunkCreator = (status: string) => {
+  return (dispatch: Dispatch<ActionProfileTypes>) => {
+    profileAPI.updateStatus(status).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(setStatusAC(data));
+      }
     });
   };
 };
