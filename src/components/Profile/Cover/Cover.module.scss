@@ -9,9 +9,9 @@
 }
 .wrapper {
   display: flex;
-  padding: 2% 5%;
+  padding: 2% 3%;
   flex-wrap: wrap;
-  max-width: 30%;
+  // max-width: 30%;
   align-items: center;
   @include media-query("max", $wide-start) {
     padding: 5% 5%;

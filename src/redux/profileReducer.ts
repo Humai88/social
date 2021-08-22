@@ -115,7 +115,7 @@ export const updateStatusThunkCreator = (status: string) => {
   return (dispatch: Dispatch<ActionProfileTypes>) => {
     profileAPI.updateStatus(status).then((data) => {
       if (data.resultCode === 0) {
-        dispatch(setStatusAC(data));
+        dispatch(setStatusAC(status));
       }
     });
   };

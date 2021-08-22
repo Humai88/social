@@ -80,9 +80,7 @@ export const profileAPI = {
       .then((resp) => resp.data);
   },
   getStatus(userId: string) {
-    return instance
-      .get<string>(`profile/status/` + userId)
-      .then((resp) => resp.data);
+    return instance.get(`profile/status/` + userId).then((resp) => resp.data);
   },
   updateStatus(status: string) {
     return instance
