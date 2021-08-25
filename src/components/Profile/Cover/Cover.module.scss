@@ -9,22 +9,21 @@
 }
 .wrapper {
   display: flex;
-  padding: 2% 3%;
   flex-wrap: wrap;
-  // max-width: 30%;
   align-items: center;
   @include media-query("max", $wide-start) {
-    padding: 5% 5%;
+    padding: 3% 3%;
   }
 }
 
 .avatar {
-  width: 10rem;
-  height: 10rem;
+  width: 9rem;
+  height: 9rem;
   justify-self: center;
   justify-content: space-between;
+  margin-left: 2rem;
   @include media-query("max", $palm-start) {
-    width: 7rem;
-    height: 7rem;
+    width: 5rem;
+    height: 5rem;
   }
 }

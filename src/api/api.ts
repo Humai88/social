@@ -1,21 +1,4 @@
-import axios, { AxiosResponse } from "axios";
-
-// export type UserDataType = {
-//   name: string;
-//   id: number;
-//   staturs: string;
-//   photos: PhotoesType;
-//   followed: boolean;
-// };
-// type PhotoesType = {
-//   small: string;
-//   large: string;
-// };
-// export type UsersResponseType = {
-//   items: UserDataType[];
-//   totalCount: number;
-//   error: null | string;
-// };
+import axios from "axios";
 
 type ContactsType = {
   github: string | null;
@@ -28,7 +11,7 @@ type ContactsType = {
   mainLink: string | null;
 };
 
-export type PhotosType = {
+type PhotosType = {
   small: string;
   large: string;
 };
@@ -48,6 +31,34 @@ type ResponseType<D = {}> = {
   messages: Array<string>;
   data: D;
 };
+
+type DataAuthType = {
+  id: number;
+  email: string;
+  login: string;
+};
+
+export type UserType = {
+  id: number;
+  followed: boolean;
+  name: string;
+  status: string;
+  location: LocationType;
+  photos: PhotosType;
+};
+
+type GetUsersType = {
+  items: UserType[];
+  totalCount: number;
+  error: null | string;
+};
+
+export type LocationType = {
+  city: string;
+  country: string;
+};
+
+// Instance
 const instance = axios.create({
   withCredentials: true,
   baseURL: "https://social-network.samuraijs.com/api/1.0/",
@@ -60,15 +71,31 @@ const instance = axios.create({
 export const usersAPI = {
   getUsers(currentPage: number, pageSize: number) {
     return instance
-      .get(`users?page=${currentPage}&count=${pageSize}`)
-      .then((resp: AxiosResponse) => resp.data);
+      .get<GetUsersType>(`users?page=${currentPage}&count=${pageSize}`)
+      .then((resp) => resp.data);
   },
 };
 
 // Auth API
 export const authAPI = {
   userAuth() {
-    return instance.get(`auth/me`).then((resp: AxiosResponse) => resp.data);
+    return instance
+      .get<ResponseType<DataAuthType>>(`auth/me`)
+      .then((resp) => resp.data);
+  },
+
+  createLogin(email: string, password: string) {
+    return instance
+      .post<ResponseType<DataAuthType>>(`auth/login`, {
+        email: email,
+        password: password,
+      })
+      .then((resp) => resp.data);
+  },
+  deleteogin() {
+    return instance
+      .delete<ResponseType<{ userId: number }>>(`auth/login`)
+      .then((resp) => resp.data);
   },
 };
 
@@ -80,11 +107,13 @@ export const profileAPI = {
       .then((resp) => resp.data);
   },
   getStatus(userId: string) {
-    return instance.get(`profile/status/` + userId).then((resp) => resp.data);
+    return instance
+      .get<string>(`profile/status/` + userId)
+      .then((resp) => resp.data);
   },
   updateStatus(status: string) {
     return instance
-      .put(`profile/status/`, { status: status })
+      .put<ResponseType>(`profile/status/`, { status: status })
       .then((resp) => resp.data);
   },
 };
@@ -93,12 +122,12 @@ export const profileAPI = {
 export const followAPI = {
   setFollow(id: number) {
     return instance
-      .post(`follow/${id}`)
-      .then((resp: AxiosResponse) => resp.data);
+      .post<ResponseType>(`follow/${id}`)
+      .then((resp) => resp.data);
   },
   setUnfollow(id: number) {
     return instance
-      .delete(`follow/${id}`)
-      .then((resp: AxiosResponse) => resp.data);
+      .delete<ResponseType>(`follow/${id}`)
+      .then((resp) => resp.data);
   },
 };

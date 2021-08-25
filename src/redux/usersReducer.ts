@@ -1,4 +1,4 @@
-import { followAPI, usersAPI } from "../api/api";
+import { followAPI, usersAPI, UserType } from "../api/api";
 import { Dispatch } from "redux";
 // import { v1 } from "uuid";
 export type UsersPageType = {
@@ -10,23 +10,6 @@ export type UsersPageType = {
   followingInProgress: Array<number>;
 };
 
-export type UserType = {
-  id: number;
-  followed: boolean;
-  name: string;
-  status: string;
-  location: LocationType;
-  photos: PhotosType;
-};
-
-type PhotosType = {
-  small: string;
-  large: string;
-};
-export type LocationType = {
-  city: string;
-  country: string;
-};
 const initialState: UsersPageType = {
   users: [],
   pageSize: 10,

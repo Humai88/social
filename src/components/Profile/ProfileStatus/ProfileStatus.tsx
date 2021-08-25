@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Input from "../../UI/Input/Input";
 import styles from "./ProfileStatus.module.scss";
 type ProfileStatusPropsType = {
@@ -18,6 +18,7 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = ({
     setEditMode(false);
     updateStatus(currentStatus);
   };
+
   const onEnterCallback = () => {
     setEditMode(false);
     updateStatus(currentStatus);
@@ -26,6 +27,7 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = ({
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     setCurrentStatus(e.currentTarget.value);
   };
+
   return (
     <>
       {editMode ? (

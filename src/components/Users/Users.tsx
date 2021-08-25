@@ -1,9 +1,9 @@
 import styles from "./Users.module.scss";
 import { Avatar } from "../UI/Avatar/Avatar";
 import { Button } from "../UI/Button/Button";
-import { UserType } from "./../../redux/usersReducer";
 import { NavLink } from "react-router-dom";
 import { Pagination } from "@material-ui/lab";
+import { UserType } from "../../api/api";
 
 type UserPropsType = {
   totalUsersCout: number;

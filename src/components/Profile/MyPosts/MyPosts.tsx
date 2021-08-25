@@ -4,6 +4,8 @@ import { Post } from "./Post/Post";
 import { PostType } from "./../../../redux/profileReducer";
 import { Button } from "../../UI/Button/Button";
 import { ProfilePropsType } from "./MyPostsContainer";
+import { Form, Formik } from "formik";
+import { CustomTextarea } from "../../UI/Input/CustomTextarea";
 
 export const MyPosts: React.FC<ProfilePropsType> = (props) => {
   const { data, addPost, updateNewPostText, newPostText } = props;
@@ -24,19 +26,34 @@ export const MyPosts: React.FC<ProfilePropsType> = (props) => {
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.header}>My Posts</h3>
-
-      <textarea
-        className={styles.textArea}
-        onChange={onChangeHandler}
-        value={newPostText}
-        placeholder="What's on your mind?"
-      />
-
-      <Button onClick={onClickHandler} className={styles.addPostBtn}>
-        Add
-      </Button>
-
+      <PostForm />
       <div>{poststElements}</div>
     </div>
+  );
+};
+
+export const PostForm = () => {
+  return (
+    <>
+      <Formik
+        initialValues={{
+          post: "",
+        }}
+        onSubmit={(values, { setSubmitting, resetForm }) => {
+          resetForm();
+          setSubmitting(false);
+          console.log(values);
+        }}
+      >
+        <div className={styles.form}>
+          <Form>
+            <CustomTextarea name="post" label="What's new?" />
+            <Button className={styles.btn} type="submit">
+              Submit
+            </Button>
+          </Form>
+        </div>
+      </Formik>
+    </>
   );
 };

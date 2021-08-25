@@ -52,7 +52,7 @@ const mapStateToProps = (state: RootStateType): UsersPageType => {
 };
 
 export default compose<React.ComponentClass>(
-  // withAuthRedirect,
+  withAuthRedirect,
   connect(mapStateToProps, {
     follow: followThunkCreator,
     unfollow: unfollowThunkCreator,

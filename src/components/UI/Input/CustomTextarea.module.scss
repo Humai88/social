@@ -1,0 +1,21 @@
+@import "./../../../scss/global.scss";
+.textarea {
+  height: 5rem;
+  font-size: 1.1rem;
+  outline: none;
+  width: 100%;
+  border: none;
+  border-bottom: 1.9px solid $color-body;
+  border: 1px solid $color-body;
+  background: transparent;
+  padding: 0;
+  opacity: 0.8;
+  display: block;
+
+  .label {
+    display: block;
+  }
+  &:focus {
+    background: $color-input-focus;
+  }
+}

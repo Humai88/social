@@ -63,6 +63,6 @@ export default compose<React.ComponentType>(
     getStatus: getStatusThunkCreator,
     updateStatus: updateStatusThunkCreator,
   }),
-  withRouter
-  // withAuthRedirect
+  withRouter,
+  withAuthRedirect
 )(ProfileContainer);

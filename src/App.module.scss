@@ -4,29 +4,17 @@
 body {
   background-color: $color-background;
   font-family: "Roboto";
-  color: rgb(243, 243, 243);
+  // color: rgb(243, 243, 243);
+  color: rgb(105, 105, 105);
 }
-// .wrapper {
-//   width: 90%;
-//   margin: 0 auto;
-//   display: grid;
-//   grid-template-rows: 60px 1fr;
-//   grid-template-columns: 2fr 10fr;
-//   grid-gap: 10px;
-//   grid-template-areas:
-//     "header header"
-//     "nav c";
-// }
-// .content {
-//   grid-area: c;
-// }
+
 .mainWrapper {
   display: flex;
-  max-width: 90%;
+  width: 100%;
+  padding: 0 5%;
   margin: 0 auto;
   flex-wrap: wrap;
 }
 .content {
   width: 80%;
-  margin-left: 4rem;
 }

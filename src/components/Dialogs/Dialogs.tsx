@@ -5,6 +5,9 @@ import { Message } from "./Message/Message/Message";
 import { Button } from "./../UI/Button/Button";
 import { MassagesPropsType } from "./DialogsContainer";
 import { MessageType, DialogType } from "./../../redux/dialogsReducer";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
+import { CustomTextarea } from "../UI/Input/CustomTextarea";
 
 export const Dialogs: React.FC<MassagesPropsType> = (props) => {
   const { data, updateNewMessage, addMessage, newMessageText } = props;
@@ -32,7 +35,8 @@ export const Dialogs: React.FC<MassagesPropsType> = (props) => {
       <div>
         <div className={styles.messages}>{messagesElements}</div>
         <div className={styles.wrapperAddArea}>
-          <textarea
+          <MessageForm />
+          {/* <textarea
             onChange={onChangeHandler}
             className={styles.textArea}
             value={newMessageText}
@@ -40,9 +44,34 @@ export const Dialogs: React.FC<MassagesPropsType> = (props) => {
           ></textarea>
           <Button onClick={onClickHandler} className={styles.btn}>
             send
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>
+  );
+};
+export const MessageForm = () => {
+  return (
+    <>
+      <Formik
+        initialValues={{
+          message: "",
+        }}
+        onSubmit={(values, { setSubmitting, resetForm }) => {
+          resetForm();
+          setSubmitting(false);
+          console.log(values);
+        }}
+      >
+        <div className={styles.form}>
+          <Form>
+            <CustomTextarea name="message" label="" />
+            <Button className={styles.btn} type="submit">
+              Submit
+            </Button>
+          </Form>
+        </div>
+      </Formik>
+    </>
   );
 };
