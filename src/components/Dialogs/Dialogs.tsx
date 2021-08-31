@@ -6,7 +6,6 @@ import { Button } from "./../UI/Button/Button";
 import { MassagesPropsType } from "./DialogsContainer";
 import { MessageType, DialogType } from "./../../redux/dialogsReducer";
 import { Form, Formik } from "formik";
-import * as Yup from "yup";
 import { CustomTextarea } from "../UI/Input/CustomTextarea";
 
 export const Dialogs: React.FC<MassagesPropsType> = (props) => {
