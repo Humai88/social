@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/socialnetwork/static/css/main.fa3356d5.chunk.css",
+    "main.js": "/socialnetwork/static/js/main.0f746b95.chunk.js",
+    "main.js.map": "/socialnetwork/static/js/main.0f746b95.chunk.js.map",
+    "runtime-main.js": "/socialnetwork/static/js/runtime-main.6998dd10.js",
+    "runtime-main.js.map": "/socialnetwork/static/js/runtime-main.6998dd10.js.map",
+    "static/js/2.958834ad.chunk.js": "/socialnetwork/static/js/2.958834ad.chunk.js",
+    "static/js/2.958834ad.chunk.js.map": "/socialnetwork/static/js/2.958834ad.chunk.js.map",
+    "index.html": "/socialnetwork/index.html",
+    "static/css/main.fa3356d5.chunk.css.map": "/socialnetwork/static/css/main.fa3356d5.chunk.css.map",
+    "static/js/2.958834ad.chunk.js.LICENSE.txt": "/socialnetwork/static/js/2.958834ad.chunk.js.LICENSE.txt",
+    "static/media/spinning-circles.cff806a7.svg": "/socialnetwork/static/media/spinning-circles.cff806a7.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6998dd10.js",
+    "static/js/2.958834ad.chunk.js",
+    "static/css/main.fa3356d5.chunk.css",
+    "static/js/main.0f746b95.chunk.js"
+  ]
+}
