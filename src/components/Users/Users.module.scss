@@ -1,22 +1,35 @@
 @import "./../../scss//global.scss";
-// * {
-//   border: 1px solid red;
-// }
+
 .mainWrapper {
   margin-bottom: 4rem;
+  padding: 0 2%;
 }
 .wrapper {
-  display: grid;
-  grid-template-columns: 15% 80%;
+  display: flex;
+  // align-items: center;
+  width: 40%;
+}
+.usersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin-top: -2rem;
+  margin-bottom: 3rem;
+  justify-content: space-around;
+  @include media-query("max", $lap-start) {
+    width: 95%;
+  }
 }
 .infoWrapper {
-  margin-top: 0.5rem;
+  margin-left: 0.7rem;
+  margin-top: 2.5rem;
 }
 .name {
   font-size: 1.4rem;
   font-weight: 400;
   color: $color-yellow;
   opacity: 0.9;
+  margin-top: 0;
 }
 .status {
   opacity: 0.8;
@@ -25,21 +38,16 @@
   font-style: italic;
   font-weight: 300;
 }
-.location {
-  opacity: 0.8;
-  font-size: 1.1rem;
-  margin-top: 10px;
-  font-weight: 300;
-}
+
 .avatarWrapper {
   justify-self: center;
+  margin-top: 2rem;
 }
 .img {
   justify-self: center;
   width: 6rem;
   height: 6rem;
   margin-bottom: 10px;
-  margin-top: 2rem;
   margin-left: 14%;
 }
 .btn {

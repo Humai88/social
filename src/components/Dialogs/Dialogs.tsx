@@ -64,7 +64,7 @@ export const MessageForm = () => {
       >
         <div className={styles.form}>
           <Form>
-            <CustomTextarea name="message" label="" />
+            <CustomTextarea name="message" placeholder="Type your message..." />
             <Button className={styles.btn} type="submit">
               Submit
             </Button>

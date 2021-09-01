@@ -11,6 +11,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  margin-bottom: 2rem;
   @include media-query("max", $wide-start) {
     padding: 3% 3%;
   }

@@ -1,6 +1,11 @@
-// import React from "react";
-// import s from "./Music.module.scss";
+import { Preloader } from "../../common/Preloader/Preloader";
+import styles from "./Music.module.scss";
 
 export const Music = () => {
-  return <div>Music</div>;
+  return (
+    <>
+      <div className={styles.header}>Page is under construction</div>
+      <Preloader />
+    </>
+  );
 };

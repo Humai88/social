@@ -1,6 +1,12 @@
 // import React from "react";
-// import s from "./Friends.module.scss";
+import { Preloader } from "../../common/Preloader/Preloader";
+import styles from "./Friends.module.scss";
 
 export const Friends = () => {
-  return <div>Friends</div>;
+  return (
+    <>
+      <div className={styles.header}>Page is under construction</div>
+      <Preloader />
+    </>
+  );
 };

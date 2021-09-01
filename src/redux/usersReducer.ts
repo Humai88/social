@@ -12,7 +12,7 @@ export type UsersPageType = {
 
 const initialState: UsersPageType = {
   users: [],
-  pageSize: 10,
+  pageSize: 8,
   totalUsersCout: 0,
   currentPage: 1,
   isFetching: true,

@@ -7,10 +7,9 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import { Fragment } from "react";
 import styles from "./App.module.scss";
 import { Login } from "./components/Login/Login";
-// import { News } from "./components/News/News";
-// import { Settings } from "./components/Settings/Settings";
-// import { Music } from "./components/Music/Music";
-// import { Friends } from "./components/Friends/Friends";
+import { Settings } from "./components/Settings/Settings";
+import { Music } from "./components/Music/Music";
+import { Friends } from "./components/Friends/Friends";
 
 function App() {
   return (
@@ -23,10 +22,9 @@ function App() {
           <Route path="/dialogs" render={() => <DialogsContainer />} />
           <Route path="/users" render={() => <UsersContainer />} />
           <Route path="/login" render={() => <Login />} />
-          {/* <Route path="/news" render={() => <News />} />
-        <Route path="/music" render={() => <Music />} />
-        <Route path="/friends" render={() => <Friends />} />
-        <Route path="/settings" render={() => <Settings />} /> */}
+          <Route path="/music" render={() => <Music />} />
+          <Route path="/friends" render={() => <Friends />} />
+          <Route path="/settings" render={() => <Settings />} />
         </div>
       </div>
     </Fragment>

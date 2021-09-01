@@ -25,7 +25,6 @@ export const MyPosts: React.FC<ProfilePropsType> = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      <h3 className={styles.header}>My Posts</h3>
       <PostForm />
       <div>{poststElements}</div>
     </div>
@@ -47,7 +46,7 @@ export const PostForm = () => {
       >
         <div className={styles.form}>
           <Form>
-            <CustomTextarea name="post" label="What's new?" />
+            <CustomTextarea name="post" placeholder="What's new?" />
             <Button className={styles.btn} type="submit">
               Submit
             </Button>

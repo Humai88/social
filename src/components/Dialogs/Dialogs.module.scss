@@ -5,6 +5,7 @@
 }
 .items {
   padding: 1rem;
+  margin-left: 2rem;
 }
 
 .messages {
@@ -12,18 +13,10 @@
 }
 .btn {
   display: block;
-  margin-top: 0.5rem;
+  margin-top: 5px;
   align-self: center;
 }
-.textArea {
-  color: $color-input;
-  font-size: 1.3rem;
-  background: $color-body;
-  outline: none;
-}
-.textArea:focus {
-  background: $color-input-focus;
-}
+
 .wrapperAddArea {
   margin-left: 12px;
   width: 25rem;

@@ -20,11 +20,6 @@ export const Navigation = () => {
           Find friends
         </NavLink>
       </div>
-      {/* <div>
-        <NavLink to="/news" activeClassName={s.active}>
-          News
-        </NavLink>
-      </div>
       <div>
         <NavLink to="/music" activeClassName={s.active}>
           Music
@@ -39,7 +34,7 @@ export const Navigation = () => {
         <NavLink to="/settings" activeClassName={s.active}>
           Settings
         </NavLink>
-      </div> */}
+      </div>
     </nav>
   );
 };

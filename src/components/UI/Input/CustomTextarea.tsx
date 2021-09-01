@@ -3,7 +3,7 @@ import styles from "./CustomTextarea.module.scss";
 import { FieldHookConfig, useField } from "formik";
 
 type CustomInputPropsType = FieldHookConfig<string> & {
-  label: string;
+  label?: string;
   className?: string;
 } & DetailedHTMLProps<
     TextareaHTMLAttributes<HTMLTextAreaElement>,

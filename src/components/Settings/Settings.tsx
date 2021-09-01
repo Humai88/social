@@ -1,6 +1,12 @@
 // import React from "react";
-// import s from "./Settings.module.scss";
+import { Preloader } from "../../common/Preloader/Preloader";
+import styles from "./Settings.module.scss";
 
 export const Settings = () => {
-  return <div>Settings</div>;
+  return (
+    <>
+      <div className={styles.header}>Page is under construction</div>
+      <Preloader />
+    </>
+  );
 };
