@@ -4,8 +4,8 @@ import styles from "./Message.module.scss";
 
 export const Message: React.FC<MessageType> = ({ text }) => {
   return (
-    <Fragment>
+    <div className={styles.messageWrapper}>
       <p className={styles.message}>{text}</p>
-    </Fragment>
+    </div>
   );
 };

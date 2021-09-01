@@ -70,8 +70,11 @@
   }
 }
 .pagination {
+  margin-bottom: 3rem;
+  margin-left: 3rem;
+
   ul {
-    max-width: 27rem !important;
+    max-width: 30rem !important;
     justify-content: space-between !important;
   }
   div {

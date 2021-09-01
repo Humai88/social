@@ -1,4 +1,3 @@
-// import React from "react";
 import { Preloader } from "../../common/Preloader/Preloader";
 import styles from "./Friends.module.scss";
 

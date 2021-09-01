@@ -8,6 +8,10 @@ import { MessageType, DialogType } from "./../../redux/dialogsReducer";
 import { Form, Formik } from "formik";
 import { CustomTextarea } from "../UI/Input/CustomTextarea";
 
+type MsgPropsType = {
+  updateNewMessage: (body: string) => void;
+  addMessage: () => void;
+};
 export const Dialogs: React.FC<MassagesPropsType> = (props) => {
   const { data, updateNewMessage, addMessage, newMessageText } = props;
 
@@ -19,37 +23,25 @@ export const Dialogs: React.FC<MassagesPropsType> = (props) => {
     <Message key={m.id} text={m.text} id={m.id} />
   ));
 
-  const onClickHandler = () => {
-    addMessage();
-  };
-
-  const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    let body = e.currentTarget.value;
-    updateNewMessage(body);
-  };
-
   return (
     <div className={styles.dialogs}>
       <div className={styles.items}>{dialogsElements}</div>
       <div>
         <div className={styles.messages}>{messagesElements}</div>
         <div className={styles.wrapperAddArea}>
-          <MessageForm />
-          {/* <textarea
-            onChange={onChangeHandler}
-            className={styles.textArea}
-            value={newMessageText}
-            placeholder="Write a message..."
-          ></textarea>
-          <Button onClick={onClickHandler} className={styles.btn}>
-            send
-          </Button> */}
+          <MessageForm
+            updateNewMessage={updateNewMessage}
+            addMessage={addMessage}
+          />
         </div>
       </div>
     </div>
   );
 };
-export const MessageForm = () => {
+export const MessageForm: React.FC<MsgPropsType> = ({
+  updateNewMessage,
+  addMessage,
+}) => {
   return (
     <>
       <Formik
@@ -59,7 +51,8 @@ export const MessageForm = () => {
         onSubmit={(values, { setSubmitting, resetForm }) => {
           resetForm();
           setSubmitting(false);
-          console.log(values);
+          updateNewMessage(values.message);
+          addMessage();
         }}
       >
         <div className={styles.form}>

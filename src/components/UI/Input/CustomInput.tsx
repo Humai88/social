@@ -14,11 +14,7 @@ export const CustomInput = (props: CustomInputPropsType) => {
       <label className={styles.label} htmlFor={props.name}>
         {label}
       </label>
-      <input
-        className={`${styles.input} ${className ? className : ""}`}
-        {...field}
-        {...props}
-      />
+      <input className={`${styles.input} ${className}`} {...field} {...props} />
       {meta.touched && meta.error ? (
         <div className={styles.error}>{meta.error}</div>
       ) : null}

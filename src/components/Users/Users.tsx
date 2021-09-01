@@ -36,6 +36,17 @@ export const Users: React.FC<UserPropsType> = (props) => {
 
   return (
     <div className={styles.mainWrapper}>
+      <Pagination
+        className={styles.pagination}
+        count={pagesCount}
+        shape="rounded"
+        hidePrevButton
+        hideNextButton
+        onChange={(e: any) => {
+          const value = e.currentTarget.textContent;
+          onChangePageHandler(+value);
+        }}
+      />
       {/* {pages.map((p, i) => {
           return (
             <span
@@ -101,17 +112,6 @@ export const Users: React.FC<UserPropsType> = (props) => {
           );
         })}
       </div>
-      <Pagination
-        className={styles.pagination}
-        count={pagesCount}
-        shape="rounded"
-        hidePrevButton
-        hideNextButton
-        onChange={(e: any) => {
-          const value = e.currentTarget.textContent;
-          onChangePageHandler(+value);
-        }}
-      />
     </div>
   );
 };

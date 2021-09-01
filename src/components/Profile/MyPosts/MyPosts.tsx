@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import styles from "./MyPosts.module.scss";
 import { Post } from "./Post/Post";
 import { PostType } from "./../../../redux/profileReducer";
@@ -14,24 +14,22 @@ export const MyPosts: React.FC<ProfilePropsType> = (props) => {
     <Post key={p.id} id={p.id} post={p.post} likes={p.likes} />
   ));
 
-  const onClickHandler = () => {
-    addPost();
-  };
-
-  const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    let text = e.currentTarget.value;
-    updateNewPostText(text);
-  };
-
   return (
     <div className={styles.wrapper}>
-      <PostForm />
+      <PostForm updateNewPostText={updateNewPostText} addPost={addPost} />
       <div>{poststElements}</div>
     </div>
   );
 };
 
-export const PostForm = () => {
+type PostFormPropsType = {
+  updateNewPostText: (text: string) => void;
+  addPost: () => void;
+};
+export const PostForm: React.FC<PostFormPropsType> = ({
+  updateNewPostText,
+  addPost,
+}) => {
   return (
     <>
       <Formik
@@ -41,7 +39,8 @@ export const PostForm = () => {
         onSubmit={(values, { setSubmitting, resetForm }) => {
           resetForm();
           setSubmitting(false);
-          console.log(values);
+          updateNewPostText(values.post);
+          addPost();
         }}
       >
         <div className={styles.form}>

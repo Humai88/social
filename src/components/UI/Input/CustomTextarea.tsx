@@ -19,7 +19,7 @@ export const CustomTextarea = (props: CustomInputPropsType) => {
         {label}
       </label>
       <textarea
-        className={`${styles.textarea} ${className ? className : ""}`}
+        className={`${styles.textarea} ${className}`}
         {...field}
         {...props}
       ></textarea>

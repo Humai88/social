@@ -19,9 +19,25 @@ export type ProfilePageType = {
 
 const initialState: ProfilePageType = {
   posts: [
-    { id: v1(), post: "Hi, Gumay", likes: 7 },
-    { id: v1(), post: "How are you?", likes: 9 },
-    { id: v1(), post: "Fine, thanks", likes: 15 },
+    {
+      id: v1(),
+      post:
+        "Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle. As with all matters of the heart, you’ll know when you find it.",
+      likes: 9,
+    },
+    {
+      id: v1(),
+      post:
+        "I alone cannot change the world, but I can cast a stone across the water to create many ripples.",
+      likes: 7,
+    },
+
+    {
+      id: v1(),
+      post:
+        "Keep smiling, because life is a beautiful thing and there’s so much to smile about.",
+      likes: 15,
+    },
   ],
   newPostText: "",
   profile: null,
@@ -37,12 +53,12 @@ export const profileReducer = (
       return {
         ...state,
         posts: [
-          ...state.posts,
           {
             id: v1(),
             post: state.newPostText,
             likes: 0,
           },
+          ...state.posts,
         ],
         newPostText: "",
       };
