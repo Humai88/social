@@ -6,7 +6,7 @@
 }
 .wrapper {
   display: flex;
-  // align-items: center;
+  align-items: center;
   width: 40%;
 }
 .usersContainer {
@@ -16,6 +16,7 @@
   margin-top: -2rem;
   margin-bottom: 3rem;
   justify-content: space-around;
+
   @include media-query("max", $lap-start) {
     width: 95%;
   }

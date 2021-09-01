@@ -6,7 +6,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import { Fragment } from "react";
 import styles from "./App.module.scss";
-import { Login } from "./components/Login/Login";
+import Login from "./components/Login/Login";
 import { Settings } from "./components/Settings/Settings";
 import { Music } from "./components/Music/Music";
 import { Friends } from "./components/Friends/Friends";

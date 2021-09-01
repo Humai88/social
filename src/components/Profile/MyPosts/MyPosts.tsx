@@ -6,6 +6,7 @@ import { Button } from "../../UI/Button/Button";
 import { ProfilePropsType } from "./MyPostsContainer";
 import { Form, Formik } from "formik";
 import { CustomTextarea } from "../../UI/Input/CustomTextarea";
+import * as Yup from "yup";
 
 export const MyPosts: React.FC<ProfilePropsType> = (props) => {
   const { data, addPost, updateNewPostText, newPostText } = props;
@@ -42,6 +43,11 @@ export const PostForm: React.FC<PostFormPropsType> = ({
           updateNewPostText(values.post);
           addPost();
         }}
+        validationSchema={Yup.object({
+          post: Yup.string()
+            .min(1, "Must be at least 1 character")
+            .required(""),
+        })}
       >
         <div className={styles.form}>
           <Form>

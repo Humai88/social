@@ -1,9 +1,17 @@
 @import "./../../../scss/global.scss";
 
 .status {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin: 1rem 2rem;
   color: $color-info;
   line-height: 1.3rem;
   font-weight: 300;
+  font-style: italic;
+}
+.input {
+  color: $color-body;
+  margin-bottom: 5px;
+  font-size: 1.3rem;
+  font-weight: 300;
+  opacity: 0.7;
 }

@@ -39,6 +39,7 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = ({
             onBlur={onBlurCallback}
             type="text"
             value={currentStatus}
+            className={styles.input}
           />
         </div>
       ) : (

@@ -1,12 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { AuthStateType, authThunkCreator } from "../../redux/authReducer";
+import {
+  AuthStateType,
+  authThunkCreator,
+  logoutThunkCreator,
+} from "../../redux/authReducer";
 import { RootStateType } from "../../redux/reduxStore";
 import { Header } from "./Header";
 
 type mapDispatchType = {
   setAuthData: () => void;
+  logout: () => void;
 };
 
 export type AuthPropsType = AuthStateType & mapDispatchType;
@@ -29,5 +34,8 @@ const mapStateToProps = (state: RootStateType): AuthStateType => ({
 });
 
 export default compose<React.ComponentClass>(
-  connect(mapStateToProps, { setAuthData: authThunkCreator })
+  connect(mapStateToProps, {
+    setAuthData: authThunkCreator,
+    logout: logoutThunkCreator,
+  })
 )(HeaderContainer);

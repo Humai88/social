@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// Types
 type ContactsType = {
   github: string | null;
   vk: string | null;
@@ -84,15 +85,17 @@ export const authAPI = {
       .then((resp) => resp.data);
   },
 
-  createLogin(email: string, password: string) {
+  login(email: string, password: string, rememberMe: boolean = false) {
     return instance
-      .post<ResponseType<DataAuthType>>(`auth/login`, {
-        email: email,
-        password: password,
+      .post<ResponseType>(`auth/login`, {
+        email,
+        password,
+        rememberMe,
       })
       .then((resp) => resp.data);
   },
-  deleteogin() {
+
+  logout() {
     return instance
       .delete<ResponseType<{ userId: number }>>(`auth/login`)
       .then((resp) => resp.data);

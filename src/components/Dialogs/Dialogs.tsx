@@ -6,6 +6,7 @@ import { Button } from "./../UI/Button/Button";
 import { MassagesPropsType } from "./DialogsContainer";
 import { MessageType, DialogType } from "./../../redux/dialogsReducer";
 import { Form, Formik } from "formik";
+import * as Yup from "yup";
 import { CustomTextarea } from "../UI/Input/CustomTextarea";
 
 type MsgPropsType = {
@@ -54,6 +55,11 @@ export const MessageForm: React.FC<MsgPropsType> = ({
           updateNewMessage(values.message);
           addMessage();
         }}
+        validationSchema={Yup.object({
+          message: Yup.string()
+            .min(1, "Must be at least 1 character")
+            .required(""),
+        })}
       >
         <div className={styles.form}>
           <Form>

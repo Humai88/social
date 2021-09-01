@@ -6,10 +6,9 @@
   grid-auto-rows: minmax(30px, 200px);
   max-width: 90%;
   margin: 0 auto;
-
+  padding: 1rem;
   .logo {
     align-self: center;
-
     cursor: pointer;
     transition: 0.3s;
     height: 3rem;
@@ -33,5 +32,9 @@
   }
   .login {
     font-size: 1.2rem;
+  }
+  .logout {
+    cursor: pointer;
+    text-decoration: underline;
   }
 }

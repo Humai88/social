@@ -23,7 +23,6 @@ export const authReducer = (
       return {
         ...state,
         ...action.payload,
-        isAuth: true,
       };
 
     default:
@@ -32,9 +31,10 @@ export const authReducer = (
 };
 export type AuthProfileTypes = ReturnType<typeof setAuthUserDataAC>;
 export const setAuthUserDataAC = (
-  userId: number,
-  email: string,
-  login: string
+  userId: number | null,
+  email: string | null,
+  login: string | null,
+  isAuth: boolean
 ) => {
   return {
     type: "SET_USER_DATA",
@@ -42,6 +42,7 @@ export const setAuthUserDataAC = (
       userId,
       email,
       login,
+      isAuth,
     },
   } as const;
 };
@@ -51,8 +52,33 @@ export const authThunkCreator = () => {
     authAPI.userAuth().then((data) => {
       let { id, email, login } = data.data;
       if (data.resultCode === 0) {
-        dispatch(setAuthUserDataAC(id, email, login));
+        dispatch(setAuthUserDataAC(id, email, login, true));
       }
     });
   };
 };
+
+export const loginThunkCreator = (
+  email: string,
+  password: string,
+  rememberMe: boolean
+) => {
+  return (dispatch: any) => {
+    authAPI.login(email, password, rememberMe).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(authThunkCreator());
+      }
+    });
+  };
+};
+
+export const logoutThunkCreator = () => {
+  return (dispatch: any) => {
+    authAPI.logout().then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(setAuthUserDataAC(null, null, null, false));
+      }
+    });
+  };
+};
+//  Dispatch<AuthProfileTypes>
