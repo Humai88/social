@@ -1,6 +1,6 @@
 @import "./../../../../scss/global.scss";
 .info {
-  // max-width: 35rem;
+  padding: 10px 0;
   .headers {
     font-size: 1.2rem;
     margin: 0 2rem;
@@ -14,6 +14,7 @@
     font-size: 1.4rem;
     margin-left: 2rem;
     color: $color-info;
+    margin-top: 0;
   }
   .span {
     color: $color-body;

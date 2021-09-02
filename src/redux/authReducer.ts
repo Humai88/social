@@ -1,5 +1,6 @@
 import { Dispatch } from "redux";
 import { authAPI } from "../api/api";
+import { ThunkType } from "./reduxStore";
 
 const initialState: AuthStateType = {
   id: null,
@@ -16,7 +17,7 @@ export type AuthStateType = {
 
 export const authReducer = (
   state = initialState,
-  action: AuthProfileTypes
+  action: ActionAuthTypes
 ): AuthStateType => {
   switch (action.type) {
     case "SET_USER_DATA":
@@ -29,7 +30,9 @@ export const authReducer = (
       return state;
   }
 };
-export type AuthProfileTypes = ReturnType<typeof setAuthUserDataAC>;
+export type ActionAuthTypes = ReturnType<typeof setAuthUserDataAC>;
+
+// Action creators
 export const setAuthUserDataAC = (
   userId: number | null,
   email: string | null,
@@ -47,8 +50,9 @@ export const setAuthUserDataAC = (
   } as const;
 };
 
-export const authThunkCreator = () => {
-  return (dispatch: Dispatch<AuthProfileTypes>) => {
+// Thunks
+export const authThunkCreator = (): ThunkType => {
+  return (dispatch) => {
     authAPI.userAuth().then((data) => {
       let { id, email, login } = data.data;
       if (data.resultCode === 0) {
@@ -62,8 +66,8 @@ export const loginThunkCreator = (
   email: string,
   password: string,
   rememberMe: boolean
-) => {
-  return (dispatch: any) => {
+): ThunkType => {
+  return (dispatch) => {
     authAPI.login(email, password, rememberMe).then((data) => {
       if (data.resultCode === 0) {
         dispatch(authThunkCreator());
@@ -72,8 +76,8 @@ export const loginThunkCreator = (
   };
 };
 
-export const logoutThunkCreator = () => {
-  return (dispatch: any) => {
+export const logoutThunkCreator = (): ThunkType => {
+  return (dispatch) => {
     authAPI.logout().then((data) => {
       if (data.resultCode === 0) {
         dispatch(setAuthUserDataAC(null, null, null, false));
@@ -81,4 +85,3 @@ export const logoutThunkCreator = () => {
     });
   };
 };
-//  Dispatch<AuthProfileTypes>

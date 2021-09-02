@@ -1,6 +1,6 @@
-import { Dispatch } from "redux";
 import { v1 } from "uuid";
 import { profileAPI, ProfileResponseType } from "../api/api";
+import { ThunkType } from "./reduxStore";
 
 export type PostType = {
   id: string;
@@ -89,6 +89,7 @@ export type ActionProfileTypes =
   | ReturnType<typeof setUserProfileAC>
   | ReturnType<typeof setStatusAC>;
 
+//Action Creators
 export const addPostAC = () => {
   return {
     type: "ADD-POST",
@@ -111,24 +112,25 @@ export const setUserProfileAC = (profile: ProfileResponseType) => {
   return { type: "SET-USER-PROFILE", payload: { profile } } as const;
 };
 
-export const setProfileThunkCreator = (userId: string) => {
-  return (dispatch: Dispatch<ActionProfileTypes>) => {
+// Thunks
+export const setProfileThunkCreator = (userId: string): ThunkType => {
+  return (dispatch) => {
     profileAPI.getProfile(userId).then((data) => {
       dispatch(setUserProfileAC(data));
     });
   };
 };
 
-export const getStatusThunkCreator = (userId: string) => {
-  return (dispatch: Dispatch<ActionProfileTypes>) => {
+export const getStatusThunkCreator = (userId: string): ThunkType => {
+  return (dispatch) => {
     profileAPI.getStatus(userId).then((data) => {
       dispatch(setStatusAC(data));
     });
   };
 };
 
-export const updateStatusThunkCreator = (status: string) => {
-  return (dispatch: Dispatch<ActionProfileTypes>) => {
+export const updateStatusThunkCreator = (status: string): ThunkType => {
+  return (dispatch) => {
     profileAPI.updateStatus(status).then((data) => {
       if (data.resultCode === 0) {
         dispatch(setStatusAC(status));

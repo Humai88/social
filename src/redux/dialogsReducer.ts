@@ -90,6 +90,7 @@ export type ActionDialogsTypes =
   | ReturnType<typeof updateNewMessageTextAC>
   | ReturnType<typeof addMessageAC>;
 
+// Action Creators
 export const addMessageAC = () => {
   return {
     type: "ADD-MESSAGE",

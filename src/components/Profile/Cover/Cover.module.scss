@@ -13,7 +13,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 2rem;
+
   @include media-query("max", $wide-start) {
     padding: 3% 3%;
   }
@@ -25,7 +25,7 @@
   justify-self: center;
   justify-content: space-between;
   margin-left: 2rem;
-  padding-top: 2rem;
+  // padding-top: 2rem;
   @include media-query("max", $palm-start) {
     width: 5rem;
     height: 5rem;
