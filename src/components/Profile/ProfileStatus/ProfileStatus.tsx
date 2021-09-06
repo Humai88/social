@@ -1,10 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import Input from "../../UI/Input/Input";
 import styles from "./ProfileStatus.module.scss";
-type ProfileStatusPropsType = {
-  status: string;
-  updateStatus: (status: string) => void;
-};
+
 export const ProfileStatus: React.FC<ProfileStatusPropsType> = ({
   status,
   updateStatus,
@@ -51,4 +48,10 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = ({
       )}
     </>
   );
+};
+
+// Types
+type ProfileStatusPropsType = {
+  status: string;
+  updateStatus: (status: string) => void;
 };

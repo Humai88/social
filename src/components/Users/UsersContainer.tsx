@@ -14,14 +14,6 @@ import { Preloader } from "../../common/Preloader/Preloader";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/authRedirect";
 
-type mapDispatchType = {
-  follow: (userId: number) => void;
-  unfollow: (userId: number) => void;
-  setCurrentPage: (currentPage: number) => void;
-  getUsers: (currentPage: number, pageSize: number) => void;
-};
-
-export type UsersPropsType = UsersPageType & mapDispatchType;
 class UsersContainer extends Component<UsersPropsType> {
   componentDidMount() {
     this.props.getUsers(this.props.currentPage, this.props.pageSize);
@@ -60,3 +52,13 @@ export default compose<React.ComponentClass>(
     getUsers: getUsersThunkCreator,
   })
 )(UsersContainer);
+
+// Types
+type mapDispatchType = {
+  follow: (userId: number) => void;
+  unfollow: (userId: number) => void;
+  setCurrentPage: (currentPage: number) => void;
+  getUsers: (currentPage: number, pageSize: number) => void;
+};
+
+export type UsersPropsType = UsersPageType & mapDispatchType;

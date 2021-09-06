@@ -2,21 +2,6 @@ import { v1 } from "uuid";
 import { profileAPI, ProfileResponseType } from "../api/api";
 import { ThunkType } from "./reduxStore";
 
-export type PostType = {
-  id: string;
-  post: string;
-  likes: number;
-};
-
-export type PostsDataType = Array<PostType>;
-
-export type ProfilePageType = {
-  posts: PostsDataType;
-  newPostText: string;
-  profile: ProfileResponseType;
-  status: string;
-};
-
 const initialState: ProfilePageType = {
   posts: [
     {
@@ -83,12 +68,6 @@ export const profileReducer = (
   }
 };
 
-export type ActionProfileTypes =
-  | ReturnType<typeof addPostAC>
-  | ReturnType<typeof updateNewPostTextAC>
-  | ReturnType<typeof setUserProfileAC>
-  | ReturnType<typeof setStatusAC>;
-
 //Action Creators
 export const addPostAC = () => {
   return {
@@ -138,3 +117,25 @@ export const updateStatusThunkCreator = (status: string): ThunkType => {
     });
   };
 };
+
+// Types
+export type PostType = {
+  id: string;
+  post: string;
+  likes: number;
+};
+
+export type PostsDataType = Array<PostType>;
+
+export type ProfilePageType = {
+  posts: PostsDataType;
+  newPostText: string;
+  profile: ProfileResponseType;
+  status: string;
+};
+
+export type ActionProfileTypes =
+  | ReturnType<typeof addPostAC>
+  | ReturnType<typeof updateNewPostTextAC>
+  | ReturnType<typeof setUserProfileAC>
+  | ReturnType<typeof setStatusAC>;

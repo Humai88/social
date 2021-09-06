@@ -3,11 +3,7 @@ import { Preloader } from "../../../common/Preloader/Preloader";
 import { Avatar } from "../../UI/Avatar/Avatar";
 import styles from "./Cover.module.scss";
 import { Info } from "./Info/Info";
-type CoverPropsType = {
-  profile: ProfileResponseType;
-  status: string;
-  updateStatus: (status: string) => void;
-};
+
 export const Cover: React.FC<CoverPropsType> = ({
   profile,
   status,
@@ -35,4 +31,11 @@ export const Cover: React.FC<CoverPropsType> = ({
       </div>
     </div>
   );
+};
+
+// Types
+type CoverPropsType = {
+  profile: ProfileResponseType;
+  status: string;
+  updateStatus: (status: string) => void;
 };

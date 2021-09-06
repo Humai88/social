@@ -7,12 +7,6 @@ const initialState: AuthStateType = {
   login: null,
   isAuth: false,
 };
-export type AuthStateType = {
-  id: number | null;
-  email: string | null;
-  login: string | null;
-  isAuth: boolean;
-};
 
 export const authReducer = (
   state = initialState,
@@ -29,11 +23,10 @@ export const authReducer = (
       return state;
   }
 };
-export type ActionAuthTypes = ReturnType<typeof setAuthUserDataAC>;
 
 // Action creators
 export const setAuthUserDataAC = (
-  userId: number | null,
+  id: number | null,
   email: string | null,
   login: string | null,
   isAuth: boolean
@@ -41,7 +34,7 @@ export const setAuthUserDataAC = (
   return {
     type: "SET_USER_DATA",
     payload: {
-      userId,
+      id,
       email,
       login,
       isAuth,
@@ -56,7 +49,6 @@ export const authThunkCreator = (): ThunkType => {
       let { id, email, login } = data.data;
       if (data.resultCode === 0) {
         dispatch(setAuthUserDataAC(id, email, login, true));
-        console.log(data);
       }
     });
   };
@@ -88,3 +80,12 @@ export const logoutThunkCreator = (): ThunkType => {
     });
   };
 };
+
+// Types
+export type AuthStateType = {
+  id: number | null;
+  email: string | null;
+  login: string | null;
+  isAuth: boolean;
+};
+export type ActionAuthTypes = ReturnType<typeof setAuthUserDataAC>;

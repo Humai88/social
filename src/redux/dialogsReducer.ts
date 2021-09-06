@@ -1,21 +1,5 @@
 import { v1 } from "uuid";
-export type MessagePageType = {
-  dialogs: DialogsDataType;
-  messages: MessageDataType;
-  newMessageText: string;
-};
-export type MessageType = {
-  id: string;
-  text: string;
-};
 
-export type MessageDataType = Array<MessageType>;
-export type DialogType = {
-  id: string;
-  name: string;
-  image: string;
-};
-export type DialogsDataType = Array<DialogType>;
 const initialState: MessagePageType = {
   dialogs: [
     {
@@ -86,10 +70,6 @@ export const dialogsReducer = (
   }
 };
 
-export type ActionDialogsTypes =
-  | ReturnType<typeof updateNewMessageTextAC>
-  | ReturnType<typeof addMessageAC>;
-
 // Action Creators
 export const addMessageAC = () => {
   return {
@@ -100,3 +80,25 @@ export const addMessageAC = () => {
 export const updateNewMessageTextAC = (newText: string) => {
   return { type: "UPDATE-NEW-MESSAGE-TEXT", payload: { newText } } as const;
 };
+
+// Types
+export type MessagePageType = {
+  dialogs: DialogsDataType;
+  messages: MessageDataType;
+  newMessageText: string;
+};
+export type MessageType = {
+  id: string;
+  text: string;
+};
+
+export type MessageDataType = Array<MessageType>;
+export type DialogType = {
+  id: string;
+  name: string;
+  image: string;
+};
+export type DialogsDataType = Array<DialogType>;
+export type ActionDialogsTypes =
+  | ReturnType<typeof updateNewMessageTextAC>
+  | ReturnType<typeof addMessageAC>;

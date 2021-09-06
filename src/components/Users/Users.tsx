@@ -5,18 +5,6 @@ import { NavLink } from "react-router-dom";
 import { Pagination } from "@material-ui/lab";
 import { UserType } from "../../api/api";
 
-type UserPropsType = {
-  totalUsersCout: number;
-  pageSize: number;
-  users: UserType[];
-  followingInProgress: Array<number>;
-  onChangePageHandler: (p: number) => void;
-  follow: (userId: number) => void;
-  unfollow: (userId: number) => void;
-};
-export type CreateFollowResponseType = {
-  data: { resultCode: number; messages: string[]; data: {} };
-};
 export const Users: React.FC<UserPropsType> = (props) => {
   const {
     totalUsersCout,
@@ -104,9 +92,6 @@ export const Users: React.FC<UserPropsType> = (props) => {
               <span className={styles.infoWrapper}>
                 <p className={styles.name}>{u.name}</p>
                 <p className={styles.status}>{u.status}</p>
-                {/* <p className={styles.location}>
-                  {u.location.city}, {u.location.country}
-                </p> */}
               </span>
             </div>
           );
@@ -114,4 +99,18 @@ export const Users: React.FC<UserPropsType> = (props) => {
       </div>
     </div>
   );
+};
+
+// Types
+type UserPropsType = {
+  totalUsersCout: number;
+  pageSize: number;
+  users: UserType[];
+  followingInProgress: Array<number>;
+  onChangePageHandler: (p: number) => void;
+  follow: (userId: number) => void;
+  unfollow: (userId: number) => void;
+};
+export type CreateFollowResponseType = {
+  data: { resultCode: number; messages: string[]; data: {} };
 };

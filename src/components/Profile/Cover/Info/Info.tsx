@@ -1,13 +1,8 @@
 import { ProfileResponseType } from "../../../../api/api";
 import { Preloader } from "../../../../common/Preloader/Preloader";
 import { ProfileStatus } from "../../ProfileStatus/ProfileStatus";
-
 import styles from "./Info.module.scss";
-type InfoPropsType = {
-  profile: ProfileResponseType;
-  status: string;
-  updateStatus: (status: string) => void;
-};
+
 export const Info: React.FC<InfoPropsType> = ({
   profile,
   status,
@@ -89,4 +84,11 @@ export const Info: React.FC<InfoPropsType> = ({
       </div>
     </div>
   );
+};
+
+// Types
+type InfoPropsType = {
+  profile: ProfileResponseType;
+  status: string;
+  updateStatus: (status: string) => void;
 };

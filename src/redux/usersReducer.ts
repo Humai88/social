@@ -1,15 +1,6 @@
 import { followAPI, usersAPI, UserType } from "../api/api";
 import { ThunkType } from "./reduxStore";
 
-export type UsersPageType = {
-  users: Array<UserType>;
-  pageSize: number;
-  totalUsersCout: number;
-  currentPage: number;
-  isFetching: boolean;
-  followingInProgress: Array<number>;
-};
-
 const initialState: UsersPageType = {
   users: [],
   pageSize: 8,
@@ -80,15 +71,6 @@ export const usersReducer = (
       return state;
   }
 };
-
-export type ActionUsersTypes =
-  | ReturnType<typeof followAC>
-  | ReturnType<typeof unfollowAC>
-  | ReturnType<typeof setUsersAC>
-  | ReturnType<typeof setCurrentPageAC>
-  | ReturnType<typeof setTotalUsersCountAC>
-  | ReturnType<typeof toggleIsFetchingAC>
-  | ReturnType<typeof toggleFollowingProgressAC>;
 
 // Action Creators
 export const followAC = (userId: number) => {
@@ -193,3 +175,22 @@ export const unfollowThunkCreator = (id: number): ThunkType => {
     });
   };
 };
+
+// Types
+export type UsersPageType = {
+  users: Array<UserType>;
+  pageSize: number;
+  totalUsersCout: number;
+  currentPage: number;
+  isFetching: boolean;
+  followingInProgress: Array<number>;
+};
+
+export type ActionUsersTypes =
+  | ReturnType<typeof followAC>
+  | ReturnType<typeof unfollowAC>
+  | ReturnType<typeof setUsersAC>
+  | ReturnType<typeof setCurrentPageAC>
+  | ReturnType<typeof setTotalUsersCountAC>
+  | ReturnType<typeof toggleIsFetchingAC>
+  | ReturnType<typeof toggleFollowingProgressAC>;

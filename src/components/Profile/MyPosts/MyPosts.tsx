@@ -23,10 +23,6 @@ export const MyPosts: React.FC<ProfilePropsType> = (props) => {
   );
 };
 
-type PostFormPropsType = {
-  updateNewPostText: (text: string) => void;
-  addPost: () => void;
-};
 export const PostForm: React.FC<PostFormPropsType> = ({
   updateNewPostText,
   addPost,
@@ -60,4 +56,10 @@ export const PostForm: React.FC<PostFormPropsType> = ({
       </Formik>
     </>
   );
+};
+
+// Types
+type PostFormPropsType = {
+  updateNewPostText: (text: string) => void;
+  addPost: () => void;
 };
