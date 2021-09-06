@@ -18,7 +18,7 @@ export const MyPosts: React.FC<ProfilePropsType> = (props) => {
   return (
     <div className={styles.wrapper}>
       <PostForm updateNewPostText={updateNewPostText} addPost={addPost} />
-      <div>{poststElements}</div>
+      <div className={styles.posts}>{poststElements}</div>
     </div>
   );
 };

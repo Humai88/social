@@ -20,7 +20,7 @@
   }
 }
 .error {
-  color: rgb(212, 114, 114) !important;
   font-weight: 300;
   margin-bottom: 1rem;
+  color: $color-input-focus;
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Avatar } from "../UI/Avatar/Avatar";
-import { Button } from "../UI/Button/Button";
 import logo from "./../../assets/img/logo.png";
 import styles from "./Header.module.scss";
 

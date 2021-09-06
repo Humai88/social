@@ -102,7 +102,7 @@ export const Users: React.FC<UserPropsType> = (props) => {
                 </div>
               </span>
               <span className={styles.infoWrapper}>
-                <h3 className={styles.name}>{u.name}</h3>
+                <p className={styles.name}>{u.name}</p>
                 <p className={styles.status}>{u.status}</p>
                 {/* <p className={styles.location}>
                   {u.location.city}, {u.location.country}

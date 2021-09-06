@@ -20,7 +20,6 @@ class HeaderContainer extends React.Component<AuthPropsType> {
   componentDidMount() {
     this.props.setAuthData();
   }
-
   render() {
     return <Header {...this.props} />;
   }

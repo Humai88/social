@@ -25,4 +25,9 @@
   .checkInput {
     margin-top: 1rem;
   }
+  .error {
+    text-align: center;
+    margin-top: 5px;
+    color: $color-text-hover;
+  }
 }

@@ -113,7 +113,7 @@ export const setUserProfileAC = (profile: ProfileResponseType) => {
 };
 
 // Thunks
-export const setProfileThunkCreator = (userId: string): ThunkType => {
+export const setProfileThunkCreator = (userId: number): ThunkType => {
   return (dispatch) => {
     profileAPI.getProfile(userId).then((data) => {
       dispatch(setUserProfileAC(data));
@@ -121,7 +121,7 @@ export const setProfileThunkCreator = (userId: string): ThunkType => {
   };
 };
 
-export const getStatusThunkCreator = (userId: string): ThunkType => {
+export const getStatusThunkCreator = (userId: number): ThunkType => {
   return (dispatch) => {
     profileAPI.getStatus(userId).then((data) => {
       dispatch(setStatusAC(data));

@@ -5,11 +5,10 @@
   outline: none;
   width: 100%;
   border: none;
-  border-bottom: 1.9px solid $color-body;
   border: 1px solid $color-body;
   background: transparent;
   padding: 0;
-  opacity: 0.8;
+  resize: none;
   display: block;
 
   .label {

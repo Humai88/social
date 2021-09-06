@@ -104,12 +104,12 @@ export const authAPI = {
 
 // Profile API
 export const profileAPI = {
-  getProfile(userId: string) {
+  getProfile(userId: number) {
     return instance
       .get<ProfileResponseType>(`profile/` + userId)
       .then((resp) => resp.data);
   },
-  getStatus(userId: string) {
+  getStatus(userId: number) {
     return instance
       .get<string>(`profile/status/` + userId)
       .then((resp) => resp.data);

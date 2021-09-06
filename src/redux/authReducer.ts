@@ -1,4 +1,3 @@
-import { Dispatch } from "redux";
 import { authAPI } from "../api/api";
 import { ThunkType } from "./reduxStore";
 
@@ -57,6 +56,7 @@ export const authThunkCreator = (): ThunkType => {
       let { id, email, login } = data.data;
       if (data.resultCode === 0) {
         dispatch(setAuthUserDataAC(id, email, login, true));
+        console.log(data);
       }
     });
   };
@@ -65,12 +65,15 @@ export const authThunkCreator = (): ThunkType => {
 export const loginThunkCreator = (
   email: string,
   password: string,
-  rememberMe: boolean
+  rememberMe: boolean,
+  setStatus: (status: string[]) => void
 ): ThunkType => {
   return (dispatch) => {
     authAPI.login(email, password, rememberMe).then((data) => {
       if (data.resultCode === 0) {
         dispatch(authThunkCreator());
+      } else {
+        setStatus(data.messages);
       }
     });
   };

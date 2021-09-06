@@ -11,11 +11,21 @@ import { RootStateType } from "../../redux/reduxStore";
 
 // Types
 type LoginFormPropsType = {
-  login: (email: string, password: string, rememberMe: boolean) => void;
+  login: (
+    email: string,
+    password: string,
+    rememberMe: boolean,
+    setStatus: (status: string[]) => void
+  ) => void;
 };
 
 type mapDispatchType = {
-  login: (email: string, password: string, rememberMe: boolean) => void;
+  login: (
+    email: string,
+    password: string,
+    rememberMe: boolean,
+    setStatus: (status: string[]) => void
+  ) => void;
 };
 export type LoginPropsType = mapStateType & mapDispatchType;
 
@@ -51,11 +61,10 @@ export const LoginForm: React.FC<LoginFormPropsType> = ({ login }) => {
             .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
           rememberMe: Yup.boolean(),
         })}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
+        onSubmit={(values, { setSubmitting, resetForm, setStatus }) => {
           resetForm();
           setSubmitting(false);
-          login(values.email, values.password, values.rememberMe);
-          console.log(values);
+          login(values.email, values.password, values.rememberMe, setStatus);
         }}
       >
         {(props) => (
@@ -66,6 +75,7 @@ export const LoginForm: React.FC<LoginFormPropsType> = ({ login }) => {
             <Button className={styles.btn} type="submit">
               {props.isSubmitting ? "Loading..." : "Submit"}
             </Button>
+            <div className={styles.error}>{props.status}</div>
           </Form>
         )}
       </Formik>

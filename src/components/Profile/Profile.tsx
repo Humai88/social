@@ -7,6 +7,8 @@ type ProfilePropsType = {
   profile: ProfileResponseType;
   status: string;
   updateStatus: (status: string) => void;
+  autorizedUserId: number | null;
+  isAuth: boolean;
 };
 export const Profile: React.FC<ProfilePropsType> = ({
   profile,

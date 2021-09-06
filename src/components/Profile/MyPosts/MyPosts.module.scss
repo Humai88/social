@@ -4,7 +4,10 @@
   font-size: 1rem;
   display: block;
 }
-
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
 .btn {
   display: block;
   margin-top: 5px;
@@ -12,4 +15,7 @@
 }
 .form {
   width: 25rem;
+}
+.posts {
+  margin-left: 2rem;
 }
