@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import DialogItem from "./DialogItem/DialogItem";
 import styles from "./Dialogs.module.scss";
 import { Message } from "./Message/Message/Message";
@@ -14,7 +14,7 @@ type MsgPropsType = {
   addMessage: () => void;
 };
 export const Dialogs: React.FC<MassagesPropsType> = (props) => {
-  const { data, updateNewMessage, addMessage, newMessageText } = props;
+  const { data, updateNewMessage, addMessage } = props;
 
   let dialogsElements = data.dialogs.map((d: DialogType) => (
     <DialogItem image={d.image} key={d.id} name={d.name} id={d.id} />

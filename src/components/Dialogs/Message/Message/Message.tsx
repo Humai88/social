@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { MessageType } from "./../../../../redux/dialogsReducer";
 import styles from "./Message.module.scss";
 

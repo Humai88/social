@@ -8,6 +8,10 @@ export const ProfileStatus: React.FC<ProfileStatusPropsType> = ({
 }) => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [currentStatus, setCurrentStatus] = useState<string>(status);
+
+  useEffect(() => {
+    setCurrentStatus(status);
+  }, [status]);
   const dounbleClickCallback = () => {
     setEditMode(true);
   };

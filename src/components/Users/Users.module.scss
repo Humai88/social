@@ -3,11 +3,13 @@
 .mainWrapper {
   margin-bottom: 4rem;
   padding: 0 2%;
+  max-width: 65rem;
 }
 .wrapper {
   display: flex;
   align-items: flex-start;
   width: 40%;
+  flex-wrap: wrap;
 }
 .usersContainer {
   display: flex;
@@ -72,7 +74,7 @@
 .pagination {
   margin-bottom: 3rem;
   margin-left: 3rem;
-
+  width: 80%;
   ul {
     max-width: 30rem !important;
     justify-content: space-between !important;

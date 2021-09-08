@@ -9,7 +9,7 @@ import { CustomTextarea } from "../../UI/Input/CustomTextarea";
 import * as Yup from "yup";
 
 export const MyPosts: React.FC<ProfilePropsType> = (props) => {
-  const { data, addPost, updateNewPostText, newPostText } = props;
+  const { data, addPost, updateNewPostText } = props;
 
   let poststElements = data.map((p: PostType) => (
     <Post key={p.id} id={p.id} post={p.post} likes={p.likes} />

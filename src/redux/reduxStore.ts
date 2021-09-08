@@ -4,12 +4,14 @@ import { ActionDialogsTypes, dialogsReducer } from "./dialogsReducer";
 import { ActionUsersTypes, usersReducer } from "./usersReducer";
 import { ActionAuthTypes, authReducer } from "./authReducer";
 import thunkMiddleware, { ThunkAction } from "redux-thunk";
+import { ActionAppTypes, appReducer } from "./appReducer";
 
 let reducer = combineReducers({
   profilePage: profileReducer,
   messagePage: dialogsReducer,
   usersPage: usersReducer,
   auth: authReducer,
+  app: appReducer,
 });
 
 export const store = createStore(reducer, applyMiddleware(thunkMiddleware));
@@ -19,7 +21,8 @@ export type AppActionsType =
   | ActionAuthTypes
   | ActionDialogsTypes
   | ActionProfileTypes
-  | ActionUsersTypes;
+  | ActionUsersTypes
+  | ActionAppTypes;
 
 export type RootStateType = ReturnType<typeof reducer>;
 

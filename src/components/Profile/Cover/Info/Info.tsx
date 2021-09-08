@@ -13,7 +13,7 @@ export const Info: React.FC<InfoPropsType> = ({
   }
   return (
     <div className={styles.info}>
-      <h3>{profile.fullName}</h3>
+      <span className={styles.name}>{profile.fullName}</span>
 
       <ProfileStatus status={status} updateStatus={updateStatus} />
       <div className={styles.headers}>

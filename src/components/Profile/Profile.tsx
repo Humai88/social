@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { MyPostsContainer } from "./MyPosts/MyPostsContainer";
 import { Cover } from "./Cover/Cover";
 import { ProfileResponseType } from "../../api/api";
+import styles from "./Profile.module.scss";
 
 export const Profile: React.FC<ProfilePropsType> = ({
   profile,

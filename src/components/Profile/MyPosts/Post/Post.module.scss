@@ -7,6 +7,7 @@
   padding: 0.5rem 1rem;
   border-radius: 7px;
   margin-bottom: 1rem;
+
   @include media-query("max", $palm-start) {
     max-width: 28rem;
   }

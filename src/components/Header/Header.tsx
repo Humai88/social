@@ -4,15 +4,6 @@ import { Avatar } from "../UI/Avatar/Avatar";
 import logo from "./../../assets/img/logo.png";
 import styles from "./Header.module.scss";
 
-type HeaderPropsType = {
-  id: number | null;
-  email: string | null;
-  login: string | null;
-  isAuth: boolean;
-  logout: () => void;
-  setAuthData: () => void;
-};
-
 export const Header: React.FC<HeaderPropsType> = (props) => {
   const { login, isAuth, logout } = props;
   return (
@@ -36,4 +27,13 @@ export const Header: React.FC<HeaderPropsType> = (props) => {
       </div>
     </header>
   );
+};
+
+// Types
+type HeaderPropsType = {
+  id: number | null;
+  email: string | null;
+  login: string | null;
+  isAuth: boolean;
+  logout: () => void;
 };

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import styles from "./Post.module.scss";
 import { PostType } from "../../../../redux/profileReducer";
 import { FaHeart } from "react-icons/fa";

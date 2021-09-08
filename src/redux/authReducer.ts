@@ -45,9 +45,9 @@ export const setAuthUserDataAC = (
 // Thunks
 export const authThunkCreator = (): ThunkType => {
   return (dispatch) => {
-    authAPI.userAuth().then((data) => {
-      let { id, email, login } = data.data;
+    return authAPI.userAuth().then((data) => {
       if (data.resultCode === 0) {
+        let { id, email, login } = data.data;
         dispatch(setAuthUserDataAC(id, email, login, true));
       }
     });

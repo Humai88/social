@@ -6,16 +6,19 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   border-radius: 7px;
-  padding: 0.3rem;
-  margin-bottom: 3rem;
+  padding: 0.3rem 0;
+  margin-bottom: 2rem;
+  @include media-query("max", $lap-start) {
+    margin-top: 1rem;
+  }
 }
+
 .wrapper {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-
   @include media-query("max", $wide-start) {
-    padding: 3% 3%;
+    padding: 1rem 0;
   }
 }
 

@@ -12,7 +12,14 @@ import {
 import { Users } from "./Users";
 import { Preloader } from "../../common/Preloader/Preloader";
 import { compose } from "redux";
-import { withAuthRedirect } from "../../hoc/authRedirect";
+import {
+  getCurrentPage,
+  getFollowingInProgress,
+  getIsFetching,
+  getPageSize,
+  getTotalUsersCout,
+  getUsers,
+} from "../../selectors/usersSelectors";
 
 class UsersContainer extends Component<UsersPropsType> {
   componentDidMount() {
@@ -34,17 +41,16 @@ class UsersContainer extends Component<UsersPropsType> {
 
 const mapStateToProps = (state: RootStateType): UsersPageType => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCout: state.usersPage.totalUsersCout,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress,
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalUsersCout: getTotalUsersCout(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    followingInProgress: getFollowingInProgress(state),
   };
 };
 
 export default compose<React.ComponentClass>(
-  withAuthRedirect,
   connect(mapStateToProps, {
     follow: followThunkCreator,
     unfollow: unfollowThunkCreator,
