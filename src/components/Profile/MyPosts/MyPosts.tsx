@@ -8,7 +8,7 @@ import { Form, Formik } from "formik";
 import { CustomTextarea } from "../../UI/Input/CustomTextarea";
 import * as Yup from "yup";
 
-export const MyPosts: React.FC<ProfilePropsType> = (props) => {
+export const MyPosts: React.FC<ProfilePropsType> = React.memo((props) => {
   const { data, addPost, updateNewPostText } = props;
 
   let poststElements = data.map((p: PostType) => (
@@ -21,7 +21,7 @@ export const MyPosts: React.FC<ProfilePropsType> = (props) => {
       <div className={styles.posts}>{poststElements}</div>
     </div>
   );
-};
+});
 
 export const PostForm: React.FC<PostFormPropsType> = ({
   updateNewPostText,
