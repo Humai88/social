@@ -57,7 +57,7 @@ export const LoginForm: React.FC<LoginFormPropsType> = ({ login }) => {
             .required("Required!"),
           password: Yup.string()
             .required("No password provided.")
-            .min(4, "Password is too short (4 characters minimum).")
+            .min(8, "Password is too short (8 characters minimum).")
             .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
           rememberMe: Yup.boolean(),
         })}
