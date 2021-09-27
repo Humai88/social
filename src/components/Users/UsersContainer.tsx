@@ -20,6 +20,7 @@ import {
   getTotalUsersCout,
   getUsers,
 } from "../../selectors/usersSelectors";
+import { withAuthRedirect } from "../../hoc/authRedirect";
 
 class UsersContainer extends Component<UsersPropsType> {
   componentDidMount() {
@@ -56,7 +57,8 @@ export default compose<React.ComponentClass>(
     unfollow: unfollowThunkCreator,
     setCurrentPage: setCurrentPageAC,
     getUsers: getUsersThunkCreator,
-  })
+  }),
+  withAuthRedirect
 )(UsersContainer);
 
 // Types

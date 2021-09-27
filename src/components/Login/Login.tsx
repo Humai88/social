@@ -37,11 +37,22 @@ const Login: React.FC<LoginPropsType> = ({ login, isAuth }) => {
   return (
     <div className={styles.formWrapper}>
       <h1>Login</h1>
+
+      <span>To log in use these account credentials:</span>
+      <span>
+        Email: <i>testsocialsamurai@gmail.com</i>
+      </span>
+      <span>
+        Password: <i>applepear</i>
+      </span>
+
       <LoginForm login={login} />
     </div>
   );
 };
 
+//testsocialsamurai@gmail.com
+// applepear
 export const LoginForm: React.FC<LoginFormPropsType> = ({ login }) => {
   return (
     <>
@@ -57,7 +68,7 @@ export const LoginForm: React.FC<LoginFormPropsType> = ({ login }) => {
             .required("Required!"),
           password: Yup.string()
             .required("No password provided.")
-            .min(8, "Password is too short (8 characters minimum).")
+            .min(4, "Password is too short (4 characters minimum).")
             .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
           rememberMe: Yup.boolean(),
         })}
