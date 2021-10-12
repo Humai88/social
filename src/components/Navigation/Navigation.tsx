@@ -26,11 +26,6 @@ export const Navigation = () => {
         </NavLink>
       </div>
       <div>
-        <NavLink to="/friends" activeClassName={styles.active}>
-          Friends
-        </NavLink>
-      </div>
-      <div>
         <NavLink to="/settings" activeClassName={styles.active}>
           Settings
         </NavLink>

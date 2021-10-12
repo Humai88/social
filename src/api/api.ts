@@ -1,64 +1,5 @@
 import axios from "axios";
 
-// Types
-type ContactsType = {
-  github: string | null;
-  vk: string | null;
-  facebook: string | null;
-  instagram: string | null;
-  twitter: string | null;
-  website: string | null;
-  youtube: string | null;
-  mainLink: string | null;
-};
-
-type PhotosType = {
-  small: string;
-  large: string;
-};
-
-export type ProfileResponseType = {
-  aboutMe: string | null;
-  contacts: ContactsType;
-  lookingForAJob: boolean;
-  lookingForAJobDescription: string;
-  fullName: string;
-  userId: number;
-  photos: PhotosType;
-} | null;
-
-type ResponseType<D = {}> = {
-  resultCode: number;
-  messages: Array<string>;
-  data: D;
-};
-
-type DataAuthType = {
-  id: number;
-  email: string;
-  login: string;
-};
-
-export type UserType = {
-  id: number;
-  followed: boolean;
-  name: string;
-  status: string;
-  location: LocationType;
-  photos: PhotosType;
-};
-
-type GetUsersType = {
-  items: UserType[];
-  totalCount: number;
-  error: null | string;
-};
-
-export type LocationType = {
-  city: string;
-  country: string;
-};
-
 // Instance
 const instance = axios.create({
   withCredentials: true,
@@ -119,6 +60,17 @@ export const profileAPI = {
       .put<ResponseType>(`profile/status/`, { status: status })
       .then((resp) => resp.data);
   },
+  savePhoto(photoFile: File) {
+    let formData = new FormData();
+    formData.append("image", photoFile);
+    return instance
+      .put<ResponseType<{ photos: PhotosType }>>(`profile/photo/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((resp) => resp.data);
+  },
 };
 
 // Follow API
@@ -133,4 +85,63 @@ export const followAPI = {
       .delete<ResponseType>(`follow/${id}`)
       .then((resp) => resp.data);
   },
+};
+
+// Types
+type ContactsType = {
+  github: string;
+  vk: string;
+  facebook: string;
+  instagram: string;
+  twitter: string;
+  website: string;
+  youtube: string;
+  mainLink: string;
+};
+
+export type PhotosType = {
+  small: string;
+  large: string;
+};
+
+export type ProfileResponseType = {
+  aboutMe: string;
+  contacts: ContactsType;
+  lookingForAJob: boolean;
+  lookingForAJobDescription: string;
+  fullName: string;
+  userId: number | null;
+  photos: PhotosType;
+};
+
+export type ResponseType<D = {}> = {
+  resultCode: number;
+  messages: Array<string>;
+  data: D;
+};
+
+type DataAuthType = {
+  id: number;
+  email: string;
+  login: string;
+};
+
+export type UserType = {
+  id: number;
+  followed: boolean;
+  name: string;
+  status: string;
+  location: LocationType;
+  photos: PhotosType;
+};
+
+type GetUsersType = {
+  items: UserType[];
+  totalCount: number;
+  error: null | string;
+};
+
+export type LocationType = {
+  city: string;
+  country: string;
 };

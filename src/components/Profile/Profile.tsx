@@ -8,10 +8,18 @@ export const Profile: React.FC<ProfilePropsType> = ({
   profile,
   status,
   updateStatus,
+  isOwner,
+  savePhoto,
 }) => {
   return (
     <Fragment>
-      <Cover profile={profile} status={status} updateStatus={updateStatus} />
+      <Cover
+        savePhoto={savePhoto}
+        isOwner={isOwner}
+        profile={profile}
+        status={status}
+        updateStatus={updateStatus}
+      />
       <MyPostsContainer />
     </Fragment>
   );
@@ -24,4 +32,6 @@ type ProfilePropsType = {
   updateStatus: (status: string) => void;
   autorizedUserId: number | null;
   isAuth: boolean;
+  isOwner: boolean;
+  savePhoto: any;
 };

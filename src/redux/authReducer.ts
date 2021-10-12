@@ -13,7 +13,7 @@ export const authReducer = (
   action: ActionAuthTypes
 ): AuthStateType => {
   switch (action.type) {
-    case "SET_USER_DATA":
+    case "auth/SET_USER_DATA":
       return {
         ...state,
         ...action.payload,
@@ -32,7 +32,7 @@ export const setAuthUserDataAC = (
   isAuth: boolean
 ) => {
   return {
-    type: "SET_USER_DATA",
+    type: "auth/SET_USER_DATA",
     payload: {
       id,
       email,

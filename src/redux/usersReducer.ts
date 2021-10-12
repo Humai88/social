@@ -15,7 +15,7 @@ export const usersReducer = (
   action: ActionUsersTypes
 ): UsersPageType => {
   switch (action.type) {
-    case "FOLLOW":
+    case "users/FOLLOW":
       return {
         ...state,
         users: state.users.map((u) => {
@@ -25,7 +25,7 @@ export const usersReducer = (
           return u;
         }),
       };
-    case "UNFOLLOW":
+    case "users/UNFOLLOW":
       return {
         ...state,
         users: state.users.map((u) => {
@@ -35,28 +35,28 @@ export const usersReducer = (
           return u;
         }),
       };
-    case "SET_USERS":
+    case "users/SET_USERS":
       return {
         ...state,
         users: action.payload.users,
       };
-    case "SET_CURRENT_PAGE":
+    case "users/SET_CURRENT_PAGE":
       return {
         ...state,
         currentPage: action.payload.currentPage,
       };
 
-    case "SET_TOTAL_COUNT":
+    case "users/SET_TOTAL_COUNT":
       return {
         ...state,
         totalUsersCout: action.payload.totalCount,
       };
-    case "TOGGLE_IS_FETCHING":
+    case "users/TOGGLE_IS_FETCHING":
       return {
         ...state,
         isFetching: action.payload.isFetching,
       };
-    case "TOGGLE_FOLLOWING_PROGRESS":
+    case "users/TOGGLE_FOLLOWING_PROGRESS":
       return {
         ...state,
         followingInProgress: action.payload.isFetching
@@ -75,7 +75,7 @@ export const usersReducer = (
 // Action Creators
 export const followAC = (userId: number) => {
   return {
-    type: "FOLLOW",
+    type: "users/FOLLOW",
     payload: {
       userId,
     },
@@ -84,7 +84,7 @@ export const followAC = (userId: number) => {
 
 export const unfollowAC = (userId: number) => {
   return {
-    type: "UNFOLLOW",
+    type: "users/UNFOLLOW",
     payload: {
       userId,
     },
@@ -93,7 +93,7 @@ export const unfollowAC = (userId: number) => {
 
 export const setUsersAC = (users: UserType[]) => {
   return {
-    type: "SET_USERS",
+    type: "users/SET_USERS",
     payload: {
       users,
     },
@@ -102,7 +102,7 @@ export const setUsersAC = (users: UserType[]) => {
 
 export const setCurrentPageAC = (currentPage: number) => {
   return {
-    type: "SET_CURRENT_PAGE",
+    type: "users/SET_CURRENT_PAGE",
     payload: {
       currentPage,
     },
@@ -111,7 +111,7 @@ export const setCurrentPageAC = (currentPage: number) => {
 
 export const setTotalUsersCountAC = (totalCount: number) => {
   return {
-    type: "SET_TOTAL_COUNT",
+    type: "users/SET_TOTAL_COUNT",
     payload: {
       totalCount,
     },
@@ -120,7 +120,7 @@ export const setTotalUsersCountAC = (totalCount: number) => {
 
 export const toggleIsFetchingAC = (isFetching: boolean) => {
   return {
-    type: "TOGGLE_IS_FETCHING",
+    type: "users/TOGGLE_IS_FETCHING",
     payload: {
       isFetching,
     },
@@ -131,7 +131,7 @@ export const toggleFollowingProgressAC = (
   userId: number
 ) => {
   return {
-    type: "TOGGLE_FOLLOWING_PROGRESS",
+    type: "users/TOGGLE_FOLLOWING_PROGRESS",
     payload: {
       isFetching,
       userId,
@@ -153,6 +153,7 @@ export const getUsersThunkCreator = (
     });
   };
 };
+
 export const followThunkCreator = (id: number): ThunkType => {
   return (dispatch) => {
     dispatch(toggleFollowingProgressAC(true, id));

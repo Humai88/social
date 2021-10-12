@@ -1,5 +1,6 @@
+import { profile } from "console";
 import { v1 } from "uuid";
-import { profileAPI, ProfileResponseType } from "../api/api";
+import { PhotosType, profileAPI, ProfileResponseType } from "../api/api";
 import { ThunkType } from "./reduxStore";
 
 const initialState: ProfilePageType = {
@@ -25,7 +26,27 @@ const initialState: ProfilePageType = {
     },
   ],
   newPostText: "",
-  profile: null,
+  profile: {
+    aboutMe: "",
+    contacts: {
+      github: "",
+      vk: "",
+      facebook: "",
+      instagram: "",
+      twitter: "",
+      website: "",
+      youtube: "",
+      mainLink: "",
+    },
+    lookingForAJob: false,
+    lookingForAJobDescription: "",
+    fullName: "",
+    userId: null,
+    photos: {
+      large: "",
+      small: "",
+    },
+  },
   status: "",
 };
 
@@ -34,7 +55,7 @@ export const profileReducer = (
   action: ActionProfileTypes
 ): ProfilePageType => {
   switch (action.type) {
-    case "ADD-POST":
+    case "profile/ADD-POST":
       return {
         ...state,
         posts: [
@@ -47,20 +68,25 @@ export const profileReducer = (
         ],
         newPostText: "",
       };
-    case "SET_STATUS":
+    case "profile/SET_STATUS":
       return {
         ...state,
         status: action.payload.status,
       };
-    case "UPDATE-NEW-POST-TEXT":
+    case "profile/UPDATE-NEW-POST-TEXT":
       return {
         ...state,
         newPostText: action.payload.newText,
       };
-    case "SET-USER-PROFILE":
+    case "profile/SET-USER-PROFILE":
       return {
         ...state,
         profile: action.payload.profile,
+      };
+    case "profile/UPDATE-PHOTO":
+      return {
+        ...state,
+        profile: { ...state.profile, photos: action.payload.photos },
       };
 
     default:
@@ -71,12 +97,12 @@ export const profileReducer = (
 //Action Creators
 export const addPostAC = () => {
   return {
-    type: "ADD-POST",
+    type: "profile/ADD-POST",
   } as const;
 };
 export const setStatusAC = (status: string) => {
   return {
-    type: "SET_STATUS",
+    type: "profile/SET_STATUS",
     payload: {
       status,
     },
@@ -84,11 +110,21 @@ export const setStatusAC = (status: string) => {
 };
 
 export const updateNewPostTextAC = (newText: string) => {
-  return { type: "UPDATE-NEW-POST-TEXT", payload: { newText } } as const;
+  return {
+    type: "profile/UPDATE-NEW-POST-TEXT",
+    payload: { newText },
+  } as const;
 };
 
 export const setUserProfileAC = (profile: ProfileResponseType) => {
-  return { type: "SET-USER-PROFILE", payload: { profile } } as const;
+  return { type: "profile/SET-USER-PROFILE", payload: { profile } } as const;
+};
+
+export const updatePhotoAC = (photos: PhotosType) => {
+  return {
+    type: "profile/UPDATE-PHOTO",
+    payload: { photos },
+  } as const;
 };
 
 // Thunks
@@ -118,6 +154,15 @@ export const updateStatusThunkCreator = (status: string): ThunkType => {
   };
 };
 
+export const savePhotoThunkCreator = (photo: File): ThunkType => {
+  return (dispatch) => {
+    profileAPI.savePhoto(photo).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(updatePhotoAC(data.data.photos));
+      }
+    });
+  };
+};
 // Types
 export type PostType = {
   id: string;
@@ -138,4 +183,5 @@ export type ActionProfileTypes =
   | ReturnType<typeof addPostAC>
   | ReturnType<typeof updateNewPostTextAC>
   | ReturnType<typeof setUserProfileAC>
-  | ReturnType<typeof setStatusAC>;
+  | ReturnType<typeof setStatusAC>
+  | ReturnType<typeof updatePhotoAC>;

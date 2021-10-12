@@ -34,6 +34,7 @@ const Login: React.FC<LoginPropsType> = ({ login, isAuth }) => {
   if (isAuth) {
     return <Redirect to="/profile" />;
   }
+
   return (
     <div className={styles.formWrapper}>
       <h1>Login</h1>

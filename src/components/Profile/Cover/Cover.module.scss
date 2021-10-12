@@ -34,3 +34,26 @@
     height: 5rem;
   }
 }
+.iconUpload {
+  font-size: 1.5rem;
+  height: 2.7rem;
+  width: 2.7rem;
+  border-radius: 50%;
+  background-color: rgb(68, 68, 68);
+  display: flex;
+  color: $color-body;
+  border: 1px solid $color-body;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+  position: relative;
+  margin-top: -2.2rem;
+  margin-left: 8rem;
+  cursor: pointer;
+  @include media-query("max", $palm-start) {
+    width: 2rem;
+    height: 2rem;
+    margin-left: 5.2rem;
+    margin-top: -1.5rem;
+  }
+}

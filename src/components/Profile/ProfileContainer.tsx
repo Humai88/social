@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import {
   getStatusThunkCreator,
+  savePhotoThunkCreator,
   setProfileThunkCreator,
   updateStatusThunkCreator,
 } from "../../redux/profileReducer";
@@ -23,7 +24,7 @@ const mapStateToProps = (state: RootStateType): mapStateType => {
 };
 
 class ProfileContainer extends Component<PropsType> {
-  componentDidMount() {
+  refreshProfile() {
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = `${this.props.autorizedUserId}`;
@@ -34,14 +35,24 @@ class ProfileContainer extends Component<PropsType> {
     this.props.setUserProfile(userId);
     this.props.getStatus(userId);
   }
+  componentDidMount() {
+    this.refreshProfile();
+  }
+  componentDidUpdate(prevProps: any) {
+    if (this.props.match.params.userId != prevProps.match.params.userId) {
+      this.refreshProfile();
+    }
+  }
 
   render() {
     return (
       <Profile
         {...this.props}
+        isOwner={!this.props.match.params.userId}
         profile={this.props.profile}
         status={this.props.status}
         updateStatus={this.props.updateStatus}
+        savePhoto={this.props.savePhoto}
       />
     );
   }
@@ -52,6 +63,7 @@ export default compose<React.ComponentType>(
     setUserProfile: setProfileThunkCreator,
     getStatus: getStatusThunkCreator,
     updateStatus: updateStatusThunkCreator,
+    savePhoto: savePhotoThunkCreator,
   }),
   withRouter,
   withAuthRedirect
@@ -73,5 +85,6 @@ type mapDispatchType = {
   setUserProfile: (userId: string) => void;
   getStatus: (status: string) => void;
   updateStatus: (status: string) => void;
+  savePhoto: any;
 };
 export type ProfilePropsType = mapStateType & mapDispatchType;

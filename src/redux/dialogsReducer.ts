@@ -46,7 +46,7 @@ export const dialogsReducer = (
   action: ActionDialogsTypes
 ): MessagePageType => {
   switch (action.type) {
-    case "ADD-MESSAGE":
+    case "dialogs/ADD-MESSAGE":
       return {
         ...state,
         messages: [
@@ -59,7 +59,7 @@ export const dialogsReducer = (
         newMessageText: "",
       };
 
-    case "UPDATE-NEW-MESSAGE-TEXT":
+    case "dialogs/UPDATE-NEW-MESSAGE-TEXT":
       return {
         ...state,
         newMessageText: action.payload.newText,
@@ -73,12 +73,15 @@ export const dialogsReducer = (
 // Action Creators
 export const addMessageAC = () => {
   return {
-    type: "ADD-MESSAGE",
+    type: "dialogs/ADD-MESSAGE",
   } as const;
 };
 
 export const updateNewMessageTextAC = (newText: string) => {
-  return { type: "UPDATE-NEW-MESSAGE-TEXT", payload: { newText } } as const;
+  return {
+    type: "dialogs/UPDATE-NEW-MESSAGE-TEXT",
+    payload: { newText },
+  } as const;
 };
 
 // Types
